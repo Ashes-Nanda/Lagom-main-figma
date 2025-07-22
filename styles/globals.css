@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 14px;
+  --background: 58 75% 96%;
+  --foreground: 230 70% 18%;
+  --card: 0 0% 100%;
+  --card-foreground: 230 70% 18%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 230 70% 18%;
+  --primary: 230 70% 18%;
+  --primary-foreground: 58 75% 96%;
+  --secondary: 194 57% 74%;
+  --secondary-foreground: 230 70% 18%;
+  --muted: 185 55% 90%;
+  --muted-foreground: 194 32% 37%;
+  --accent: 194 32% 37%;
+  --accent-foreground: 58 75% 96%;
+  --destructive: 349 69% 49%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 194 57% 74%;
+  --input: transparent;
+  --input-background: 0 0% 100%;
+  --switch-background: 220 7% 79%;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: 194 32% 37%;
+  --chart-1: 194 57% 74%;
+  --chart-2: 194 32% 37%;
+  --chart-3: 223 28% 55%;
+  --chart-4: 185 55% 90%;
+  --chart-5: 230 70% 18%;
+  --radius: 0.625rem;
+  --sidebar: 58 75% 96%;
+  --sidebar-foreground: 230 70% 18%;
+  --sidebar-primary: 230 70% 18%;
+  --sidebar-primary-foreground: 58 75% 96%;
+  --sidebar-accent: 185 55% 90%;
+  --sidebar-accent-foreground: 230 70% 18%;
+  --sidebar-border: 194 57% 74%;
+  --sidebar-ring: 194 32% 37%;
+}
+
+.dark {
+  --background: 230 70% 18%;
+  --foreground: 58 75% 96%;
+  --card: 230 70% 18%;
+  --card-foreground: 58 75% 96%;
+  --popover: 230 70% 18%;
+  --popover-foreground: 58 75% 96%;
+  --primary: 194 57% 74%;
+  --primary-foreground: 230 70% 18%;
+  --secondary: 194 32% 37%;
+  --secondary-foreground: 58 75% 96%;
+  --muted: 223 28% 55%;
+  --muted-foreground: 220 7% 79%;
+  --accent: 194 32% 37%;
+  --accent-foreground: 58 75% 96%;
+  --destructive: 349 69% 49%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 194 32% 37%;
+  --input: 194 32% 37%;
+  --ring: 194 57% 74%;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: 194 57% 74%;
+  --chart-2: 194 32% 37%;
+  --chart-3: 223 28% 55%;
+  --chart-4: 185 55% 90%;
+  --chart-5: 58 75% 96%;
+  --sidebar: 230 70% 18%;
+  --sidebar-foreground: 58 75% 96%;
+  --sidebar-primary: 194 57% 74%;
+  --sidebar-primary-foreground: 230 70% 18%;
+  --sidebar-accent: 223 28% 55%;
+  --sidebar-accent-foreground: 58 75% 96%;
+  --sidebar-border: 194 32% 37%;
+  --sidebar-ring: 194 57% 74%;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/**
+ * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
+ */
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h4 {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    p {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+
+    label {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    button {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    input {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* Infinite Carousel Animations */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes scroll-left-reverse {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 60s linear infinite;
+}
+
+.animate-scroll-left-reverse {
+  animation: scroll-left-reverse 60s linear infinite;
+}
+
+/* Pause animation on hover */
+.carousel-container:hover .animate-scroll-left,
+.carousel-container:hover .animate-scroll-left-reverse {
+  animation-play-state: paused;
+}
