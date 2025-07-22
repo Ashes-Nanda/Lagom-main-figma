@@ -3,8 +3,7 @@ import { Button } from "./ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { ScrollArea } from "./ui/scroll-area";
-import { Badge } from "./ui/badge";
-import { MessageCircle, Send, X, Bot, User, Heart, Phone, BookOpen, Brain, Users, Calendar, Zap, RefreshCw } from "lucide-react";
+import { MessageCircle, Send, X, Bot, User, Heart, Phone, BookOpen, Brain, Users, Zap, RefreshCw } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 interface Message {

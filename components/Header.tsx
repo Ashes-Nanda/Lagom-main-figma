@@ -1,7 +1,7 @@
 import { Button } from "./ui/button";
 import { PhoneCall } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import beingLagomLogo from "/lagom-logo.png";
+const beingLagomLogo = "/lagom-logo.png";
 
 export function Header() {
   const location = useLocation();

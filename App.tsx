@@ -13,7 +13,7 @@ import { DirectoryPage } from "./pages/DirectoryPage";
 import { ResourcesPage } from "./pages/ResourcesPage";
 import { AboutPage } from "./pages/AboutPage";
 import { AssessmentPage } from "./pages/AssessmentPage";
-import { MindfulnessPage } from "./pages/MindfulnessPage";
+
 import { ContactPage } from "./pages/ContactPage";
 import { MerchandisePage } from "./pages/MerchandisePage";
 import { GamesPage } from "./pages/GamesPage";

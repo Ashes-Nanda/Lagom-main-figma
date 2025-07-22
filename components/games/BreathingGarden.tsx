@@ -83,7 +83,7 @@ export function BreathingGarden({ onBack }: BreathingGardenProps) {
   const [isComplete, setIsComplete] = useState(false);
   const [circleScale, setCircleScale] = useState(1);
   
-  const intervalRef = useRef<NodeJS.Timeout>();
+  const intervalRef = useRef<number>();
 
   const phaseNames = {
     inhale: 'Breathe In',

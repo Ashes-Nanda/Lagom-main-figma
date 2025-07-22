@@ -29,19 +29,21 @@ const encouragements = [
   "Release and reset",
   "Your well-being matters",
   "Transform stress into strength",
-  "You deserve this moment of release"
+  "You deserve this moment of release",
 ];
 
-export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) {
+export function StressReleaseSanctuary({
+  onBack,
+}: StressReleaseSanctuaryProps) {
   const [hitCount, setHitCount] = useState(0);
   const [bagRotation, setBagRotation] = useState(0);
   const [bagScale, setBagScale] = useState(1);
-  const [particles, setParticles] = useState<Particle[]>([]);
+  const [, setParticles] = useState<Particle[]>([]);
   const [currentEncouragement, setCurrentEncouragement] = useState("");
   const [showEncouragement, setShowEncouragement] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [bagPosition, setBagPosition] = useState({ x: 0, y: 0 });
-  
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
   const particleIdRef = useRef(0);
@@ -50,8 +52,8 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
   // Create particle burst effect
   const createParticles = (x: number, y: number) => {
     const newParticles: Particle[] = [];
-    const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
-    
+    const colors = ["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4", "#feca57"];
+
     for (let i = 0; i < 15; i++) {
       newParticles.push({
         id: particleIdRef.current++,
@@ -62,19 +64,18 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
         life: 60,
         maxLife: 60,
         size: Math.random() * 4 + 2,
-        color: colors[Math.floor(Math.random() * colors.length)]
+        color: colors[Math.floor(Math.random() * colors.length)],
       });
     }
-    
-    setParticles(prev => [...prev, ...newParticles]);
+
+    setParticles((prev) => [...prev, ...newParticles]);
   };
 
   // Play impact sound (simulated)
   const playImpactSound = () => {
     if (soundEnabled) {
       // In a real implementation, you would play an actual sound file
-      // For now, we'll just provide visual feedback
-      console.log("🥊 Impact sound played");
+      // Visual feedback is provided through animations
     }
   };
 
@@ -83,32 +84,33 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
     const rect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    
+
     // Update hit count
-    setHitCount(prev => prev + 1);
-    
+    setHitCount((prev) => prev + 1);
+
     // Animate bag
     setBagScale(0.9);
-    setBagRotation(prev => prev + (Math.random() - 0.5) * 20);
+    setBagRotation((prev) => prev + (Math.random() - 0.5) * 20);
     setBagPosition({
       x: (Math.random() - 0.5) * 10,
-      y: (Math.random() - 0.5) * 5
+      y: (Math.random() - 0.5) * 5,
     });
-    
+
     // Create particle effect
     createParticles(x, y);
-    
+
     // Play sound
     playImpactSound();
-    
+
     // Show encouragement every 5 hits
     if ((hitCount + 1) % 5 === 0) {
-      const randomEncouragement = encouragements[Math.floor(Math.random() * encouragements.length)];
+      const randomEncouragement =
+        encouragements[Math.floor(Math.random() * encouragements.length)];
       setCurrentEncouragement(randomEncouragement);
       setShowEncouragement(true);
       setTimeout(() => setShowEncouragement(false), 3000);
     }
-    
+
     // Reset bag animation
     setTimeout(() => {
       setBagScale(1);
@@ -120,28 +122,28 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
+
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       // Update and draw particles
-      setParticles(prevParticles => {
+      setParticles((prevParticles) => {
         const updatedParticles = prevParticles
-          .map(particle => ({
+          .map((particle) => ({
             ...particle,
             x: particle.x + particle.vx,
             y: particle.y + particle.vy,
             vy: particle.vy + 0.2, // gravity
             life: particle.life - 1,
-            vx: particle.vx * 0.98 // air resistance
+            vx: particle.vx * 0.98, // air resistance
           }))
-          .filter(particle => particle.life > 0);
-        
+          .filter((particle) => particle.life > 0);
+
         // Draw particles
-        updatedParticles.forEach(particle => {
+        updatedParticles.forEach((particle) => {
           const alpha = particle.life / particle.maxLife;
           ctx.globalAlpha = alpha;
           ctx.fillStyle = particle.color;
@@ -149,16 +151,16 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
           ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
           ctx.fill();
         });
-        
+
         ctx.globalAlpha = 1;
         return updatedParticles;
       });
-      
+
       animationRef.current = requestAnimationFrame(animate);
     };
-    
+
     animationRef.current = requestAnimationFrame(animate);
-    
+
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
@@ -185,7 +187,7 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
         width={window.innerWidth}
         height={window.innerHeight}
       />
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -200,7 +202,11 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
                 variant="outline"
                 size="sm"
               >
-                {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                {soundEnabled ? (
+                  <Volume2 className="w-4 h-4" />
+                ) : (
+                  <VolumeX className="w-4 h-4" />
+                )}
               </Button>
               <Button onClick={resetGame} variant="outline" size="sm">
                 <RotateCcw className="w-4 h-4 mr-2" />
@@ -215,15 +221,19 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
               Stress Release Sanctuary
             </h1>
             <p className="text-xl lg:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto">
-              Click or tap the punching bag to release stress mindfully. 
-              Each hit helps transform tension into peace.
+              Click or tap the punching bag to release stress mindfully. Each
+              hit helps transform tension into peace.
             </p>
-            
+
             {/* Stats */}
             <Card className="inline-block bg-white">
               <CardContent className="p-6">
-                <div className="text-4xl font-bold text-primary mb-2">{hitCount}</div>
-                <div className="text-base text-muted-foreground">Stress Releases</div>
+                <div className="text-4xl font-bold text-primary mb-2">
+                  {hitCount}
+                </div>
+                <div className="text-base text-muted-foreground">
+                  Stress Releases
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -233,7 +243,7 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
             <div className="relative">
               {/* Hanging chain */}
               <div className="w-2 h-24 bg-muted mx-auto mb-4 rounded-full shadow-sm" />
-              
+
               {/* Punching bag */}
               <div
                 ref={bagRef}
@@ -244,7 +254,7 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
                     rotate(${bagRotation}deg) 
                     translate(${bagPosition.x}px, ${bagPosition.y}px)
                   `,
-                  transformOrigin: 'top center'
+                  transformOrigin: "top center",
                 }}
                 onClick={handlePunch}
                 onMouseDown={(e) => e.preventDefault()}
@@ -253,7 +263,7 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
                 <div className="absolute inset-0 rounded-full">
                   {/* Highlight */}
                   <div className="absolute top-6 left-6 w-10 h-16 bg-white/20 rounded-full" />
-                  
+
                   {/* Stitching lines */}
                   <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-destructive-foreground/30" />
                   <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-destructive-foreground/30" />
@@ -261,11 +271,11 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
                   <div className="absolute top-36 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-destructive-foreground/30" />
                   <div className="absolute top-44 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-destructive-foreground/30" />
                 </div>
-                
+
                 {/* Impact ripple effect */}
                 <div className="absolute inset-0 rounded-full bg-white opacity-0 animate-ping" />
               </div>
-              
+
               {/* Shadow */}
               <div className="w-32 h-10 bg-black/20 rounded-full mx-auto mt-6 blur-sm" />
             </div>
@@ -275,10 +285,14 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
           <div className="max-w-4xl mx-auto">
             <Card className="bg-white">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold mb-6 text-center text-primary">Mindful Stress Release</h3>
+                <h3 className="text-2xl font-semibold mb-6 text-center text-primary">
+                  Mindful Stress Release
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <h4 className="font-semibold text-primary mb-4">How to use:</h4>
+                    <h4 className="font-semibold text-primary mb-4">
+                      How to use:
+                    </h4>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex items-start">
                         <div className="w-2 h-2 bg-accent rounded-full mr-3 mt-2" />
@@ -299,7 +313,9 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-primary mb-4">Remember:</h4>
+                    <h4 className="font-semibold text-primary mb-4">
+                      Remember:
+                    </h4>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex items-start">
                         <div className="w-2 h-2 bg-accent rounded-full mr-3 mt-2" />

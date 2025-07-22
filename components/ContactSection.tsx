@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
-import { Mail, Phone, MapPin, MessageSquare, Heart, Building } from "lucide-react";
+import { Phone, MapPin, MessageSquare, Heart, Building } from "lucide-react";
 
 export function ContactSection() {
   return (

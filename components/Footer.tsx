@@ -2,7 +2,7 @@ import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import beingLagomLogo from "/lagom-logo.png";
+const beingLagomLogo = "/lagom-logo.png";
 
 export function Footer() {
   return (

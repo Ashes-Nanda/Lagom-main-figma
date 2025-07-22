@@ -121,7 +121,7 @@ export function InstitutionalCredibility() {
     }
   ];
 
-  const CarouselCard = ({ intervention, index }: { intervention: typeof interventions[0], index: number }) => {
+  const CarouselCard = ({ intervention }: { intervention: typeof interventions[0], index: number }) => {
     const Icon = intervention.icon;
     return (
       <Card className="flex-shrink-0 w-80 mx-4 hover:shadow-lg transition-all duration-300 border-2 hover:border-accent/50">

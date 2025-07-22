@@ -14,12 +14,22 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /* Path mapping */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./components/*"],
+      "@/pages/*": ["./pages/*"],
+      "@/lib/*": ["./lib/*"]
+    },
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "components", "pages", "*.tsx", "*.ts"],
+  "include": ["src", "components", "pages", "lib", "*.tsx"],
+  "exclude": ["node_modules", "dist", "*.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
