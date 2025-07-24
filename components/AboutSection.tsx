@@ -93,6 +93,15 @@ export function AboutSection() {
             </Card>
           </div>
 
+          <div className="mt-16 text-center">
+            <blockquote className="text-lg italic text-accent max-w-3xl mx-auto">
+              "Lagom is a Swedish concept meaning 'just the right amount' - not too little, not too much, but exactly what's needed."
+            </blockquote>
+            <p className="mt-4 text-sm text-muted-foreground">
+              To care for others, we must first learn to care for ourselves - not selfishly, but sustainably.
+            </p>
+          </div>
+          <br></br>
           {/* Achievements */}
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-primary mb-8 text-center">
