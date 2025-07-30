@@ -1,10 +1,10 @@
 import { AboutSection } from "../components/AboutSection";
+import { PageLayout } from "../components/layout";
 
 export function AboutPage() {
   return (
-    <div className="pt-8">
+    <PageLayout>
       <AboutSection />
-      
-    </div>
+    </PageLayout>
   );
 }

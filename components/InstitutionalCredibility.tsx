@@ -121,42 +121,42 @@ export function InstitutionalCredibility() {
     }
   ];
 
-  const CarouselCard = ({ intervention }: { intervention: typeof interventions[0], index: number }) => {
+  const InterventionCard = ({ intervention }: { intervention: typeof interventions[0] }) => {
     const Icon = intervention.icon;
     return (
-      <Card className="flex-shrink-0 w-80 mx-4 hover:shadow-lg transition-all duration-300 border-2 hover:border-accent/50">
-        <CardHeader className="pb-4">
-          <div className="flex items-center mb-3">
-            <div className="p-2 bg-accent/10 rounded-lg mr-3">
+      <Card className="h-full hover:shadow-lg transition-all duration-300 border-2 hover:border-accent/50 flex flex-col">
+        <CardHeader className="pb-4 flex-shrink-0">
+          <div className="flex items-start mb-3">
+            <div className="p-2 bg-accent/10 rounded-lg mr-3 flex-shrink-0">
               <Icon className="w-6 h-6 text-accent" />
             </div>
-            <div>
-              <CardTitle className="text-lg">{intervention.title}</CardTitle>
+            <div className="min-w-0 flex-1">
+              <CardTitle className="typography-h4 leading-tight break-words">{intervention.title}</CardTitle>
             </div>
           </div>
-          <CardDescription className="text-sm">
+          <CardDescription className="text-sm leading-relaxed">
             {intervention.description}
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 flex-1 flex flex-col">
           {/* Statistics */}
-          <div className="grid grid-cols-1 gap-3">
+          <div className="grid grid-cols-1 gap-3 flex-shrink-0">
             {intervention.stats.map((stat, statIndex) => (
-              <div key={statIndex} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
-                <span className="text-sm text-muted-foreground">{stat.label}</span>
-                <span className="font-semibold text-primary">{stat.value}</span>
+              <div key={statIndex} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg min-h-[3rem]">
+                <span className="text-sm text-muted-foreground flex-1 pr-2 break-words">{stat.label}</span>
+                <span className="font-semibold text-primary flex-shrink-0 text-right">{stat.value}</span>
               </div>
             ))}
           </div>
 
           {/* Key Highlights */}
-          <div className="space-y-2">
+          <div className="space-y-2 flex-1">
             <h4 className="text-sm font-medium text-primary">Key Highlights:</h4>
-            <ul className="space-y-1">
+            <ul className="space-y-2">
               {intervention.highlights.map((highlight, highlightIndex) => (
-                <li key={highlightIndex} className="text-xs text-muted-foreground flex items-start">
+                <li key={highlightIndex} className="text-xs text-muted-foreground flex items-start leading-relaxed">
                   <span className="w-1 h-1 bg-accent rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                  {highlight}
+                  <span className="break-words">{highlight}</span>
                 </li>
               ))}
             </ul>
@@ -167,82 +167,70 @@ export function InstitutionalCredibility() {
   };
 
   return (
-    <section className="py-20 bg-muted/20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+    <section className="py-12 md:py-20 bg-muted/20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="text-center mb-12 md:mb-16">
             <Badge variant="secondary" className="mb-4 px-4 py-2">
               <Award className="w-4 h-4 mr-2" />
               Evidence-Based Impact
             </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-6">
+            <h2 className="typography-responsive-h2 text-primary mb-4 md:mb-6">
               Our Institutional Credibility
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="typography-body-large text-muted-foreground max-w-3xl mx-auto px-4">
               Being.Lagom's interventions are backed by research, partnerships with leading institutions, 
               and measurable outcomes in supporting healthcare professionals globally.
             </p>
           </div>
 
-          {/* Infinite Carousel */}
-          <div className="carousel-container relative overflow-hidden mb-16">
-            <div className="flex">
-              {/* First set of cards */}
-              <div className="flex animate-scroll-left">
-                {interventions.map((intervention, index) => (
-                  <CarouselCard key={`first-${index}`} intervention={intervention} index={index} />
-                ))}
-              </div>
-              {/* Duplicate set for seamless loop */}
-              <div className="flex animate-scroll-left">
-                {interventions.map((intervention, index) => (
-                  <CarouselCard key={`second-${index}`} intervention={intervention} index={index} />
-                ))}
-              </div>
-            </div>
+          {/* Interventions Grid - Vertical/2-column layout for better accessibility */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
+            {interventions.map((intervention, index) => (
+              <InterventionCard key={index} intervention={intervention} />
+            ))}
           </div>
 
           {/* Research & Partnerships Section */}
-          <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 md:p-12">
+          <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-6 md:p-8 lg:p-12">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-primary mb-4">
+              <h3 className="text-xl md:text-2xl font-bold text-primary mb-4 leading-tight">
                 Academic Partnerships & Research Excellence
               </h3>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
                 Our commitment to evidence-based care is demonstrated through collaborations 
                 with leading institutions and ongoing research initiatives.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <div className="text-center p-4">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="w-8 h-8 text-primary" />
                 </div>
                 <h4 className="font-semibold text-primary mb-2">Oxford University</h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Physical exhibition featuring 30 mental health journey stories, 
                   sponsored by Van Houten Fund
                 </p>
               </div>
               
-              <div className="text-center">
+              <div className="text-center p-4">
                 <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Brain className="w-8 h-8 text-accent" />
                 </div>
                 <h4 className="font-semibold text-primary mb-2">Stanford University</h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Collaboration on 'Pause a Moment' Project with neuroscience protocols 
                   for anxiety and burnout tools
                 </p>
               </div>
               
-              <div className="text-center">
+              <div className="text-center p-4 sm:col-span-2 lg:col-span-1">
                 <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-primary" />
                 </div>
                 <h4 className="font-semibold text-primary mb-2">Overcome UK</h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Partnership for pro bono therapy interventions with CBT and 
                   Motivational Interviewing approaches
                 </p>
@@ -260,7 +248,6 @@ export function InstitutionalCredibility() {
               </p>
             </div>
           </div>
-        </div>
       </div>
     </section>
   );

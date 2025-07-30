@@ -1,11 +1,12 @@
 import { HeroSection } from "../components/HeroSection";
 import { InstitutionalCredibility } from "../components/InstitutionalCredibility";
+import { PageLayout } from "../components/layout";
 
 export function HomePage() {
   return (
-    <div>
+    <PageLayout withTopPadding={false}>
       <HeroSection />
       <InstitutionalCredibility />
-    </div>
+    </PageLayout>
   );
 }

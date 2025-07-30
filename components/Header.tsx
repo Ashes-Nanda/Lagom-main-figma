@@ -1,25 +1,34 @@
 import { Button } from "./ui/button";
 import { PhoneCall } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { NavigationDropdown } from "./navigation/NavigationDropdown";
+import { MobileNavigation } from "./navigation/MobileNavigation";
+
 const beingLagomLogo = "/lagom-logo.png";
 
-export function Header() {
-  const location = useLocation();
+interface NavigationItem {
+  label: string;
+  path: string;
+  children?: NavigationItem[];
+}
 
-  const navItems = [
+export function Header() {
+  const navItems: NavigationItem[] = [
     { path: "/", label: "Home" },
     { path: "/directory", label: "Directory" },
-    { path: "/resources", label: "Resources" },
+    { 
+      path: "#", 
+      label: "Wellness",
+      children: [
+        { path: "/resources", label: "Resources" },
+        { path: "/mindfulness", label: "Mindfulness" },
+        { path: "/merchandise", label: "Merchandise" }
+      ]
+    },
     { path: "/about", label: "About" },
     { path: "/assessment", label: "Assessment" },
-    { path: "/mindfulness", label: "Mindfulness" },
-    { path: "/merchandise", label: "Merchandise" },
     { path: "/contact", label: "Contact" },
   ];
-
-  const isActive = (path: string) => {
-    return location.pathname === path;
-  };
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
@@ -39,24 +48,22 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Navigation - Always visible with responsive sizing */}
-          <nav className="flex items-center justify-center flex-1 mx-2 sm:mx-4">
-            <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4 overflow-x-auto">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center justify-center flex-1 mx-2 sm:mx-4">
+            <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4">
               {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`transition-colors whitespace-nowrap px-2 py-1 rounded-md text-xs sm:text-sm md:text-base ${
-                    isActive(item.path)
-                      ? "text-accent font-medium bg-accent/10"
-                      : "text-foreground hover:text-accent hover:bg-accent/5"
-                  }`}
-                >
-                  {item.label}
-                </Link>
+                <NavigationDropdown
+                  key={item.label}
+                  item={item}
+                />
               ))}
             </div>
           </nav>
+
+          {/* Mobile Navigation */}
+          <div className="md:hidden flex-1 flex justify-end mr-2">
+            <MobileNavigation items={navItems} />
+          </div>
 
           {/* Crisis Support Button */}
           <div className="flex flex-shrink-0 ml-2">
