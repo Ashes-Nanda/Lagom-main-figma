@@ -105,9 +105,9 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <a href="https://forms.gle/FAQ123" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  <Link to="/faq" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                     FAQ
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="https://forms.gle/Guidelines456" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
