@@ -16,87 +16,87 @@ interface FaqItem {
 const faqItems: FaqItem[] = [
   {
     id: '1',
-    question: 'What is Being.Lagom?',
+    question: 'What does "Being.Lagom" mean, and how do you pronounce it?',
     answer:
-      'Being.Lagom is a vital online sanctuary for healthcare professionals seeking mental health support and community. We provide resources, tools, and a supportive community to help healthcare workers maintain their mental wellness.',
+      '"Being.Lagom" is a Swedish term that roughly translates to "just the right amount" or "balanced living." Pronouncing it is as easy as finding that perfect balance – La-gom, just like sipping your favorite hot beverage!',
     category: 'general',
   },
   {
     id: '2',
-    question: 'Is Being.Lagom free to use?',
+    question: 'How can I get involved in the Being.Lagom community?',
     answer:
-      'Yes, Being.Lagom is completely free to use. We believe mental health support should be accessible to all healthcare professionals. All our resources, tools, and community features are available at no cost.',
+      'Dive right in! Connect with us on social media, attend local events, or start your own Being.Lagom chapter. It\'s all about finding your sweet spot within the community.',
     category: 'general',
   },
   {
     id: '3',
-    question: 'How do I find a therapist through the platform?',
+    question: 'Is prior experience with Being.Lagom necessary for leadership roles?',
     answer:
-      'You can browse our therapist directory by visiting the "Directory" page. Use our advanced filters to find therapists by location, specialization, availability, and more. All listed therapists are verified healthcare professionals.',
-    category: 'mental-health',
+      'Not at all! We believe in fresh perspectives and welcome everyone. The only prerequisite is a passion for balanced living and a knack for making things happen.',
+    category: 'general',
   },
   {
     id: '4',
-    question: 'What types of mental health resources are available?',
+    question: 'What benefits come with being part of the Executive Team at Being.Lagom?',
     answer:
-      'We offer a comprehensive library of resources including articles, podcasts, videos, mindfulness tools, breathing exercises, and self-help guides. All content is curated specifically for healthcare professionals.',
-    category: 'resources',
+      'Besides the joy of contributing to global well-being, you\'ll gain skills in multitasking, strategic thinking, and have access to our unofficial but highly valued "Lagom Superpowers" handbook.',
+    category: 'general',
   },
   {
     id: '5',
-    question: 'How do I access the mindfulness games and tools?',
+    question: 'Can I really make a difference in addressing physician burnout and mental health issues?',
     answer:
-      'Visit the "Mindfulness" page to access our interactive tools including breathing exercises, meditation guides, stress relief games, and wellness activities designed specifically for healthcare workers.',
-    category: 'resources',
+      'Absolutely! Every small effort adds up to create a big impact. It\'s like stacking Legos – one at a time, and soon you\'ve built something incredible!',
+    category: 'mental-health',
   },
   {
     id: '6',
-    question: 'Is my information kept private and secure?',
+    question: 'Is "Lagom" only about work, or does it extend to personal life too?',
     answer:
-      'Absolutely. We prioritize your privacy and security. All personal information is encrypted and protected. We follow strict healthcare privacy standards and never share your information without consent.',
-    category: 'support',
+      'Lagom transcends all aspects of life. It\'s about finding balance in work, play, and everything in between. So, don\'t worry; you can still enjoy that extra slice of cake – in moderation, of course!',
+    category: 'mental-health',
   },
   {
     id: '7',
-    question: 'How can I get crisis support?',
+    question: 'Are Lagom community events only serious discussions, or do you have fun too?',
     answer:
-      'If you\'re experiencing a mental health crisis, click the "Crisis Support" button in our navigation. We provide immediate access to crisis hotlines, emergency resources, and professional support.',
-    category: 'mental-health',
+      'Oh, absolutely! We believe laughter is the best medicine. Our events are a mix of insightful conversations, shared experiences, and a sprinkle of Lagom humor – because balance includes a good laugh too!',
+    category: 'support',
   },
   {
     id: '8',
-    question: 'Can I contribute content or share my story?',
+    question: 'How do you handle burnout within the Lagom community?',
     answer:
-      'Yes! We welcome contributions from healthcare professionals. You can share your experiences, write articles, or contribute to our community. Contact us through the "Contact" page to learn more.',
-    category: 'support',
+      'We practice what we preach! Open communication, support networks, and occasional virtual group hugs. And, of course, a Lagom amount of self-care.',
+    category: 'mental-health',
   },
   {
     id: '9',
-    question: 'How do I report inappropriate content or behavior?',
+    question: 'How can Being.Lagom contribute to reducing stigma around mental health disorders?',
     answer:
-      'If you encounter inappropriate content or behavior, please report it immediately through our contact form or email support@being.lagom. We take all reports seriously and maintain a safe community environment.',
-    category: 'support',
+      'By fostering open conversations, sharing personal stories, and promoting mental health literacy, we aim to break down barriers and show that mental health is a universal concern. Our community is all about embracing differences and creating a supportive space for everyone.',
+    category: 'mental-health',
   },
   {
     id: '10',
-    question: 'Are the resources evidence-based?',
+    question: 'How does Being.Lagom work towards creating healthy work cultures and environments in the healthcare sector?',
     answer:
-      'Yes, all our resources are carefully curated and evidence-based. We work with mental health professionals and researchers to ensure our content follows best practices and current research in mental health.',
-    category: 'resources',
+      'We advocate for positive change! Through partnerships, collaborations, and educational initiatives, we encourage a shift towards healthier work cultures. Think of it as a Lagom-inspired makeover for workplaces, ensuring everyone thrives.',
+    category: 'support',
   },
   {
     id: '11',
-    question: 'How do I reset my password or update my account?',
+    question: 'Can individuals outside the medical field benefit from Being.Lagom\'s initiatives on mental wellbeing?',
     answer:
-      'You can manage your account settings through your profile page. For password resets or account issues, contact our support team at support@being.lagom and we\'ll assist you promptly.',
-    category: 'technical',
+      'Absolutely! Lagom is all-inclusive. Our educational resources and events are designed for everyone, providing valuable insights into mental health for individuals in various professions and walks of life.',
+    category: 'resources',
   },
   {
     id: '12',
-    question: 'Do you offer group therapy or support groups?',
+    question: 'How can I contribute to Being.Lagom\'s mission of promoting mental health and wellbeing?',
     answer:
-      'Yes, we offer various support groups and community events for healthcare professionals. Check our "Events" page for upcoming group sessions, workshops, and community gatherings.',
-    category: 'mental-health',
+      'Join our community, attend events, and share your unique perspective. Whether you\'re a medical professional, a student, or just someone passionate about mental health, your voice matters. Together, we\'ll make a Lagom-sized impact on the world of mental wellbeing!',
+    category: 'support',
   },
 ];
 
@@ -138,8 +138,8 @@ export default function Faq() {
           </h2>
 
           <p className="text-muted-foreground max-w-2xl text-center">
-            Find answers to common questions about Being.Lagom and how we support 
-            healthcare professionals in their mental wellness journey.
+            Find answers to common questions about Being.Lagom, our community, and how we promote 
+            balanced living and mental wellness for everyone.
           </p>
         </div>
 
