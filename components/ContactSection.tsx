@@ -32,11 +32,11 @@ export function ContactSection() {
                 <CardContent className="space-y-4">
                   <div className="flex items-center">
                     <span className="text-muted-foreground">Phone:</span>
-                    <span className="ml-2 font-medium">1-800-LAGOM-1</span>
+                    <span className="ml-2 font-medium">+91 99798 80789 (Dr Nilima Shah)</span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-muted-foreground">Email:</span>
-                    <span className="ml-2 font-medium">support@being.lagom</span>
+                    <span className="ml-2 font-medium">info@beinglagom.com</span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-muted-foreground">Hours:</span>
