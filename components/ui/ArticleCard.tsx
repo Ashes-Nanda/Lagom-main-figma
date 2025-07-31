@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./card";
 import { Button } from "./button";
 import { Badge } from "./badge";
@@ -31,18 +31,6 @@ export function ArticleCard({
       month: 'long',
       day: 'numeric'
     });
-  };
-
-  const getFileTypeIcon = (fileType: string) => {
-    switch (fileType.toLowerCase()) {
-      case 'pdf':
-        return <FileText className="w-4 h-4" />;
-      case 'doc':
-      case 'docx':
-        return <FileText className="w-4 h-4" />;
-      default:
-        return <FileText className="w-4 h-4" />;
-    }
   };
 
   return (

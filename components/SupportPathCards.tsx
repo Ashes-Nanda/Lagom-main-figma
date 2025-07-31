@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-import { Users, UserCheck, Heart, Shield, MessageCircle, Clock, ExternalLink } from "lucide-react";
+import { Users, UserCheck, Heart, Shield, ExternalLink } from "lucide-react";
 
 export function SupportPathCards() {
   const supportOptions = [

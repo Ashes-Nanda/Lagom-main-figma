@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { BookOpen, Headphones, Play, Download, Heart, Brain, Zap, LucideIcon } from "lucide-react";
 import { ActiveFilter } from "./ui/FilterPanel";
-import { externalArticles, searchArticles } from "../lib/articleData";
+import { externalArticles } from "../lib/articleData";
 
 interface BaseResource {
   id: string;

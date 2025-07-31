@@ -5,13 +5,10 @@ import { PageLayout, SectionContainer, ContentContainer } from "../components/la
 import { SearchBar } from "../components/ui/SearchBar";
 import { ComboboxDemo } from "../components/ui/filter-demo";
 import { Filter } from "../components/ui/filters";
-import { Button } from "../components/ui/button";
-import { Filter as FilterIcon } from "lucide-react";
 
 export function DirectoryPage() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [filters, setFilters] = useState<Filter[]>([]);
-  const [showFilters, setShowFilters] = useState(false);
+  const [filters] = useState<Filter[]>([]);
 
   // Convert filters to the format expected by EventsSection
   const activeFilters = filters.map(filter => ({

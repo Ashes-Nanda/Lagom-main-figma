@@ -3,15 +3,11 @@ import { SelfHelpResources } from "../components/SelfHelpResources";
 import { PageLayout, SectionContainer, ContentContainer } from "../components/layout";
 import { SearchBar } from "../components/ui/SearchBar";
 import { ComboboxDemo } from "../components/ui/filter-demo";
-import { Filter, FilterType, FilterOperator } from "../components/ui/filters";
-import { Button } from "../components/ui/button";
-import { Filter as FilterIcon } from "lucide-react";
-import { nanoid } from "nanoid";
+import { Filter } from "../components/ui/filters";
 
 export function ResourcesPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState<Filter[]>([]);
-  const [showFilters, setShowFilters] = useState(false);
 
   // Convert filters to the format expected by SelfHelpResources
   const activeFilters = filters.map(filter => ({

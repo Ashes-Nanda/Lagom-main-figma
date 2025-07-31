@@ -52,7 +52,6 @@ import { Dispatch, SetStateAction, useRef, useState, useEffect } from "react";
 import { Avatar, AvatarFallback } from "./avatar";
 import { Button } from "./button";
 import { AnimatePresence, motion } from "framer-motion";
-import { nanoid } from "nanoid";
 
 interface AnimateChangeInHeightProps {
   children: React.ReactNode;
@@ -807,11 +806,9 @@ const FilterValueDateCombobox = ({
 export default function Filters({
   filters,
   setFilters,
-  filterOptions = mentalHealthFilterOptions,
 }: {
   filters: Filter[];
   setFilters: Dispatch<SetStateAction<Filter[]>>;
-  filterOptions?: FilterOption[][];
 }) {
   return (
     <div className="flex gap-2">

@@ -27,7 +27,6 @@ import {
   FilterOperator,
   FilterOption,
   FilterType,
-  filterViewOptions,
   filterViewToFilterOptions,
   mentalHealthFilterOptions,
 } from "./filters";
