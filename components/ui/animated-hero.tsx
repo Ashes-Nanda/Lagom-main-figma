@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Heart, Users, PhoneCall } from "lucide-react";
 import { Button } from "./button";
 import { Link } from "react-router-dom";
+
+// Prefetch AboutPage on hover/focus
+const prefetchAboutPage = () => import("../../pages/AboutPage");
 
 function AnimatedHero() {
   const [titleNumber, setTitleNumber] = useState(0);
@@ -32,9 +34,6 @@ function AnimatedHero() {
     <div className="w-full">
       <div className="container mx-auto">
         <div className="flex gap-6 py-8 lg:py-16 items-center justify-center flex-col">
-          {/* Logo */}
-          {/* Removed logo image here */}
-          
           {/* Animated Headline */}
           <div className="flex gap-3 flex-col">
             <h1 className="text-4xl md:text-6xl max-w-4xl tracking-tighter text-center font-regular">
@@ -84,17 +83,19 @@ function AnimatedHero() {
               className="bg-[#0BB8C6] text-white hover:bg-[#0aa0ad] px-8 py-3 text-base font-semibold w-full sm:w-auto min-w-[180px] shadow-lg border-none"
               asChild
             >
-              <Link to="/about">
+              <Link
+                to="/about"
+                onMouseEnter={prefetchAboutPage}
+                onFocus={prefetchAboutPage}
+              >
                 Learn More
               </Link>
             </Button>
           </div>
 
-         
-          </div>
         </div>
       </div>
-    
+    </div>
   );
 }
 

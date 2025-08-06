@@ -1,7 +1,6 @@
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
-import { NavigationDropdown } from "./navigation/NavigationDropdown";
 import { MobileNavigation } from "./navigation/MobileNavigation";
 import * as React from "react";
 
