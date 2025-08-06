@@ -33,13 +33,7 @@ function AnimatedHero() {
       <div className="container mx-auto">
         <div className="flex gap-6 py-8 lg:py-16 items-center justify-center flex-col">
           {/* Logo */}
-          <div className="mb-4">
-            <img 
-              src="/trace.svg" 
-              alt="Being Lagom Logo" 
-              className="mx-auto w-auto h-20 sm:h-24 lg:h-28 drop-shadow-lg" 
-            />
-          </div>
+          {/* Removed logo image here */}
           
           {/* Animated Headline */}
           <div className="flex gap-3 flex-col">
@@ -83,55 +77,24 @@ function AnimatedHero() {
             </p>
           </div>
 
-          {/* Call-to-Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-4">
-            <Button 
-              size="lg" 
-              className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 text-base font-semibold w-full sm:w-auto min-w-[180px] shadow-lg"
+          {/* Call-to-Action Button */}
+          <div className="flex justify-center items-center mt-4">
+            <Button
+              size="lg"
+              className="bg-[#0BB8C6] text-white hover:bg-[#0aa0ad] px-8 py-3 text-base font-semibold w-full sm:w-auto min-w-[180px] shadow-lg border-none"
               asChild
             >
-              <a href="https://forms.gle/VE5MmXh7AtRde6eP9" target="_blank" rel="noopener noreferrer">
-                <Heart className="w-4 h-4 mr-2" />
-                Get Support Now
-              </a>
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="border-primary text-primary hover:bg-primary/10 px-6 py-3 text-base font-semibold w-full sm:w-auto min-w-[180px] shadow-lg"
-              asChild
-            >
-              <Link to="/directory">
-                <Users className="w-4 h-4 mr-2" />
-                Find Your People
+              <Link to="/about">
+                Learn More
               </Link>
             </Button>
           </div>
 
-          {/* Trust Indicators */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center text-center mt-6">
-            <div className="flex items-center">
-              <PhoneCall className="w-4 h-4 text-accent mr-2 flex-shrink-0" />
-              <span className="text-xs sm:text-sm text-muted-foreground">
-                Confidential & Safe
-              </span>
-            </div>
-            <div className="flex items-center">
-              <PhoneCall className="w-4 h-4 text-accent mr-2 flex-shrink-0" />
-              <span className="text-xs sm:text-sm text-muted-foreground">
-                24/7 Crisis Support
-              </span>
-            </div>
-            <div className="flex items-center">
-              <Users className="w-4 h-4 text-accent mr-2 flex-shrink-0" />
-              <span className="text-xs sm:text-sm text-muted-foreground">
-                Peer-to-Peer Network
-              </span>
-            </div>
+         
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
 
