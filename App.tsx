@@ -18,6 +18,7 @@ import { ContactPage } from "./pages/ContactPage";
 import { MerchandisePage } from "./pages/MerchandisePage";
 import { GamesPage } from "./pages/GamesPage";
 import { FAQPage } from "./pages/FAQPage";
+import { RainbowButtonDemoPage } from "./pages/RainbowButtonDemoPage";
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/merchandise" element={<MerchandisePage />} />
             <Route path="/faq" element={<FAQPage />} />
+            <Route path="/rainbow-button-demo" element={<RainbowButtonDemoPage />} />
             {/* Redirect old events route to directory since events are now merged */}
             <Route
               path="/events"
