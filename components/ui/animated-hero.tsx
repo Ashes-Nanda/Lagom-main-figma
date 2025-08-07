@@ -10,11 +10,12 @@ function AnimatedHero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
     () => [
-      "Healthcare Professionals",
-      "Healthcare Workers", 
-      "Medical Professionals",
-      "Healthcare Heroes",
-      "Healthcare Team"
+      { text: "Healthcare Workers", lang: "en", font: "font-sans" }, // English
+      { text: "医疗工作者", lang: "zh", font: "font-chinese" }, // Chinese
+      { text: "स्वास्थ्य कर्मचारी", lang: "hi", font: "font-hindi" }, // Hindi
+      { text: "આરોગ્ય કર્મચારીઓ", lang: "gu", font: "font-gujarati" }, // Gujarati
+      { text: "የጤና ሰራተኞች", lang: "am", font: "font-amharic" }, // Amharic
+      { text: "Trabajadores de la Salud", lang: "es", font: "font-sans" }, // Spanish
     ],
     []
   );
@@ -33,17 +34,19 @@ function AnimatedHero() {
   return (
     <div className="w-full">
       <div className="container mx-auto">
-        <div className="flex gap-6 py-8 lg:py-16 items-center justify-center flex-col">
+        <div className="flex gap-4 py-8 lg:py-16 items-center justify-center flex-col">
           {/* Animated Headline */}
-          <div className="flex gap-3 flex-col">
-            <h1 className="text-4xl md:text-6xl max-w-4xl tracking-tighter text-center font-regular">
-              <span className="text-primary">Mental Health Support for</span>
-              <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-2 md:pt-1">
-                &nbsp;
+          <div className="flex flex-col">
+            <div className="text-4xl md:text-6xl max-w-4xl tracking-tighter text-center font-regular">
+              <div className="text-primary mb-0 leading-tight">
+                Mental Health Support for
+              </div>
+              <div className="relative flex justify-center overflow-hidden text-center min-h-[2.2em] md:min-h-[2.4em] items-center -mt-4">
                 {titles.map((title, index) => (
                   <motion.span
                     key={index}
-                    className="absolute font-semibold text-primary"
+                    className={`absolute font-semibold text-primary ${title.font} whitespace-nowrap flex items-center justify-center`}
+                    lang={title.lang}
                     initial={{ opacity: 0, y: "-100" }}
                     transition={{ type: "spring", stiffness: 50 }}
                     animate={
@@ -53,31 +56,33 @@ function AnimatedHero() {
                             opacity: 1,
                           }
                         : {
-                            y: titleNumber > index ? -150 : 150,
+                            y: titleNumber > index ? -180 : 180,
                             opacity: 0,
                           }
                     }
                   >
-                    {title}
+                    {title.text}
                   </motion.span>
                 ))}
-              </span>
-            </h1>
+              </div>
+            </div>
 
             {/* Supporting Subheadline */}
-            <p className="text-base md:text-lg leading-relaxed tracking-tight text-muted-foreground max-w-3xl text-center">
+            <p className="text-base md:text-lg leading-relaxed tracking-tight text-muted-foreground max-w-3xl text-center -mt-2">
               By Healthcare Professionals, For Healthcare Professionals
             </p>
 
             {/* Description */}
-            <p className="text-sm md:text-base leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
-            We cannot undo the trauma. But we can choose to become part of the healing. Not by erasing the pain but by bearing witness to it,tending to its roots,and building systems where it doesn't have to repeat.
-
+            <p className="text-sm md:text-base leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center -mt-1">
+              We cannot undo the trauma. But we can choose to become part of the
+              healing. Not by erasing the pain but by bearing witness to
+              it,tending to its roots,and building systems where it doesn't have
+              to repeat.
             </p>
           </div>
 
           {/* Call-to-Action Button */}
-          <div className="flex justify-center items-center mt-4">
+          <div className="flex justify-center items-center mt-2">
             <Button
               size="lg"
               className="bg-[#0BB8C6] text-white hover:bg-[#0aa0ad] px-8 py-3 text-base font-semibold w-full sm:w-auto min-w-[180px] shadow-lg border-none"
@@ -92,11 +97,10 @@ function AnimatedHero() {
               </Link>
             </Button>
           </div>
-
         </div>
       </div>
     </div>
   );
 }
 
-export { AnimatedHero }; 
+export { AnimatedHero };
