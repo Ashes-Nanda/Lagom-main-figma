@@ -22,8 +22,8 @@ export function Header() {
       children: [
         { path: "/resources", label: "Resources" },
         { path: "/mindfulness", label: "Mindfulness" },
-        { path: "/merchandise", label: "Merchandise" }
-      ]
+        { path: "/merchandise", label: "Merchandise" },
+      ],
     },
     { path: "/about", label: "About" },
     { path: "/assessment", label: "Assessment" },
@@ -69,7 +69,9 @@ export function Header() {
                   {navItems.map((item) =>
                     item.children ? (
                       <React.Fragment key={item.label}>
-                        <li className="px-4 py-2 font-semibold text-xs uppercase text-gray-500">{item.label}</li>
+                        <li className="px-4 py-2 font-semibold text-xs uppercase text-gray-500">
+                          {item.label}
+                        </li>
                         {item.children.map((child) => (
                           <li key={child.label}>
                             <Link

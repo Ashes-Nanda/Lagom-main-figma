@@ -4,6 +4,7 @@ import { Badge } from "../components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { ShoppingCart, Star, Heart, Truck, Shield, RefreshCw } from "lucide-react";
 import { useState } from "react";
+import { BeingLagomFooter } from "../components/ui/footer";
 
 export function MerchandisePage() {
   const [cart, setCart] = useState<Record<number, number>>({});
@@ -104,7 +105,7 @@ export function MerchandisePage() {
   };
 
   return (
-    <div className="py-20 bg-background">
+    <div className="bg-[#FFFBF5] min-h-screen py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -307,6 +308,9 @@ export function MerchandisePage() {
             </div>
           )}
         </div>
+      </div>
+      <div style={{ background: '#0BB8C6', color: 'white' }}>
+        <BeingLagomFooter />
       </div>
     </div>
   );

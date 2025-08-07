@@ -1,4 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Globe, Users, Award, Target, Linkedin, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
@@ -10,7 +16,7 @@ interface TeamMember {
   imageUrl: string;
   bio: string;
   specialty: string;
-  socialLinks?: { platform: 'linkedin' | 'instagram'; url: string }[];
+  socialLinks?: { platform: "linkedin" | "instagram"; url: string }[];
 }
 
 interface TeamProps {
@@ -29,8 +35,11 @@ const teamMembers: TeamMember[] = [
     imageUrl: "/assets/Vyshnavi_1.jpg",
     specialty: "Strategy & Leadership",
     socialLinks: [
-      { platform: 'linkedin', url: "https://www.linkedin.com/in/vyshnavi-desiraju-b09b1799" }
-    ]
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/vyshnavi-desiraju-b09b1799",
+      },
+    ],
   },
   {
     name: "Dr Raj Mistry",
@@ -39,28 +48,39 @@ const teamMembers: TeamMember[] = [
     imageUrl: "/assets/Raj.jpeg",
     specialty: "Operations",
     socialLinks: [
-      { platform: 'instagram', url: "https://www.instagram.com/dr_raj_mistry?igsh=MXpsYXZzY3p4dzEw" }
-    ]
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/dr_raj_mistry?igsh=MXpsYXZzY3p4dzEw",
+      },
+    ],
   },
   {
     name: "Dr Sunil Kumar",
     role: "Clinical Advisor",
     bio: "MBBS, MRCA, FCAI, FRSA, FBSLM, DipIBLM Anaesthesiologist | Foundation Programme Director (FY1) Morecambe Bay NHS Trust, UK",
-    imageUrl: "https://media.licdn.com/dms/image/v2/D4E03AQEu9QDWZ6OW2Q/profile-displayphoto-shrink_400_400/B4EZRkgOs4HMAg-/0/1736852959129?e=1757548800&v=beta&t=1caZUpg_WWMm6cFfTywoTzHRTDxM1oGfRaBKTtYv0J0",
+    imageUrl:
+      "https://media.licdn.com/dms/image/v2/D4E03AQEu9QDWZ6OW2Q/profile-displayphoto-shrink_400_400/B4EZRkgOs4HMAg-/0/1736852959129?e=1757548800&v=beta&t=1caZUpg_WWMm6cFfTywoTzHRTDxM1oGfRaBKTtYv0J0",
     specialty: "Clinical Advisory",
     socialLinks: [
-      { platform: 'linkedin', url: "https://www.linkedin.com/in/drsunilkumarlifestylemedicine/" }
-    ]
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/drsunilkumarlifestylemedicine/",
+      },
+    ],
   },
   {
     name: "Dr Raghumoy Gosh",
     role: "Project research scientist in Department of Hematology, PGI Chandigarh",
     bio: "Ops Lead in Being.Lagom, BJMC Taskforce : Operations Co-Lead (Psych team)",
-    imageUrl: "https://media.licdn.com/dms/image/v2/C5103AQHp29dHnaaa7g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1530876982749?e=1757548800&v=beta&t=UrEcgHJW1kG_1rg3UdpIsRmbHhM2jXQrfC5NuEqkrCw",
+    imageUrl:
+      "https://media.licdn.com/dms/image/v2/C5103AQHp29dHnaaa7g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1530876982749?e=1757548800&v=beta&t=UrEcgHJW1kG_1rg3UdpIsRmbHhM2jXQrfC5NuEqkrCw",
     specialty: "Research & Operations",
     socialLinks: [
-      { platform: 'linkedin', url: "https://www.linkedin.com/in/raghumoyghosh751051a6/" }
-    ]
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/raghumoyghosh751051a6/",
+      },
+    ],
   },
   {
     name: "Vanessa Yim",
@@ -69,18 +89,25 @@ const teamMembers: TeamMember[] = [
     imageUrl: "/assets/vanessa_5.JPG",
     specialty: "Clinical Psychology",
     socialLinks: [
-      { platform: 'linkedin', url: "https://www.linkedin.com/in/dr-vanessa-yim-a4220b10a/" }
-    ]
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/dr-vanessa-yim-a4220b10a/",
+      },
+    ],
   },
   {
     name: "Anuradha Kavuri",
     role: "Counselling Psychologist, Founder of Sumedha Centre",
     bio: "BJMC Taskforce : Clinical Protocol & Escalation Lead",
-    imageUrl: "https://media.licdn.com/dms/image/v2/D4D03AQGyw9md4EKG4w/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1721802767353?e=1757548800&v=beta&t=mrFbfAAXqqXr6CwtK_ILnUIcPt7_D9HQ177U5jWIu2w",
+    imageUrl:
+      "https://media.licdn.com/dms/image/v2/D4D03AQGyw9md4EKG4w/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1721802767353?e=1757548800&v=beta&t=mrFbfAAXqqXr6CwtK_ILnUIcPt7_D9HQ177U5jWIu2w",
     specialty: "Counselling Psychology",
     socialLinks: [
-      { platform: 'linkedin', url: "https://www.linkedin.com/in/anuradha-kavuri-75034591/" }
-    ]
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/anuradha-kavuri-75034591/",
+      },
+    ],
   },
   {
     name: "Dhwani Shah",
@@ -89,8 +116,11 @@ const teamMembers: TeamMember[] = [
     imageUrl: "/assets/Dhwani_7.jpg",
     specialty: "Quality Assurance",
     socialLinks: [
-      { platform: 'linkedin', url: "https://www.linkedin.com/in/dhwani-shah-38063a5b/" }
-    ]
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/dhwani-shah-38063a5b/",
+      },
+    ],
   },
   {
     name: "Vamsi Pratap",
@@ -99,8 +129,11 @@ const teamMembers: TeamMember[] = [
     imageUrl: "/assets/Vamsi_07.jpeg",
     specialty: "Business Development",
     socialLinks: [
-      { platform: 'linkedin', url: "https://www.linkedin.com/in/vamsi-pratap-b0a196ab/" }
-    ]
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/vamsi-pratap-b0a196ab/",
+      },
+    ],
   },
   {
     name: "Raviraj Jain",
@@ -109,20 +142,25 @@ const teamMembers: TeamMember[] = [
     imageUrl: "/assets/Ravi_27.jpeg",
     specialty: "Finance & Fundraising",
     socialLinks: [
-      { platform: 'linkedin', url: "https://www.linkedin.com/in/raviraj-jain-aca-8098ba58/" }
-    ]
-  }
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/raviraj-jain-aca-8098ba58/",
+      },
+    ],
+  },
 ];
 
 function Team2({
-  title = 'Meet Our Team',
+  title = "Meet Our Team",
   subtitle = "Our dedicated team of healthcare professionals and mental health experts working together to support healthcare workers worldwide.",
   members = teamMembers,
   className,
 }: TeamProps) {
   return (
     <section
-      className={`relative w-full overflow-hidden py-16 md:py-24 ${className || ''}`}
+      className={`relative w-full overflow-hidden py-16 md:py-24 ${
+        className || ""
+      }`}
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 -z-10">
@@ -182,9 +220,9 @@ function TeamMemberCard({
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
           style={{
-            objectPosition: 'center top',
-            minHeight: '100%',
-            minWidth: '100%'
+            objectPosition: "center top",
+            minHeight: "100%",
+            minWidth: "100%",
           }}
         />
 
@@ -199,10 +237,10 @@ function TeamMemberCard({
                 rel="noopener noreferrer"
                 className="bg-background/80 text-foreground hover:bg-primary hover:text-primary-foreground flex h-9 w-9 items-center justify-center rounded-full backdrop-blur-sm transition-all"
               >
-                {link.platform === 'linkedin' && (
+                {link.platform === "linkedin" && (
                   <Linkedin className="h-5 w-5" />
                 )}
-                {link.platform === 'instagram' && (
+                {link.platform === "instagram" && (
                   <Instagram className="h-5 w-5" />
                 )}
               </a>
@@ -226,28 +264,28 @@ export function AboutSection() {
     {
       icon: <Users className="w-8 h-8 text-accent" />,
       title: "1,200+",
-      description: "Healthcare workers supported"
+      description: "Healthcare workers supported",
     },
     {
       icon: <Globe className="w-8 h-8 text-accent" />,
       title: "15+",
-      description: "Countries reached"
+      description: "Countries reached",
     },
     {
       icon: <Award className="w-8 h-8 text-accent" />,
       title: "4+",
-      description: "Years of Service"
+      description: "Years of Service",
     },
     {
       icon: <Target className="w-8 h-8 text-accent" />,
       title: "24/7",
-      description: "Crisis Support Available"
-    }
+      description: "Crisis Support Available",
+    },
   ];
 
   const countriesServed = [
     "India",
-    "Singapore", 
+    "Singapore",
     "UK",
     "Canada",
     "Australia",
@@ -261,7 +299,7 @@ export function AboutSection() {
     "Netherlands",
     "Sweden",
     "France",
-    "New Zealand"
+    "New Zealand",
   ];
 
   const countryData = [
@@ -316,26 +354,32 @@ export function AboutSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl text-primary">Our Vision</CardTitle>
+                <CardTitle className="text-2xl text-primary">
+                  Our Vision
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  To create a world where every healthcare professional has access to 
-                  compassionate, specialized mental health support. We envision a future 
-                  where seeking help is seen as a sign of strength, not weakness.
+                  To create a world where every healthcare professional has
+                  access to compassionate, specialized mental health support. We
+                  envision a future where seeking help is seen as a sign of
+                  strength, not weakness.
                 </p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl text-primary">Our Mission</CardTitle>
+                <CardTitle className="text-2xl text-primary">
+                  Our Mission
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Being.Lagom serves as a lifeline, lantern, and long-term movement, 
-                  providing healthcare professionals with the tools, community, and 
-                  support they need to thrive both personally and professionally.
+                  Being.Lagom serves as a lifeline, lantern, and long-term
+                  movement, providing healthcare professionals with the tools,
+                  community, and support they need to thrive both personally and
+                  professionally.
                 </p>
               </CardContent>
             </Card>
@@ -343,10 +387,12 @@ export function AboutSection() {
 
           <div className="mt-16 text-center">
             <blockquote className="text-lg italic text-accent max-w-3xl mx-auto">
-              "Lagom is a Swedish concept meaning 'just the right amount' - not too little, not too much, but exactly what's needed."
+              "Lagom is a Swedish concept meaning 'just the right amount' - not
+              too little, not too much, but exactly what's needed."
             </blockquote>
             <p className="mt-4 text-sm text-muted-foreground">
-              To care for others, we must first learn to care for ourselves - not selfishly, but sustainably.
+              To care for others, we must first learn to care for ourselves -
+              not selfishly, but sustainably.
             </p>
           </div>
           <br></br>
@@ -382,7 +428,8 @@ export function AboutSection() {
                 Join the Global Movement
               </CardTitle>
               <CardDescription className="text-lg">
-                Being.Lagom is more than a platform—it's a movement spreading worldwide
+                Being.Lagom is more than a platform—it's a movement spreading
+                worldwide
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -395,19 +442,24 @@ export function AboutSection() {
                 {/* Description and Countries */}
                 <div className="max-w-4xl mx-auto">
                   <p className="text-muted-foreground mb-8 text-lg">
-                Healthcare workers around the globe are coming together to break the stigma 
-                around mental health in medicine. Join thousands of professionals who are 
-                choosing to prioritize their wellbeing.
-              </p>
-                  
+                    Healthcare workers around the globe are coming together to
+                    break the stigma around mental health in medicine. Join
+                    thousands of professionals who are choosing to prioritize
+                    their wellbeing.
+                  </p>
+
                   <h3 className="text-lg font-semibold text-primary mb-4">
                     Countries We Serve
                   </h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1">
                     {countriesServed.map((country, index) => (
-                      <Badge key={index} variant="secondary" className="text-sm px-2 py-1 justify-center">
+                      <Badge
+                        key={index}
+                        variant="secondary"
+                        className="text-sm px-2 py-1 justify-center"
+                      >
                         {country}
-                </Badge>
+                      </Badge>
                     ))}
                   </div>
                 </div>

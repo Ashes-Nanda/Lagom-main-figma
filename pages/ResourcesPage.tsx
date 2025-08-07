@@ -4,6 +4,7 @@ import { PageLayout, SectionContainer, ContentContainer } from "../components/la
 import { SearchBar } from "../components/ui/SearchBar";
 import { ComboboxDemo } from "../components/ui/filter-demo";
 import { Filter } from "../components/ui/filters";
+import { BeingLagomFooter } from "../components/ui/footer";
 
 export function ResourcesPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,7 +22,8 @@ export function ResourcesPage() {
   };
 
   return (
-    <PageLayout withTopPadding={true} spacing="md">
+    <div className="bg-[#FFFBF5] min-h-screen">
+      <PageLayout withTopPadding={false} className="bg-transparent">
       <SectionContainer 
         spacing="lg" 
         size="xl"
@@ -71,6 +73,10 @@ export function ResourcesPage() {
           />
         </ContentContainer>
       </SectionContainer>
+      <div style={{ background: '#0BB8C6', color: 'white' }}>
+        <BeingLagomFooter />
+      </div>
     </PageLayout>
+    </div>
   );
 }

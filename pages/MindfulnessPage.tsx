@@ -3,6 +3,7 @@ import { Button } from "../components/ui/button";
 import { Progress } from "../components/ui/progress";
 import { useState, useEffect } from "react";
 import { Heart, Zap, Waves, Sun, Moon, Play, Pause, RotateCcw } from "lucide-react";
+import { BeingLagomFooter } from "../components/ui/footer";
 
 export function MindfulnessPage() {
   const [activeGame, setActiveGame] = useState<string | null>(null);
@@ -293,7 +294,7 @@ export function MindfulnessPage() {
 
   if (activeGame) {
     return (
-      <div className="py-20 bg-background">
+      <div className="bg-[#FFFBF5] min-h-screen py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
@@ -321,7 +322,7 @@ export function MindfulnessPage() {
   }
 
   return (
-    <div className="py-20 bg-background">
+    <div className="bg-[#FFFBF5] min-h-screen py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -351,6 +352,9 @@ export function MindfulnessPage() {
             </Card>
           </div>
         </div>
+      </div>
+      <div style={{ background: '#0BB8C6', color: 'white' }}>
+        <BeingLagomFooter />
       </div>
     </div>
   );

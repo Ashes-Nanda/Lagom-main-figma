@@ -6,6 +6,7 @@ import { LoveShower } from "../components/games/LoveShower";
 import { SanitySimulator } from "../components/games/SanitySimulator";
 import { BreathingGarden } from "../components/games/BreathingGarden";
 import { StressReleaseSanctuary } from "../components/games/StressReleaseSanctuary";
+import { BeingLagomFooter } from "../components/ui/footer";
 
 type GameType = 'love-shower' | 'sanity-simulator' | 'breathing-garden' | 'stress-release' | null;
 
@@ -71,7 +72,8 @@ export function GamesPage() {
   }
 
   return (
-    <section className="relative py-20 lg:py-32 bg-gradient-to-br from-background via-secondary/10 to-accent/10">
+    <div className="bg-[#FFFBF5] min-h-screen">
+      <section className="relative py-20 lg:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -129,5 +131,9 @@ export function GamesPage() {
         </div>
       </div>
     </section>
+    <div style={{ background: '#0BB8C6', color: 'white' }}>
+      <BeingLagomFooter />
+    </div>
+    </div>
   );
 }

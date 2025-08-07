@@ -9,6 +9,7 @@ import {
 import { SearchBar } from "../components/ui/SearchBar";
 import { ComboboxDemo } from "../components/ui/filter-demo";
 import { Filter } from "../components/ui/filters";
+import { BeingLagomFooter } from "../components/ui/footer";
 
 export function DirectoryPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,7 +27,8 @@ export function DirectoryPage() {
   };
 
   return (
-    <PageLayout>
+    <div className="bg-[#FFFBF5] min-h-screen">
+      <PageLayout withTopPadding={false} className="bg-transparent">
       {/* Support Path Cards */}
       <SupportPathCards />
 
@@ -77,6 +79,10 @@ export function DirectoryPage() {
           />
         </ContentContainer>
       </SectionContainer>
+      <div style={{ background: '#0BB8C6', color: 'white' }}>
+        <BeingLagomFooter />
+      </div>
     </PageLayout>
+    </div>
   );
 }
