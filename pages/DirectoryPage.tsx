@@ -1,39 +1,43 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { SupportPathCards } from "../components/SupportPathCards";
 import { EventsSection } from "../components/EventsSection";
-import { PageLayout, SectionContainer, ContentContainer } from "../components/layout";
+import {
+  PageLayout,
+  SectionContainer,
+  ContentContainer,
+} from "../components/layout";
 import { SearchBar } from "../components/ui/SearchBar";
 import { ComboboxDemo } from "../components/ui/filter-demo";
 import { Filter } from "../components/ui/filters";
 
 export function DirectoryPage() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [filters] = useState<Filter[]>([]);
 
   // Convert filters to the format expected by EventsSection
-  const activeFilters = filters.map(filter => ({
+  const activeFilters = filters.map((filter) => ({
     groupId: filter.type.toLowerCase(),
-    optionId: filter.value[0] || '',
-    label: filter.value[0] || ''
+    optionId: filter.value[0] || "",
+    label: filter.value[0] || "",
   }));
 
   const handleSearchClear = () => {
-    setSearchQuery('');
+    setSearchQuery("");
   };
 
   return (
     <PageLayout>
       {/* Support Path Cards */}
       <SupportPathCards />
-      
+
       {/* Events Directory with Search and Filters */}
-      <SectionContainer 
-        spacing="lg" 
+      <SectionContainer
+        spacing="lg"
         size="xl"
         aria-label="Events directory and wellness programs"
       >
-        <ContentContainer 
-          spacing="normal" 
+        <ContentContainer
+          spacing="normal"
           centerContent={true}
           preventOverflow={true}
         >
@@ -44,7 +48,8 @@ export function DirectoryPage() {
                 Wellness Events & Programs
               </h2>
               <p className="text-xl text-muted-foreground">
-                Find events and programs designed specifically for healthcare workers
+                Find events and programs designed specifically for healthcare
+                workers
               </p>
             </div>
 
@@ -66,7 +71,7 @@ export function DirectoryPage() {
           </div>
 
           {/* Events Content */}
-          <EventsSection 
+          <EventsSection
             searchQuery={searchQuery}
             activeFilters={activeFilters}
           />
