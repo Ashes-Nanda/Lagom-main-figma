@@ -1,28 +1,10 @@
 import { Button } from "./ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import {
-  Users,
-  UserCheck,
-  ExternalLink,
-  Heart,
-  Shield,
-  MessageCircle,
-  Clock,
-} from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { ExternalLink } from "lucide-react";
 
 export function SupportPathSection() {
   const handleP2PClick = () => {
     window.open("https://placeholder-p2p.com", "_blank");
-  };
-
-  const handleTherapistClick = () => {
-    window.open("https://beinglagom.detalks.com", "_blank");
   };
 
   const supportPaths = [

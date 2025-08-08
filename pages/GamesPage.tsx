@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Heart, Brain, Leaf, Target } from "lucide-react";
 import { LoveShower } from "../components/games/LoveShower";
@@ -110,7 +110,6 @@ export function GamesPage() {
           {/* Games Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
             {games.map((game) => {
-              const Icon = game.icon;
               return (
                 <Card 
                   key={game.id} 
