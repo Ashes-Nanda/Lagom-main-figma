@@ -13,7 +13,7 @@ type GameType = 'love-shower' | 'sanity-simulator' | 'breathing-garden' | 'stres
 const games = [
   {
     id: 'love-shower' as GameType,
-    title: '💖 Love Shower',
+    title: 'Love Shower',
     description: 'Let yourself be reminded: you are more than enough. Tap to receive affirmations wrapped in sparkles and softness.',
     buttonText: '→ Start Love Shower',
     icon: Heart,
@@ -24,7 +24,7 @@ const games = [
   },
   {
     id: 'sanity-simulator' as GameType,
-    title: '🧠 Sanity Simulator',
+    title: 'Sanity Simulator',
     description: 'Welcome to healthcare. Try to survive a day without losing your mind. A satirical, stress-relieving game that hits a little too close to home.',
     buttonText: '→ Enter Simulator',
     icon: Brain,
@@ -35,7 +35,7 @@ const games = [
   },
   {
     id: 'breathing-garden' as GameType,
-    title: '🌿 Breathing Garden',
+    title: 'Breathing Garden',
     description: 'Follow visual prompts to inhale, exhale, and return to center. Slow down with nature-inspired breathwork.',
     buttonText: '→ Open Garden',
     icon: Leaf,
@@ -46,7 +46,7 @@ const games = [
   },
   {
     id: 'stress-release' as GameType,
-    title: '🥊 Stress Release Sanctuary',
+    title: 'Stress Release Sanctuary',
     description: 'Need a safe outlet? Hit the virtual punching bag with full permission to release what you\'re carrying. Mindful rage is still mindful.',
     buttonText: '→ Visit Sanctuary',
     icon: Target,

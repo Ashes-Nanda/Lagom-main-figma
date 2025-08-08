@@ -95,7 +95,7 @@ export function SupportPathSection() {
                     className={`w-full ${path.bgColor} ${path.textColor} hover:opacity-80 border ${path.borderColor} mt-auto`}
                     variant="outline"
                   >
-                    👉 {path.buttonText}
+                     {path.buttonText}
                     <ExternalLink className="w-4 h-4 ml-2" />
                   </Button>
                 </CardContent>
@@ -122,7 +122,7 @@ export function SupportPathSection() {
                   className="w-full bg-blue-50 text-blue-800 hover:opacity-80 border border-blue-200 mt-auto"
                   variant="outline"
                 >
-                  👉 Talk to a Peer
+                   Talk to a Peer
                   <ExternalLink className="w-4 h-4 ml-2" />
                 </Button>
               </CardContent>
