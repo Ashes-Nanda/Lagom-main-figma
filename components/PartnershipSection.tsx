@@ -8,9 +8,11 @@ export function PartnershipSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Partnership and Collaborations
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Working together to create meaningful impact in mental health and
-            wellness
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto font-semibold mb-4">
+            Working Together for Lasting Change
+          </p>
+          <p className="text-base text-gray-500 max-w-3xl mx-auto leading-relaxed">
+            We believe the wellbeing of healthcare professionals is a collective responsibility. From hospitals and universities to community groups and policy leaders, our partnerships create real, measurable impact in mental health and wellness.
           </p>
         </div>
 

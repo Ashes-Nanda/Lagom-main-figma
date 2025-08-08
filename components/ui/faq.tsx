@@ -12,35 +12,35 @@ const items = [
   {
     id: "1",
     title: 'What does "Being.Lagom" mean, and how do you pronounce it?',
-    content:
-      '"Being.Lagom" is a Swedish term that roughly translates to "just the right amount" or "balanced living." Pronouncing it is as easy as finding that perfect balance – La-gom, just like sipping your favorite hot beverage!',
+    content: `“Lagom” is a Swedish word that means not too much, not too little - just right. It’s pronounced “la-gom” (rhymes with problem, ironically). Think of it as the opposite of your hospital shift schedule: not overburdened, not underutilized - just… enough. Being.Lagom is about reclaiming that elusive middle ground - in healing, in helping, and in how we show up for ourselves.`,
   },
   {
     id: "2",
     title: "How can I get involved in the Being.Lagom community?",
-    content:
-      "Dive right in! Connect with us on social media, attend local events, or start your own Being.Lagom chapter. It's all about finding your sweet spot within the community.",
+    content: `Start where you are. Whether it’s joining our events, co-creating healing circles, or simply following us on social media - there’s space for you here. You can even start your own Being.Lagom chapter. We’re building a movement, not a membership. No hierarchy, no gatekeeping — just humans showing up for each other in radically honest, hopeful ways.`,
   },
   {
     id: "3",
     title:
       "Can I really make a difference in addressing physician burnout and mental health issues?",
-    content:
-      "Absolutely! Every small effort adds up to create a big impact. It's like stacking Legos – one at a time, and soon you've built something incredible!",
+    content: `Yes. And not just in some vague, motivational way. As Margaret Mead said: “Never doubt that a small group of thoughtful, committed citizens can change the world. Indeed, it is the only thing that ever has.” Burnout isn’t just an individual problem - it’s a systemic crisis. But systems don’t shift without culture change, and culture doesn’t shift without courageous communities. That’s where you come in. One conversation, one circle, one action at a time.`,
   },
   {
     id: "4",
     title:
       "How can Being.Lagom contribute to reducing stigma around mental health disorders?",
-    content:
-      "By fostering open conversations, sharing personal stories, and promoting mental health literacy, we aim to break down barriers and show that mental health is a universal concern. Our community is all about embracing differences and creating a supportive space for everyone.",
+    content: `We don’t fight stigma by preaching. We melt it - through story, presence, and proximity. Being.Lagom creates spaces where people (especially healthcare professionals) can be messy, honest, and human - without fear of judgment. By sharing lived experiences, modeling vulnerability, and centering mental health in everyday conversation, we chip away at the silence. The goal? A world where seeking help is not brave - just normal.`,
   },
   {
     id: "5",
     title:
-      "How can I contribute to Being.Lagom's mission of promoting mental health and wellbeing?",
-    content:
-      "Join our community, attend events, and share your unique perspective. Whether you're a medical professional, a student, or just someone passionate about mental health, your voice matters. Together, we'll make a Lagom-sized impact on the world of mental wellbeing!",
+      "How can I contribute to Being.Lagom’s mission of promoting mental health and wellbeing?",
+    content: `This is bigger than attending an event or reposting a story. You’re not just joining a campaign — you’re part of a quiet revolution in how we heal, connect, and care. You can: Join our healing circles and community gatherings, collaborate on research, advocacy, or peer-support pilots, bring Being.Lagom to your institution, your batch, your city, or share your story and build space for others to share theirs.`,
+  },
+  {
+    id: "6",
+    title: "Why are the events and interventions targeting HCPs?",
+    content: `Because we’re trained to hold space for everyone else - but rarely get it for ourselves. HCPs face unique stressors, moral injury, and stigma around seeking help. This space is designed for us, by people who get it - so we can reconnect, reflect, and heal together. It’s not about exclusion. It’s about giving care a home. And yes, muggles (aka non-HCP friends of Being.Lagom) are welcome too - we’ve got a few on the team who are living proof that care, curiosity, and community aren’t limited to job titles!`,
   },
 ];
 

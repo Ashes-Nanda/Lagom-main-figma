@@ -15,7 +15,7 @@ export function HomePage() {
         <HeroSection />
         <PartnershipSection />
         <Faq />
-        <div style={{ background: '#0BB8C6', color: 'white' }}>
+        <div style={{ background: "#0BB8C6", color: "white" }}>
           <BeingLagomFooter />
         </div>
       </PageLayout>

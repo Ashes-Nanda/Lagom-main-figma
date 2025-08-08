@@ -300,6 +300,7 @@ export function AboutSection() {
     "Sweden",
     "France",
     "New Zealand",
+    "Sri Lanka",
   ];
 
   const countryData = [
@@ -334,6 +335,10 @@ export function AboutSection() {
     {
       start: { lat: 48.8566, lng: 2.3522, label: "France" },
       end: { lat: -36.8485, lng: 174.7633, label: "New Zealand" },
+    },
+    {
+      start: { lat: 7.8731, lng: 80.7718, label: "Sri Lanka" },
+      end: { lat: 28.6139, lng: 77.209, label: "India" },
     },
   ];
 

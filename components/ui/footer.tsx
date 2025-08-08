@@ -115,7 +115,7 @@ export function BeingLagomFooter() {
         { icon: <Youtube className="w-5 h-5" />, href: "https://youtube.com/being.lagom", label: "YouTube" },
       ]}
       mainLinks={[
-        { href: "/directory", label: "Find a Therapist" },
+        { href: "/directory", label: "Connect with Care" },
         { href: "/resources", label: "Self-Help Resources" },
         { href: "/assessment", label: "Assessment Tool" },
         { href: "/contact", label: "Crisis Support" },
@@ -124,9 +124,10 @@ export function BeingLagomFooter() {
         { href: "/faq", label: "FAQ" },
       ]}
       legalLinks={[
-        { href: "https://forms.gle/PrivacyPolicy789", label: "Privacy Policy" },
-        { href: "https://forms.gle/Terms012", label: "Terms of Service" },
-        { href: "https://forms.gle/Cookies345", label: "Cookie Policy" },
+        { href: "/compliance", label: "Compliance & Legal" },
+        { href: "/privacy-policy", label: "Privacy Policy" },
+        { href: "/terms-of-service", label: "Terms of Service" },
+        { href: "/cookie-policy", label: "Cookie Policy" },
       ]}
       copyright={{
         text: "© 2025 Being.Lagom.",

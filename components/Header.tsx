@@ -15,13 +15,13 @@ interface NavigationItem {
 export function Header() {
   const navItems: NavigationItem[] = [
     { path: "/", label: "Home" },
-    { path: "/directory", label: "Directory" },
+    { path: "/directory", label: "Connect with Care" },
     {
       path: "#",
       label: "Wellness",
       children: [
         { path: "/resources", label: "Resources" },
-        { path: "/mindfulness", label: "Mindfulness" },
+        { path: "/mindfulness", label: "Lagom Lab" },
         { path: "/merchandise", label: "Merchandise" },
       ],
     },

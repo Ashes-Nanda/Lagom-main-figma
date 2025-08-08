@@ -16,6 +16,10 @@ import { AssessmentPage } from "./pages/AssessmentPage";
 import { ContactPage } from "./pages/ContactPage";
 import { MerchandisePage } from "./pages/MerchandisePage";
 import { GamesPage } from "./pages/GamesPage";
+import { CompliancePage } from "./pages/CompliancePage";
+import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
+import { TermsOfServicePage } from "./pages/TermsOfServicePage";
+import { CookiePolicyPage } from "./pages/CookiePolicyPage";
 
 export default function App() {
   return (
@@ -32,6 +36,10 @@ export default function App() {
             <Route path="/mindfulness" element={<GamesPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/merchandise" element={<MerchandisePage />} />
+            <Route path="/compliance" element={<CompliancePage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+            <Route path="/cookie-policy" element={<CookiePolicyPage />} />
             {/* Redirect old events route to directory since events are now merged */}
             <Route
               path="/events"

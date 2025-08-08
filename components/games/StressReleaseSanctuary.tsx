@@ -1,359 +1,385 @@
-import { useState, useEffect, useRef } from "react";
+"use client";
+
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { RotateCcw, Trophy, Target, ArrowLeft, Upload, X } from "lucide-react";
 import { Button } from "../ui/button";
-import { Card, CardContent } from "../ui/card";
-import { ArrowLeft, RotateCcw, Volume2, VolumeX } from "lucide-react";
+import { Card } from "../ui/card";
+import { Badge } from "../ui/badge";
 
 interface StressReleaseSanctuaryProps {
   onBack: () => void;
 }
 
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  life: number;
-  maxLife: number;
-  size: number;
-  color: string;
+interface GameStats {
+  score: number;
+  combo: number;
+  maxCombo: number;
+  totalPunches: number;
 }
 
-const encouragements = [
-  "Feel the tension melting away...",
-  "You're releasing what no longer serves you",
-  "Each hit is a step toward peace",
-  "Let go of today's stress",
-  "You're stronger than your stress",
-  "Breathe out the pressure",
-  "Release and reset",
-  "Your well-being matters",
-  "Transform stress into strength",
-  "You deserve this moment of release",
-];
-
-export function StressReleaseSanctuary({
-  onBack,
-}: StressReleaseSanctuaryProps) {
-  const [hitCount, setHitCount] = useState(0);
-  const [bagRotation, setBagRotation] = useState(0);
-  const [bagScale, setBagScale] = useState(1);
-  const [, setParticles] = useState<Particle[]>([]);
-  const [currentEncouragement, setCurrentEncouragement] = useState("");
-  const [showEncouragement, setShowEncouragement] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
-  const [bagPosition, setBagPosition] = useState({ x: 0, y: 0 });
-
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
-  const particleIdRef = useRef(0);
+export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) {
+  const [isSwinging, setIsSwinging] = useState(false);
+  const [gameStats, setGameStats] = useState<GameStats>({
+    score: 0,
+    combo: 0,
+    maxCombo: 0,
+    totalPunches: 0,
+  });
+  const [showPunchEffect, setShowPunchEffect] = useState(false);
+  const [punchPosition, setPunchPosition] = useState({ x: 0, y: 0 });
+  const [comboTimer, setComboTimer] = useState<number | null>(null);
+  const [bagMovement, setBagMovement] = useState({ x: 0, y: 0, rotation: 0 });
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const bagRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Create particle burst effect
-  const createParticles = (x: number, y: number) => {
-    const newParticles: Particle[] = [];
-    const colors = ["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4", "#feca57"];
-
-    for (let i = 0; i < 15; i++) {
-      newParticles.push({
-        id: particleIdRef.current++,
-        x,
-        y,
-        vx: (Math.random() - 0.5) * 10,
-        vy: (Math.random() - 0.5) * 10,
-        life: 60,
-        maxLife: 60,
-        size: Math.random() * 4 + 2,
-        color: colors[Math.floor(Math.random() * colors.length)],
-      });
-    }
-
-    setParticles((prev) => [...prev, ...newParticles]);
-  };
-
-  // Play impact sound (simulated)
-  const playImpactSound = () => {
-    if (soundEnabled) {
-      // In a real implementation, you would play an actual sound file
-      // Visual feedback is provided through animations
-    }
-  };
-
-  // Handle bag punch
   const handlePunch = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (isSwinging) return;
+
     const rect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    // Update hit count
-    setHitCount((prev) => prev + 1);
+    // Calculate punch force and direction based on where the bag was hit
+    const bagCenterX = rect.width / 2;
+    const bagCenterY = rect.height / 2;
+    
+    // Calculate impact direction and force
+    const impactX = (x - bagCenterX) / bagCenterX; // -1 to 1
+    const impactY = (y - bagCenterY) / bagCenterY; // -1 to 1
+    
+    // Generate realistic movement based on impact with much larger values
+    const forceMultiplier = 1.5 + Math.random() * 0.5; // 1.5 to 2.0
+    const swingX = impactX * 80 * forceMultiplier + (Math.random() - 0.5) * 20; // Much larger swing
+    const swingY = Math.abs(impactY) * 30 * forceMultiplier + (Math.random() - 0.5) * 15;
+    const rotation = impactX * 35 * forceMultiplier + (Math.random() - 0.5) * 20;
 
-    // Animate bag
-    setBagScale(0.9);
-    setBagRotation((prev) => prev + (Math.random() - 0.5) * 20);
-    setBagPosition({
-      x: (Math.random() - 0.5) * 10,
-      y: (Math.random() - 0.5) * 5,
-    });
+    setPunchPosition({ x, y });
+    setShowPunchEffect(true);
+    setIsSwinging(true);
 
-    // Create particle effect
-    createParticles(x, y);
+    // Create swing animation sequence
+    const swingSequence = [
+      { x: swingX, y: swingY, rotation: rotation }, // Initial impact
+      { x: swingX * 0.7, y: swingY * 0.5, rotation: rotation * 0.7 }, // Swing back
+      { x: swingX * -0.4, y: swingY * 0.3, rotation: rotation * -0.4 }, // Counter swing
+      { x: swingX * 0.2, y: swingY * 0.2, rotation: rotation * 0.2 }, // Small swing
+      { x: swingX * -0.1, y: swingY * 0.1, rotation: rotation * -0.1 }, // Settle
+      { x: 0, y: 0, rotation: 0 } // Rest
+    ];
 
-    // Play sound
-    playImpactSound();
-
-    // Show encouragement every 5 hits
-    if ((hitCount + 1) % 5 === 0) {
-      const randomEncouragement =
-        encouragements[Math.floor(Math.random() * encouragements.length)];
-      setCurrentEncouragement(randomEncouragement);
-      setShowEncouragement(true);
-      setTimeout(() => setShowEncouragement(false), 3000);
-    }
-
-    // Reset bag animation
-    setTimeout(() => {
-      setBagScale(1);
-      setBagPosition({ x: 0, y: 0 });
-    }, 200);
-  };
-
-  // Particle animation loop
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Update and draw particles
-      setParticles((prevParticles) => {
-        const updatedParticles = prevParticles
-          .map((particle) => ({
-            ...particle,
-            x: particle.x + particle.vx,
-            y: particle.y + particle.vy,
-            vy: particle.vy + 0.2, // gravity
-            life: particle.life - 1,
-            vx: particle.vx * 0.98, // air resistance
-          }))
-          .filter((particle) => particle.life > 0);
-
-        // Draw particles
-        updatedParticles.forEach((particle) => {
-          const alpha = particle.life / particle.maxLife;
-          ctx.globalAlpha = alpha;
-          ctx.fillStyle = particle.color;
-          ctx.beginPath();
-          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-          ctx.fill();
-        });
-
-        ctx.globalAlpha = 1;
-        return updatedParticles;
-      });
-
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
+    // Animate through the sequence
+    let sequenceIndex = 0;
+    const animateSequence = () => {
+      if (sequenceIndex < swingSequence.length) {
+        setBagMovement(swingSequence[sequenceIndex]);
+        sequenceIndex++;
+        setTimeout(animateSequence, 400); // 400ms between each phase
+      } else {
+        setIsSwinging(false);
       }
     };
-  }, []);
 
-  // Reset game
-  const resetGame = () => {
-    setHitCount(0);
-    setBagRotation(0);
-    setBagScale(1);
-    setBagPosition({ x: 0, y: 0 });
-    setParticles([]);
-    setShowEncouragement(false);
+    animateSequence();
+
+    // Clear existing combo timer
+    if (comboTimer) {
+      clearTimeout(comboTimer);
+    }
+
+    // Update game stats
+    setGameStats(prev => {
+      const newCombo = prev.combo + 1;
+      const comboMultiplier = Math.floor(newCombo / 5) + 1;
+      const baseScore = 10;
+      const scoreGain = baseScore * comboMultiplier;
+
+      return {
+        score: prev.score + scoreGain,
+        combo: newCombo,
+        maxCombo: Math.max(prev.maxCombo, newCombo),
+        totalPunches: prev.totalPunches + 1,
+      };
+    });
+
+    // Set new combo timer
+    const newTimer = setTimeout(() => {
+      setGameStats(prev => ({ ...prev, combo: 0 }));
+    }, 2000);
+    setComboTimer(newTimer);
+
+    // Hide punch effect
+    setTimeout(() => {
+      setShowPunchEffect(false);
+    }, 300);
   };
 
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setUploadedImage(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeImage = () => {
+    setUploadedImage(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const resetGame = () => {
+    setGameStats({
+      score: 0,
+      combo: 0,
+      maxCombo: 0,
+      totalPunches: 0,
+    });
+    setIsSwinging(false);
+    setShowPunchEffect(false);
+    setBagMovement({ x: 0, y: 0, rotation: 0 });
+    if (comboTimer) {
+      clearTimeout(comboTimer);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (comboTimer) {
+        clearTimeout(comboTimer);
+      }
+    };
+  }, [comboTimer]);
+
   return (
-    <section className="relative py-20 lg:py-32 bg-gradient-to-br from-background via-secondary/10 to-accent/10 overflow-hidden">
-      {/* Particle canvas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 pointer-events-none z-10"
-        width={window.innerWidth}
-        height={window.innerHeight}
-      />
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-8">
-            <Button onClick={onBack} variant="outline">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Games
-            </Button>
-            <div className="flex items-center space-x-4">
-              <Button
-                onClick={() => setSoundEnabled(!soundEnabled)}
-                variant="outline"
-                size="sm"
-              >
-                {soundEnabled ? (
-                  <Volume2 className="w-4 h-4" />
-                ) : (
-                  <VolumeX className="w-4 h-4" />
-                )}
-              </Button>
-              <Button onClick={resetGame} variant="outline" size="sm">
-                <RotateCcw className="w-4 h-4 mr-2" />
-                Reset
-              </Button>
-            </div>
-          </div>
-
-          {/* Title and instructions */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary mb-6">
-              Stress Release Sanctuary
-            </h1>
-            <p className="text-xl lg:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto">
-              Click or tap the punching bag to release stress mindfully. Each
-              hit helps transform tension into peace.
-            </p>
-
-            {/* Stats */}
-            <Card className="inline-block bg-white">
-              <CardContent className="p-6">
-                <div className="text-4xl font-bold text-primary mb-2">
-                  {hitCount}
-                </div>
-                <div className="text-base text-muted-foreground">
-                  Stress Releases
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Punching bag */}
-          <div className="flex justify-center items-center min-h-96 mb-12">
-            <div className="relative">
-              {/* Hanging chain */}
-              <div className="w-2 h-24 bg-muted mx-auto mb-4 rounded-full shadow-sm" />
-
-              {/* Punching bag */}
-              <div
-                ref={bagRef}
-                className="w-40 h-60 bg-gradient-to-b from-destructive to-destructive/80 rounded-full cursor-pointer shadow-2xl transition-all duration-200 hover:shadow-3xl select-none"
-                style={{
-                  transform: `
-                    scale(${bagScale}) 
-                    rotate(${bagRotation}deg) 
-                    translate(${bagPosition.x}px, ${bagPosition.y}px)
-                  `,
-                  transformOrigin: "top center",
-                }}
-                onClick={handlePunch}
-                onMouseDown={(e) => e.preventDefault()}
-              >
-                {/* Bag details */}
-                <div className="absolute inset-0 rounded-full">
-                  {/* Highlight */}
-                  <div className="absolute top-6 left-6 w-10 h-16 bg-white/20 rounded-full" />
-
-                  {/* Stitching lines */}
-                  <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-destructive-foreground/30" />
-                  <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-destructive-foreground/30" />
-                  <div className="absolute top-28 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-destructive-foreground/30" />
-                  <div className="absolute top-36 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-destructive-foreground/30" />
-                  <div className="absolute top-44 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-destructive-foreground/30" />
-                </div>
-
-                {/* Impact ripple effect */}
-                <div className="absolute inset-0 rounded-full bg-white opacity-0 animate-ping" />
-              </div>
-
-              {/* Shadow */}
-              <div className="w-32 h-10 bg-black/20 rounded-full mx-auto mt-6 blur-sm" />
-            </div>
-          </div>
-
-          {/* Instructions */}
-          <div className="max-w-4xl mx-auto">
-            <Card className="bg-white">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold mb-6 text-center text-primary">
-                  Mindful Stress Release
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <h4 className="font-semibold text-primary mb-4">
-                      How to use:
-                    </h4>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex items-start">
-                        <div className="w-2 h-2 bg-accent rounded-full mr-3 mt-2" />
-                        Click or tap the punching bag
-                      </li>
-                      <li className="flex items-start">
-                        <div className="w-2 h-2 bg-accent rounded-full mr-3 mt-2" />
-                        Focus on releasing tension with each hit
-                      </li>
-                      <li className="flex items-start">
-                        <div className="w-2 h-2 bg-accent rounded-full mr-3 mt-2" />
-                        Breathe deeply as you interact
-                      </li>
-                      <li className="flex items-start">
-                        <div className="w-2 h-2 bg-accent rounded-full mr-3 mt-2" />
-                        Notice the stress leaving your body
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-primary mb-4">
-                      Remember:
-                    </h4>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex items-start">
-                        <div className="w-2 h-2 bg-accent rounded-full mr-3 mt-2" />
-                        This is about mindful release, not aggression
-                      </li>
-                      <li className="flex items-start">
-                        <div className="w-2 h-2 bg-accent rounded-full mr-3 mt-2" />
-                        Take breaks when you need them
-                      </li>
-                      <li className="flex items-start">
-                        <div className="w-2 h-2 bg-accent rounded-full mr-3 mt-2" />
-                        Focus on your breathing
-                      </li>
-                      <li className="flex items-start">
-                        <div className="w-2 h-2 bg-accent rounded-full mr-3 mt-2" />
-                        You're transforming stress into peace
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+    <div className="min-h-screen bg-[#FFFBF5] p-4">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-8">
+        <Button onClick={onBack} variant="outline">
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Lagom Lab
+        </Button>
       </div>
 
-      {/* Encouragement message */}
-      {showEncouragement && (
-        <div className="fixed inset-0 flex items-center justify-center z-30 pointer-events-none">
-          <Card className="bg-white/95 backdrop-blur-sm shadow-2xl animate-pulse border">
-            <CardContent className="p-8 text-center">
-              <p className="text-2xl lg:text-3xl font-medium text-primary">
-                {currentEncouragement}
-              </p>
-            </CardContent>
-          </Card>
+      {/* Title */}
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold text-primary mb-2">🥊 Stress Release Sanctuary</h1>
+        <p className="text-muted-foreground">Release your stress with this interactive punching bag game!</p>
+      </div>
+
+      <div className="w-full max-w-4xl mx-auto space-y-6">
+        {/* Image Upload Section */}
+        <Card className="p-6 bg-background border-border">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="text-sm text-muted-foreground">
+                Upload an image to overlay on the punching bag for personalized stress relief
+              </div>
+              {uploadedImage && (
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded border overflow-hidden">
+                    <img src={uploadedImage} alt="Uploaded" className="w-full h-full object-cover" />
+                  </div>
+                  <Button
+                    onClick={removeImage}
+                    variant="outline"
+                    size="sm"
+                    className="h-8 w-8 p-0"
+                  >
+                    <X className="w-4 h-4" />
+                  </Button>
+                </div>
+              )}
+            </div>
+            <div className="flex gap-2">
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="hidden"
+              />
+              <Button
+                onClick={() => fileInputRef.current?.click()}
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-2"
+              >
+                <Upload className="w-4 h-4" />
+                {uploadedImage ? 'Change Image' : 'Upload Image'}
+              </Button>
+            </div>
+          </div>
+        </Card>
+
+        {/* Game Stats */}
+        <Card className="p-6 bg-background border-border">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-foreground">{gameStats.score}</div>
+              <div className="text-sm text-muted-foreground">Score</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-orange-500">{gameStats.combo}</div>
+              <div className="text-sm text-muted-foreground">Combo</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-green-500">{gameStats.maxCombo}</div>
+              <div className="text-sm text-muted-foreground">Max Combo</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-blue-500">{gameStats.totalPunches}</div>
+              <div className="text-sm text-muted-foreground">Total Punches</div>
+            </div>
+          </div>
+        </Card>
+
+        {/* Game Area */}
+        <div className="relative h-96 bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg overflow-hidden">
+          {/* Background elements */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:20px_20px] opacity-20"></div>
+
+          {/* Ceiling mount */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-4 bg-gray-700 rounded-b-lg"></div>
+
+          {/* Chain - Fixed alignment */}
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-1 h-16 bg-gray-600 opacity-80"></div>
+
+          {/* Punching Bag */}
+          <motion.div
+            ref={bagRef}
+            className="absolute top-20 left-1/2 transform -translate-x-1/2 cursor-pointer select-none"
+            onClick={handlePunch}
+            animate={{
+              x: bagMovement.x,
+              y: bagMovement.y,
+              rotate: bagMovement.rotation,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 100,
+              damping: 15,
+              mass: 1,
+            }}
+            style={{
+              transformOrigin: "top center",
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {/* Bag body */}
+            <div className="w-24 h-40 bg-gradient-to-b from-red-600 to-red-800 rounded-lg shadow-2xl border-2 border-red-700 relative overflow-hidden">
+              {/* Uploaded Image Overlay */}
+              {uploadedImage && (
+                <div className="absolute inset-0 rounded-lg overflow-hidden">
+                  <img
+                    src={uploadedImage}
+                    alt="Stress target"
+                    className="w-full h-full object-cover opacity-80"
+                    style={{
+                      maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.7) 100%)',
+                      WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.7) 100%)',
+                    }}
+                  />
+                  {/* Overlay to maintain bag appearance */}
+                  <div className="absolute inset-0 bg-red-600/30 mix-blend-multiply"></div>
+                </div>
+              )}
+
+              {/* Bag texture lines */}
+              <div className="absolute inset-0 flex flex-col justify-evenly z-10">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="w-full h-0.5 bg-red-900 opacity-50"></div>
+                ))}
+              </div>
+
+              {/* Bag highlight */}
+              <div className="absolute top-4 left-2 w-4 h-8 bg-red-400 opacity-30 rounded-full blur-sm z-10"></div>
+            </div>
+
+            {/* Bottom cap */}
+            <div className="w-24 h-6 bg-red-900 rounded-b-full border-2 border-red-700"></div>
+          </motion.div>
+
+          {/* Punch Effect */}
+          <AnimatePresence>
+            {showPunchEffect && (
+              <motion.div
+                className="absolute pointer-events-none"
+                style={{
+                  left: punchPosition.x - 25,
+                  top: punchPosition.y - 25,
+                }}
+                initial={{ scale: 0, opacity: 1 }}
+                animate={{ scale: 2, opacity: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="w-12 h-12 rounded-full bg-yellow-400 opacity-80 flex items-center justify-center">
+                  <span className="text-red-600 font-bold text-lg">POW!</span>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Combo Display */}
+          <AnimatePresence>
+            {gameStats.combo > 0 && (
+              <motion.div
+                className="absolute top-4 right-4"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+              >
+                <Badge variant="secondary" className="text-lg px-3 py-1 bg-orange-500 text-white">
+                  {gameStats.combo}x COMBO!
+                </Badge>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Instructions */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
+            <p className="text-white/70 text-sm">Click the punching bag to punch!</p>
+            <p className="text-white/50 text-xs mt-1">Build combos for higher scores</p>
+          </div>
         </div>
-      )}
-    </section>
+
+        {/* Controls */}
+        <div className="flex justify-center space-x-4">
+          <Button onClick={resetGame} variant="outline" className="flex items-center space-x-2">
+            <RotateCcw className="w-4 h-4" />
+            <span>Reset Game</span>
+          </Button>
+        </div>
+
+        {/* Achievement Badges */}
+        <div className="flex flex-wrap justify-center gap-2">
+          {gameStats.totalPunches >= 10 && (
+            <Badge variant="secondary" className="flex items-center space-x-1">
+              <Target className="w-3 h-3" />
+              <span>Beginner Boxer</span>
+            </Badge>
+          )}
+          {gameStats.maxCombo >= 10 && (
+            <Badge variant="secondary" className="flex items-center space-x-1">
+              <Trophy className="w-3 h-3" />
+              <span>Combo Master</span>
+            </Badge>
+          )}
+          {gameStats.score >= 500 && (
+            <Badge variant="secondary" className="flex items-center space-x-1">
+              <Trophy className="w-3 h-3" />
+              <span>High Scorer</span>
+            </Badge>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

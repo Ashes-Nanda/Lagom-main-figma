@@ -1,6 +1,20 @@
 import { Button } from "./ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { Users, UserCheck, ExternalLink, Heart, Shield, MessageCircle, Clock } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import {
+  Users,
+  UserCheck,
+  ExternalLink,
+  Heart,
+  Shield,
+  MessageCircle,
+  Clock,
+} from "lucide-react";
 
 export function SupportPathSection() {
   const handleP2PClick = () => {
@@ -14,155 +28,119 @@ export function SupportPathSection() {
   const supportPaths = [
     {
       id: "green",
-      title: "Green Path",
-      description: "Self-help tools, check-ins, preventive resources",
+      title: "Green Path: Prevent & Protect",
+      description:
+        "Self-paced tools, check-ins, and resources to help you stay balanced and grounded before burnout hits.",
+      buttonText: "Explore Self-Help Tools",
       color: "green",
       bgColor: "bg-green-50",
       borderColor: "border-green-200",
       textColor: "text-green-800",
       descColor: "text-green-700",
-      dotColor: "bg-green-500"
+      dotColor: "bg-green-500",
     },
     {
       id: "yellow",
-      title: "Yellow Path",
-      description: "Professional therapy matching with vetted therapists",
+      title: "Yellow Path: Therapy Matching",
+      description:
+        "Need more support? We'll match you with a vetted therapist who gets the unique stress of healthcare work.",
+      buttonText: "Find a Therapist Who Gets It",
       color: "yellow",
       bgColor: "bg-yellow-50",
       borderColor: "border-yellow-200",
       textColor: "text-yellow-800",
       descColor: "text-yellow-700",
-      dotColor: "bg-yellow-500"
+      dotColor: "bg-yellow-500",
     },
     {
       id: "red",
-      title: "Red Path",
-      description: "Immediate crisis support, psychiatrist connection",
+      title: "Red Path: Urgent Support",
+      description:
+        "If you're in crisis or need to speak to a psychiatrist urgently, we've got you. You're not alone.",
+      buttonText: "Access Immediate Help",
       color: "red",
       bgColor: "bg-red-50",
       borderColor: "border-red-200",
       textColor: "text-red-800",
       descColor: "text-red-700",
-      dotColor: "bg-red-500"
-    }
+      dotColor: "bg-red-500",
+    },
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-8 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Main heading */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="typography-responsive-h2 text-primary mb-4">
               Choose Your Support Path
             </h2>
-            <p className="typography-body-large text-muted-foreground max-w-3xl mx-auto">
-              Connect with trauma-trained peers, therapists, and coaches who understand the unique challenges of healthcare work. 
-              Every conversation begins with safety.
+            <p className="typography-body-large text-muted-foreground max-w-4xl mx-auto">
+              Whether you need a quick check-in, someone to talk to, or just
+              space to breathe - we've built different support tracks just for
+              healthcare professionals to find their balance. No pressure. No
+              judgment. Just options that meet you where you are.
             </p>
           </div>
 
-          {/* Unified Support Path Grid - All cards in one balanced grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {/* Support Path Cards - Green/Yellow/Red */}
+          {/* Support Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {supportPaths.map((path) => (
-              <Card 
-                key={path.id} 
-                className={`text-center p-6 h-full ${path.bgColor} ${path.borderColor} hover:shadow-md transition-shadow`}
+              <Card
+                key={path.id}
+                className={`min-h-[280px] cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 ${path.bgColor} ${path.borderColor} border-2 flex flex-col`}
               >
-                <div className="flex justify-center mb-4">
-                  <div className={`w-4 h-4 ${path.dotColor} rounded-full`}></div>
-                </div>
-                <h3 className={`typography-h4 ${path.textColor} mb-2`}>
-                  {path.title}
-                </h3>
-                <p className={`typography-body-small ${path.descColor}`}>
-                  {path.description}
-                </p>
+                <CardHeader className="text-center pb-4 flex-shrink-0">
+                  <div className="flex justify-center mb-4 h-4">
+                    <div
+                      className={`w-4 h-4 ${path.dotColor} rounded-full`}
+                    ></div>
+                  </div>
+                  <CardTitle
+                    className={`typography-h4 ${path.textColor} mb-2 min-h-[3rem] flex items-center justify-center`}
+                  >
+                    {path.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-col flex-grow text-center">
+                  <p
+                    className={`typography-body-small ${path.descColor} mb-6 flex-grow min-h-[4rem] flex items-start justify-center`}
+                  >
+                    {path.description}
+                  </p>
+                  <Button
+                    className={`w-full ${path.bgColor} ${path.textColor} hover:opacity-80 border ${path.borderColor} mt-auto`}
+                    variant="outline"
+                  >
+                    👉 {path.buttonText}
+                    <ExternalLink className="w-4 h-4 ml-2" />
+                  </Button>
+                </CardContent>
               </Card>
             ))}
 
             {/* P2P Directory Card */}
-            <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-accent/50 h-full">
-              <CardHeader className="text-center pb-6">
-                <div className="flex justify-center mb-4">
-                  <div className="w-16 h-16 bg-secondary rounded-full flex items-center justify-center">
-                    <Users className="w-8 h-8 text-accent" />
-                  </div>
+            <Card className="min-h-[280px] cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 bg-blue-50 border-blue-200 border-2 flex flex-col">
+              <CardHeader className="text-center pb-4 flex-shrink-0">
+                <div className="flex justify-center mb-4 h-4">
+                  <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
                 </div>
-                <CardTitle className="typography-h3">Peer-to-Peer Directory</CardTitle>
-                <CardDescription className="typography-body">
-                  Connect with colleagues who "get it" - share experiences and build community
-                </CardDescription>
+                <CardTitle className="typography-h4 text-blue-800 mb-2 min-h-[3rem] flex items-center justify-center">
+                  Peer-to-Peer Support
+                </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 flex-1 flex flex-col">
-                <ul className="space-y-3 text-muted-foreground flex-1">
-                  <li className="flex items-start">
-                    <MessageCircle className="w-4 h-4 text-accent mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Share experiences with colleagues who understand</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Heart className="w-4 h-4 text-accent mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Learn coping strategies from peers</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Users className="w-4 h-4 text-accent mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Reduce isolation and build community</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Shield className="w-4 h-4 text-accent mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Practice conversations in a safe space</span>
-                  </li>
-                </ul>
-                <Button 
+              <CardContent className="flex flex-col flex-grow text-center">
+                <p className="typography-body-small text-blue-700 mb-6 flex-grow min-h-[4rem] flex items-start justify-center">
+                  Sometimes, you just want to talk to someone who understands.
+                  Connect with fellow HCPs in safe, peer-led spaces.
+                </p>
+                <Button
                   onClick={handleP2PClick}
-                  size="lg" 
-                  className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 mt-auto"
+                  className="w-full bg-blue-50 text-blue-800 hover:opacity-80 border border-blue-200 mt-auto"
+                  variant="outline"
                 >
-                  Connect with Peers
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Therapist Directory Card */}
-            <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-accent/50 h-full">
-              <CardHeader className="text-center pb-6">
-                <div className="flex justify-center mb-4">
-                  <div className="w-16 h-16 bg-secondary rounded-full flex items-center justify-center">
-                    <UserCheck className="w-8 h-8 text-accent" />
-                  </div>
-                </div>
-                <CardTitle className="typography-h3">Therapist Directory</CardTitle>
-                <CardDescription className="typography-body">
-                  Trauma-trained professionals who understand healthcare worker challenges
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4 flex-1 flex flex-col">
-                <ul className="space-y-3 text-muted-foreground flex-1">
-                  <li className="flex items-start">
-                    <UserCheck className="w-4 h-4 text-accent mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Licensed and vetted mental health professionals</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Heart className="w-4 h-4 text-accent mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Specialized in healthcare worker trauma and burnout</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Shield className="w-4 h-4 text-accent mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Confidential and trauma-informed care</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Clock className="w-4 h-4 text-accent mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Virtual and in-person options available</span>
-                  </li>
-                </ul>
-                <Button 
-                  onClick={handleTherapistClick}
-                  size="lg" 
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 mt-auto"
-                >
-                  Find a Therapist
+                  👉 Talk to a Peer
                   <ExternalLink className="w-4 h-4 ml-2" />
                 </Button>
               </CardContent>
@@ -176,14 +154,15 @@ export function SupportPathSection() {
                 Not sure which path is right for you?
               </h3>
               <p className="typography-body text-muted-foreground mb-6">
-                Take our triage assessment to get personalized recommendations for your support journey.
+                Take our triage assessment to get personalized recommendations
+                for your support journey.
               </p>
-              <Button 
-                variant="outline" 
-                size="lg"
-                asChild
-              >
-                <a href="https://forms.gle/VW2ESGsyT1yAzvgC8" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="lg" asChild>
+                <a
+                  href="https://forms.gle/VW2ESGsyT1yAzvgC8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Start Triage Assessment
                 </a>
               </Button>
