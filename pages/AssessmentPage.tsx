@@ -5,14 +5,14 @@ import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
 import { Label } from "../components/ui/label";
 import { Alert, AlertDescription } from "../components/ui/alert";
 import { useState } from "react";
-import { Heart, Phone, FileText, BarChart3, AlertTriangle, Users, Brain } from "lucide-react";
+import { Heart, FileText, BarChart3, AlertTriangle, Users, Brain } from "lucide-react";
 
 export function AssessmentPage() {
   const [currentSection, setCurrentSection] = useState<'intro' | 'who5' | 'optional' | 'results'>('intro');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [who5Answers, setWho5Answers] = useState<Record<number, number>>({});
   const [optionalAnswers, setOptionalAnswers] = useState<Record<number, number>>({});
-  const [skipOptional, setSkipOptional] = useState(false);
+  const [, setSkipOptional] = useState(false);
 
   // WHO-5 Well-Being Index Questions
   const who5Questions = [
@@ -155,7 +155,7 @@ export function AssessmentPage() {
     return optionalAnswers[1] >= 3; // A few times a month or more
   };
 
-  const getResultInterpretation = (who5Score: number, burnoutFlag: boolean, moralInjuryFlag: boolean) => {
+  const getResultInterpretation = (who5Score: number, _burnoutFlag: boolean, _moralInjuryFlag: boolean) => {
     if (who5Score >= 50) {
       return {
         level: "Good Well-being",

@@ -3,7 +3,7 @@ import { Search, Phone, MessageSquare, Globe } from 'lucide-react';
 import { Input } from './input';
 import { Card, CardContent, CardHeader, CardTitle } from './card';
 import { Button } from './button';
-import { CountryData, searchCountries } from '../../lib/crisisSupportData';
+import { CountryData, CrisisContact, searchCountries } from '../../lib/crisisSupportData';
 
 interface CountrySearchProps {
   onCountrySelect?: (country: CountryData) => void;
