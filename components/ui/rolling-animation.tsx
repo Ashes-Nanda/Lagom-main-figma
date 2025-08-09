@@ -53,19 +53,11 @@ function RollingAnimation({
       y: 0,
       opacity: 1,
       rotateX: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
     },
     exit: {
       y: 30,
       opacity: 0,
       rotateX: 90,
-      transition: {
-        duration: 0.4,
-        ease: "easeIn",
-      },
     },
   };
 
@@ -108,6 +100,10 @@ function RollingAnimation({
             initial="hidden"
             animate="visible"
             exit="exit"
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+            }}
             style={{
               whiteSpace: "nowrap",
               transformStyle: "preserve-3d",
