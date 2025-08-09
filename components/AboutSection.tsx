@@ -348,11 +348,59 @@ export function AboutSection() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
-              About Being.Lagom
+              Why We Exist?
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Our story, mission, and the people behind the movement
+            <p className="text-xl text-muted-foreground mb-8">
+              <em>
+                Our story, our mission, and the people behind the movement.
+              </em>
             </p>
+          </div>
+
+          {/* Our Story */}
+          <div className="mb-16">
+            <Card>
+              <CardContent className="p-8 lg:p-12">
+                <div className="max-w-4xl mx-auto text-center space-y-6">
+                  <p className="text-lg text-foreground leading-relaxed">
+                    It began with <strong>exhaustion</strong>. Not the kind that
+                    sleep fixes. The kind where your body keeps moving but your
+                    soul stays behind.
+                  </p>
+
+                  <p className="text-lg text-foreground leading-relaxed">
+                    We were doctors, nurses, medical students - watching our
+                    colleagues break down in supply closets, hearing friends
+                    talk about leaving medicine forever, and carrying the weight
+                    of patients we couldn't save.
+                  </p>
+
+                  <p className="text-lg text-foreground leading-relaxed">
+                    <strong>
+                      COVID didn't create the cracks. It split them wide open.
+                    </strong>
+                  </p>
+
+                  <p className="text-lg text-foreground leading-relaxed">
+                    We knew something had to change - not someday, but{" "}
+                    <em>now</em>.
+                  </p>
+
+                  <div className="pt-4 border-t border-primary/20">
+                    <p className="text-xl font-semibold text-primary mb-2">
+                      That's why we built Being.Lagom.
+                    </p>
+                    <p className="text-lg text-foreground">
+                      By healthcare workers, for healthcare workers.
+                    </p>
+                    <p className="text-lg text-accent font-medium mt-4">
+                      Because caring for ourselves is not selfish - it's
+                      survival.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Vision & Mission */}
@@ -390,15 +438,28 @@ export function AboutSection() {
             </Card>
           </div>
 
-          <div className="mt-16 text-center">
-            <blockquote className="text-lg italic text-accent max-w-3xl mx-auto">
-              "Lagom is a Swedish concept meaning 'just the right amount' - not
-              too little, not too much, but exactly what's needed."
-            </blockquote>
-            <p className="mt-4 text-sm text-muted-foreground">
-              To care for others, we must first learn to care for ourselves -
-              not selfishly, but sustainably.
-            </p>
+          {/* What "Lagom" Means */}
+          <div className="mt-16">
+            <Card>
+              <CardContent className="p-8 lg:p-12 text-center">
+                <h3 className="text-2xl font-bold text-primary mb-6">
+                  What "Lagom" Means
+                </h3>
+                <div className="max-w-3xl mx-auto space-y-4">
+                  <p className="text-lg text-foreground leading-relaxed">
+                    Lagom is a Swedish word for{" "}
+                    <strong>just the right amount</strong>.
+                  </p>
+                  <p className="text-lg text-foreground leading-relaxed">
+                    Not too little, not too much - exactly what's needed.
+                  </p>
+                  <p className="text-lg text-accent font-medium mt-6">
+                    We believe mental health support should feel the same:
+                    balanced, compassionate, and sustainable.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
           <br></br>
           {/* Achievements */}

@@ -12,35 +12,128 @@ const items = [
   {
     id: "1",
     title: 'What does "Being.Lagom" mean, and how do you pronounce it?',
-    content: `“Lagom” is a Swedish word that means not too much, not too little - just right. It’s pronounced “la-gom” (rhymes with problem, ironically). Think of it as the opposite of your hospital shift schedule: not overburdened, not underutilized - just… enough. Being.Lagom is about reclaiming that elusive middle ground - in healing, in helping, and in how we show up for ourselves.`,
+    content: (
+      <div className="space-y-3">
+        <p>
+          "Lagom" is a Swedish word that means{" "}
+          <em>not too much, not too little - just right</em>. It's pronounced{" "}
+          <strong>"la-gom" </strong>(rhymes with <em>problem</em>, ironically).
+          Think of it as the opposite of your hospital shift schedule: not
+          overburdened, not underutilized - just… enough.
+        </p>
+        <p>
+          Being.Lagom is about reclaiming that elusive middle ground - in
+          healing, in helping, and in how we show up for ourselves.
+        </p>
+      </div>
+    ),
   },
   {
     id: "2",
     title: "How can I get involved in the Being.Lagom community?",
-    content: `Start where you are. Whether it’s joining our events, co-creating healing circles, or simply following us on social media - there’s space for you here. You can even start your own Being.Lagom chapter. We’re building a movement, not a membership. No hierarchy, no gatekeeping — just humans showing up for each other in radically honest, hopeful ways.`,
+    content: (
+      <div className="space-y-3">
+        <p>
+          Start where you are. Whether it's joining our events, co-creating
+          healing circles, or simply following us on social media - there's
+          space for you here. You can even start your own <em>Being.Lagom</em>{" "}
+          chapter.
+        </p>
+        <p>
+          We're building a movement, not a membership. No hierarchy, no
+          gatekeeping — just humans showing up for each other in radically
+          honest, hopeful ways.
+        </p>
+      </div>
+    ),
   },
   {
     id: "3",
     title:
       "Can I really make a difference in addressing physician burnout and mental health issues?",
-    content: `Yes. And not just in some vague, motivational way. As Margaret Mead said: “Never doubt that a small group of thoughtful, committed citizens can change the world. Indeed, it is the only thing that ever has.” Burnout isn’t just an individual problem - it’s a systemic crisis. But systems don’t shift without culture change, and culture doesn’t shift without courageous communities. That’s where you come in. One conversation, one circle, one action at a time.`,
+    content: (
+      <div className="space-y-3">
+        <p>Yes. And not just in some vague, motivational way.</p>
+        <p>
+          As <strong>Margaret Mead</strong> said:{" "}
+          <em>
+            "Never doubt that a small group of thoughtful, committed citizens
+            can change the world. Indeed, it is the only thing that ever has."
+          </em>
+        </p>
+        <p>
+          Burnout isn't just an individual problem - it's a systemic crisis. But
+          systems don't shift without culture change, and culture doesn't shift
+          without courageous communities. That's where you come in. One
+          conversation, one circle, one action at a time.
+        </p>
+      </div>
+    ),
   },
   {
     id: "4",
     title:
       "How can Being.Lagom contribute to reducing stigma around mental health disorders?",
-    content: `We don’t fight stigma by preaching. We melt it - through story, presence, and proximity. Being.Lagom creates spaces where people (especially healthcare professionals) can be messy, honest, and human - without fear of judgment. By sharing lived experiences, modeling vulnerability, and centering mental health in everyday conversation, we chip away at the silence. The goal? A world where seeking help is not brave - just normal.`,
+    content: (
+      <div className="space-y-3">
+        <p>
+          We don't fight stigma by preaching. We melt it - through story,
+          presence, and proximity.
+        </p>
+        <p>
+          <em>Being.Lagom</em> creates spaces where people (especially
+          healthcare professionals) can be messy, honest, and human - without
+          fear of judgment. By sharing lived experiences, modeling
+          vulnerability, and centering mental health in everyday conversation,
+          we chip away at the silence.
+        </p>
+        <p>The goal? A world where seeking help is not brave - just normal.</p>
+      </div>
+    ),
   },
   {
     id: "5",
     title:
-      "How can I contribute to Being.Lagom’s mission of promoting mental health and wellbeing?",
-    content: `This is bigger than attending an event or reposting a story. You’re not just joining a campaign — you’re part of a quiet revolution in how we heal, connect, and care. You can: Join our healing circles and community gatherings, collaborate on research, advocacy, or peer-support pilots, bring Being.Lagom to your institution, your batch, your city, or share your story and build space for others to share theirs.`,
+      "How can I contribute to Being.Lagom's mission of promoting mental health and wellbeing?",
+    content: (
+      <div className="space-y-3">
+        <p>
+          This is bigger than attending an event or reposting a story. You're
+          not just joining a campaign — you're part of a quiet revolution in how
+          we heal, connect, and care.
+        </p>
+        <p>You can:</p>
+        <ul className="list-disc pl-6 space-y-1">
+          <li>Join our healing circles and community gatherings</li>
+          <li>Collaborate on research, advocacy, or peer-support pilots</li>
+          <li>Bring Being.Lagom to your institution, your batch, your city</li>
+          <li>Share your story and build space for others to share theirs</li>
+        </ul>
+      </div>
+    ),
   },
   {
     id: "6",
     title: "Why are the events and interventions targeting HCPs?",
-    content: `Because we’re trained to hold space for everyone else - but rarely get it for ourselves. HCPs face unique stressors, moral injury, and stigma around seeking help. This space is designed for us, by people who get it - so we can reconnect, reflect, and heal together. It’s not about exclusion. It’s about giving care a home. And yes, muggles (aka non-HCP friends of Being.Lagom) are welcome too - we’ve got a few on the team who are living proof that care, curiosity, and community aren’t limited to job titles!`,
+    content: (
+      <div className="space-y-3">
+        <p>
+          Because we're trained to hold space for everyone else - but rarely get
+          it for ourselves.
+        </p>
+        <p>
+          HCPs face unique stressors, moral injury, and stigma around seeking
+          help. This space is designed <em>for us</em>, by people who get it -
+          so we can reconnect, reflect, and heal together. It's not about
+          exclusion. It's about giving care a home.
+        </p>
+        <p>
+          And yes, <em>muggles</em> (aka non-HCP friends of Being.Lagom) are
+          welcome too - we've got a few on the team who are living proof that
+          care, curiosity, and community aren't limited to job titles!
+        </p>
+      </div>
+    ),
   },
 ];
 
@@ -135,7 +228,7 @@ export default function Faq() {
                   </AccordionPrimitive.Header>
                   <AccordionContent
                     className={cn(
-                      "text-muted-foreground overflow-hidden pt-0 pb-4",
+                      "text-black overflow-hidden pt-0 pb-4",
                       "data-[state=open]:animate-accordion-down",
                       "data-[state=closed]:animate-accordion-up"
                     )}

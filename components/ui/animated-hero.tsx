@@ -101,7 +101,7 @@ function AnimatedHero() {
                 onMouseEnter={prefetchAboutPage}
                 onFocus={prefetchAboutPage}
               >
-                Learn More
+                Why We Exist?
               </Link>
             </Button>
           </div>
