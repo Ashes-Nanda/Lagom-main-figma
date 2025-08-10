@@ -2,7 +2,9 @@ interface BrainwaveDividerProps {
   className?: string;
 }
 
-export function BrainwaveDivider({ className = "my-12" }: BrainwaveDividerProps) {
+export function BrainwaveDivider({
+  className = "my-12",
+}: BrainwaveDividerProps) {
   return (
     <div className={`flex items-center justify-center ${className}`}>
       <div className="flex-1 h-px bg-border"></div>
