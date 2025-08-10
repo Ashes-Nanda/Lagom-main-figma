@@ -5,9 +5,8 @@ import {
   CardTitle,
 } from "./ui/card";
 import {
-  Globe,
+  
   Users,
-  Award,
   Target,
   Heart,
   Linkedin,

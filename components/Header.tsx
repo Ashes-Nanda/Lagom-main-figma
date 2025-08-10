@@ -2,7 +2,7 @@ import { Home, Heart, BookOpen, Info, ClipboardCheck, Gamepad2, ShoppingBag } fr
 import { Link, useNavigate } from "react-router-dom";
 import { MobileNavigation } from "./navigation/MobileNavigation";
 import { ExpandableTabs } from "./ui/expandable-tabs";
-import * as React from "react";
+
 
 const beingLagomLogo = "/lagom-logo.png";
 
