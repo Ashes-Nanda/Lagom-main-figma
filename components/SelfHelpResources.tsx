@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { Card } from "./ui/card";
 import { StandardCard } from "./ui/StandardCard";
 import { ArticleCard } from "./ui/ArticleCard";
 import { Button } from "./ui/button";

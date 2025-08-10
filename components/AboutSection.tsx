@@ -1,11 +1,9 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { Badge } from "./ui/badge";
 import {
   Globe,
   Users,
@@ -22,7 +20,6 @@ import { cn } from "../lib/utils";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { BrainwaveDivider } from "./ui/BrainwaveDivider";
-import WorldMap from "./ui/world-map";
 
 interface TeamMember {
   name: string;
@@ -625,87 +622,6 @@ function Team3({
 }
 
 export function AboutSection() {
-  const achievements = [
-    {
-      icon: <Users className="w-8 h-8 text-accent" />,
-      title: "1,200+",
-      description: "Healthcare workers supported",
-    },
-    {
-      icon: <Globe className="w-8 h-8 text-accent" />,
-      title: "15+",
-      description: "Countries reached",
-    },
-    {
-      icon: <Award className="w-8 h-8 text-accent" />,
-      title: "4+",
-      description: "Years of Service",
-    },
-    {
-      icon: <Target className="w-8 h-8 text-accent" />,
-      title: "24/7",
-      description: "Crisis Support Available",
-    },
-  ];
-
-  const countriesServed = [
-    "India",
-    "Singapore",
-    "UK",
-    "Canada",
-    "Australia",
-    "USA",
-    "Spain",
-    "Germany",
-    "Egypt",
-    "South Africa",
-    "Brazil",
-    "Japan",
-    "Netherlands",
-    "Sweden",
-    "France",
-    "New Zealand",
-    "Sri Lanka",
-  ];
-
-  const countryData = [
-    {
-      start: { lat: 28.6139, lng: 77.209, label: "India" },
-      end: { lat: 1.3521, lng: 103.8198, label: "Singapore" },
-    },
-    {
-      start: { lat: 51.5074, lng: -0.1278, label: "UK" },
-      end: { lat: 45.4215, lng: -75.6972, label: "Canada" },
-    },
-    {
-      start: { lat: -33.8688, lng: 151.2093, label: "Australia" },
-      end: { lat: 40.7128, lng: -74.006, label: "USA" },
-    },
-    {
-      start: { lat: 40.4168, lng: -3.7038, label: "Spain" },
-      end: { lat: 52.52, lng: 13.405, label: "Germany" },
-    },
-    {
-      start: { lat: 30.0444, lng: 31.2357, label: "Egypt" },
-      end: { lat: -33.9249, lng: 18.4241, label: "South Africa" },
-    },
-    {
-      start: { lat: -23.5505, lng: -46.6333, label: "Brazil" },
-      end: { lat: 35.6762, lng: 139.6503, label: "Japan" },
-    },
-    {
-      start: { lat: 52.3676, lng: 4.9041, label: "Netherlands" },
-      end: { lat: 59.3293, lng: 18.0686, label: "Sweden" },
-    },
-    {
-      start: { lat: 48.8566, lng: 2.3522, label: "France" },
-      end: { lat: -36.8485, lng: 174.7633, label: "New Zealand" },
-    },
-    {
-      start: { lat: 7.8731, lng: 80.7718, label: "Sri Lanka" },
-      end: { lat: 28.6139, lng: 77.209, label: "India" },
-    },
-  ];
 
   return (
     <section id="about" className="pt-8 pb-20 bg-background">

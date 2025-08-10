@@ -1,5 +1,4 @@
-import { Button } from "./ui/button";
-import { Home, Heart, BookOpen, Info, ClipboardCheck, Gamepad2, ShoppingBag, Menu } from "lucide-react";
+import { Home, Heart, BookOpen, Info, ClipboardCheck, Gamepad2, ShoppingBag } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { MobileNavigation } from "./navigation/MobileNavigation";
 import { ExpandableTabs } from "./ui/expandable-tabs";
@@ -56,8 +55,7 @@ export function Header() {
     }
   };
 
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const menuButtonRef = React.useRef(null);
+
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[#FFFBF5] text-black">
