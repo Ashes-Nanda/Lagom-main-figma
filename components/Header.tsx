@@ -1,7 +1,8 @@
 import { Button } from "./ui/button";
-import { Menu } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Home, Heart, BookOpen, Info, ClipboardCheck, Gamepad2, ShoppingBag, Menu } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { MobileNavigation } from "./navigation/MobileNavigation";
+import { ExpandableTabs } from "./ui/expandable-tabs";
 import * as React from "react";
 
 const beingLagomLogo = "/lagom-logo.png";
@@ -13,6 +14,8 @@ interface NavigationItem {
 }
 
 export function Header() {
+  const navigate = useNavigate();
+  
   const navItems: NavigationItem[] = [
     { path: "/", label: "Home" },
     { path: "/directory", label: "Connect with Care" },
@@ -27,8 +30,31 @@ export function Header() {
     },
     { path: "/about", label: "About" },
     { path: "/assessment", label: "Assessment" },
-    { path: "/contact", label: "Contact" },
   ];
+
+  // ExpandableTabs configuration
+  const expandableTabs = [
+    { title: "Home", icon: Home },
+    { title: "Connect with Care", icon: Heart },
+    { type: "separator" as const },
+    { title: "Resources", icon: BookOpen },
+    { title: "Lagom Lab", icon: Gamepad2 },
+    { title: "Merchandise", icon: ShoppingBag },
+    { type: "separator" as const },
+    { title: "About", icon: Info },
+    { title: "Assessment", icon: ClipboardCheck },
+  ];
+
+  const handleTabChange = (index: number | null) => {
+    if (index === null) return;
+    
+    const routes = ["/", "/directory", null, "/resources", "/mindfulness", "/merchandise", null, "/about", "/assessment"];
+    const route = routes[index];
+    
+    if (route) {
+      navigate(route);
+    }
+  };
 
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuButtonRef = React.useRef(null);
@@ -51,54 +77,14 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Desktop Hamburger Menu (now on the far right) */}
-          <div className="hidden md:flex items-center ml-auto relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-black"
-              onClick={() => setMenuOpen((open) => !open)}
-              ref={menuButtonRef}
-              aria-label="Open menu"
-            >
-              <Menu className="w-9 h-9" />
-            </Button>
-            {menuOpen && (
-              <div className="absolute right-0 top-12 mt-2 w-48 bg-white rounded shadow-lg border border-gray-200 z-50">
-                <ul className="py-2">
-                  {navItems.map((item) =>
-                    item.children ? (
-                      <React.Fragment key={item.label}>
-                        <li className="px-4 py-2 font-semibold text-xs uppercase text-gray-500">
-                          {item.label}
-                        </li>
-                        {item.children.map((child) => (
-                          <li key={child.label}>
-                            <Link
-                              to={child.path}
-                              className="block px-4 py-2 text-black hover:bg-gray-100"
-                              onClick={() => setMenuOpen(false)}
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </React.Fragment>
-                    ) : (
-                      <li key={item.label}>
-                        <Link
-                          to={item.path}
-                          className="block px-4 py-2 text-black hover:bg-gray-100"
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          {item.label}
-                        </Link>
-                      </li>
-                    )
-                  )}
-                </ul>
-              </div>
-            )}
+          {/* Desktop ExpandableTabs Navigation */}
+          <div className="hidden md:flex items-center ml-auto">
+            <ExpandableTabs 
+              tabs={expandableTabs}
+              onChange={handleTabChange}
+              className="bg-[#FFFBF5] border-gray-200"
+              activeColor="text-primary"
+            />
           </div>
 
           {/* Mobile Navigation */}

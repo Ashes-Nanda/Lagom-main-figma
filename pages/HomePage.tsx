@@ -3,6 +3,7 @@ import { PartnershipSection } from "../components/PartnershipSection";
 // import { InstitutionalCredibility } from "../components/InstitutionalCredibility";
 import { PageLayout } from "../components/layout";
 import { BeingLagomFooter } from "../components/ui/footer";
+import { BrainwaveDivider } from "../components/ui/BrainwaveDivider";
 import Faq from "../components/ui/faq";
 import { ChatbotFAB } from "../components/ChatbotFAB";
 // import { Header } from "../components/Header";
@@ -13,7 +14,9 @@ export function HomePage() {
       {/* <Header /> */}
       <PageLayout withTopPadding={false} className="bg-transparent">
         <HeroSection />
+        <BrainwaveDivider />
         <PartnershipSection />
+        <BrainwaveDivider />
         <Faq />
         <div style={{ background: "#0BB8C6", color: "white" }}>
           <BeingLagomFooter />

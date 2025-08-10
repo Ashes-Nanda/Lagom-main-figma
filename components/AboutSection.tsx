@@ -6,8 +6,22 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { Globe, Users, Award, Target, Linkedin, Instagram } from "lucide-react";
-import { motion } from "framer-motion";
+import {
+  Globe,
+  Users,
+  Award,
+  Target,
+  Heart,
+  Linkedin,
+  Instagram,
+  Facebook,
+  Twitter,
+} from "lucide-react";
+
+import { cn } from "../lib/utils";
+import { useState } from "react";
+import { Button } from "./ui/button";
+import { BrainwaveDivider } from "./ui/BrainwaveDivider";
 import WorldMap from "./ui/world-map";
 
 interface TeamMember {
@@ -16,7 +30,12 @@ interface TeamMember {
   imageUrl: string;
   bio: string;
   specialty: string;
-  socialLinks?: { platform: "linkedin" | "instagram"; url: string }[];
+  category: string;
+  actionFigureUrl?: string;
+  socialLinks?: {
+    platform: "linkedin" | "instagram" | "facebook" | "twitter";
+    url: string;
+  }[];
 }
 
 interface TeamProps {
@@ -28,12 +47,15 @@ interface TeamProps {
 
 // Team members data for Being.Lagom
 const teamMembers: TeamMember[] = [
+  // Ahd TaskForce Members
   {
     name: "Dr. Vyshnavi Desiraju",
     role: "Medical doctor, Executive Director of Being.Lagom (Singapore)",
-    bio: "BJMC Taskforce : Strategy Lead",
+    bio: "Ahmedabad Taskforce: Strategy Lead",
     imageUrl: "/assets/Vyshnavi_1.jpg",
+    actionFigureUrl: "/action-fig/Vyshnavi-action.png",
     specialty: "Strategy & Leadership",
+    category: "Ahd TaskForce",
     socialLinks: [
       {
         platform: "linkedin",
@@ -42,52 +64,12 @@ const teamMembers: TeamMember[] = [
     ],
   },
   {
-    name: "Dr Raj Mistry",
-    role: "IMA State Convener, Gujarat, BJMC",
-    bio: "BJMC Taskforce : Operations Co-Lead (Ahmedabad)",
-    imageUrl: "/assets/Raj.jpeg",
-    specialty: "Operations",
-    socialLinks: [
-      {
-        platform: "instagram",
-        url: "https://www.instagram.com/dr_raj_mistry?igsh=MXpsYXZzY3p4dzEw",
-      },
-    ],
-  },
-  {
-    name: "Dr Sunil Kumar",
-    role: "Clinical Advisor",
-    bio: "MBBS, MRCA, FCAI, FRSA, FBSLM, DipIBLM Anaesthesiologist | Foundation Programme Director (FY1) Morecambe Bay NHS Trust, UK",
-    imageUrl:
-      "https://media.licdn.com/dms/image/v2/D4E03AQEu9QDWZ6OW2Q/profile-displayphoto-shrink_400_400/B4EZRkgOs4HMAg-/0/1736852959129?e=1757548800&v=beta&t=1caZUpg_WWMm6cFfTywoTzHRTDxM1oGfRaBKTtYv0J0",
-    specialty: "Clinical Advisory",
-    socialLinks: [
-      {
-        platform: "linkedin",
-        url: "https://www.linkedin.com/in/drsunilkumarlifestylemedicine/",
-      },
-    ],
-  },
-  {
-    name: "Dr Raghumoy Gosh",
-    role: "Project research scientist in Department of Hematology, PGI Chandigarh",
-    bio: "Ops Lead in Being.Lagom, BJMC Taskforce : Operations Co-Lead (Psych team)",
-    imageUrl:
-      "https://media.licdn.com/dms/image/v2/C5103AQHp29dHnaaa7g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1530876982749?e=1757548800&v=beta&t=UrEcgHJW1kG_1rg3UdpIsRmbHhM2jXQrfC5NuEqkrCw",
-    specialty: "Research & Operations",
-    socialLinks: [
-      {
-        platform: "linkedin",
-        url: "https://www.linkedin.com/in/raghumoyghosh751051a6/",
-      },
-    ],
-  },
-  {
     name: "Vanessa Yim",
     role: "Chartered Clinical Psychologist, Hong Kong/ UK",
-    bio: "BJMC Taskforce : Clinical Triage Co-Lead",
+    bio: "Ahmedabad Taskforce: Clinical Triage+ Research Lead",
     imageUrl: "/assets/vanessa_5.JPG",
     specialty: "Clinical Psychology",
+    category: "Ahd TaskForce",
     socialLinks: [
       {
         platform: "linkedin",
@@ -98,10 +80,11 @@ const teamMembers: TeamMember[] = [
   {
     name: "Anuradha Kavuri",
     role: "Counselling Psychologist, Founder of Sumedha Centre",
-    bio: "BJMC Taskforce : Clinical Protocol & Escalation Lead",
+    bio: "Ahmedabad Taskforce: Clinical Protocols Lead",
     imageUrl:
       "https://media.licdn.com/dms/image/v2/D4D03AQGyw9md4EKG4w/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1721802767353?e=1757548800&v=beta&t=mrFbfAAXqqXr6CwtK_ILnUIcPt7_D9HQ177U5jWIu2w",
     specialty: "Counselling Psychology",
+    category: "Ahd TaskForce",
     socialLinks: [
       {
         platform: "linkedin",
@@ -112,9 +95,10 @@ const teamMembers: TeamMember[] = [
   {
     name: "Dhwani Shah",
     role: "Counselling psychologist",
-    bio: "BJMC Taskforce: Psych Volunteer Manager, Therapist Vetting & Quality Assurance",
+    bio: "Ahmedabad Taskforce: Psychologist Volunteer Network Manager",
     imageUrl: "/assets/Dhwani_7.jpg",
     specialty: "Quality Assurance",
+    category: "Ahd TaskForce",
     socialLinks: [
       {
         platform: "linkedin",
@@ -123,24 +107,12 @@ const teamMembers: TeamMember[] = [
     ],
   },
   {
-    name: "Vamsi Pratap",
-    role: "NestUp Space Founder, Business Development Head at Being.Lagom",
-    bio: "BJMC Taskforce : Strategic Partnerships Lead",
-    imageUrl: "/assets/Vamsi_07.jpeg",
-    specialty: "Business Development",
-    socialLinks: [
-      {
-        platform: "linkedin",
-        url: "https://www.linkedin.com/in/vamsi-pratap-b0a196ab/",
-      },
-    ],
-  },
-  {
     name: "Raviraj Jain",
     role: "Senior Manager at KPMG UK, Chartered Accountant",
-    bio: "BJMC Taskforce : Fundraising Lead",
+    bio: "Ahmedabad Taskforce: Fundraising Lead",
     imageUrl: "/assets/Ravi_27.jpeg",
     specialty: "Finance & Fundraising",
+    category: "Ahd TaskForce",
     socialLinks: [
       {
         platform: "linkedin",
@@ -148,114 +120,507 @@ const teamMembers: TeamMember[] = [
       },
     ],
   },
+  {
+    name: "Dr Shweta Sinha",
+    role: "Ph.D. Multisector Communication, MBA, M.Sc, Molecular and Genetic Medicine",
+    bio: "Branding and Business Consultant, Professor in 3 NY universities, Ahmedabad Taskforce: MedEd Curriculum Design & Comms Strategist",
+    imageUrl: "/placeholder.svg",
+    specialty: "MedEd Curriculum Design & Communications",
+    category: "Ahd TaskForce",
+    socialLinks: [],
+  },
+  {
+    name: "Dr Sunil Kumar",
+    role: "MBBS, MRCA, FCAI, FRSA, FBSLM, DipIBLM Anaesthesiologist",
+    bio: "Foundation Programme Director (FY1) Morecambe Bay NHS Trust, UK, Ahmedabad Taskforce: Clinical Advisor & Lifestyle Med Curriculum Lead",
+    imageUrl:
+      "https://media.licdn.com/dms/image/v2/D4E03AQEu9QDWZ6OW2Q/profile-displayphoto-shrink_400_400/B4EZRkgOs4HMAg-/0/1736852959129?e=1757548800&v=beta&t=1caZUpg_WWMm6cFfTywoTzHRTDxM1oGfRaBKTtYv0J0",
+    specialty: "Clinical Advisory & Lifestyle Medicine",
+    category: "Ahd TaskForce",
+    socialLinks: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/drsunilkumarlifestylemedicine/",
+      },
+    ],
+  },
+  {
+    name: "Dr Sathwikaw Manikandan",
+    role: "Ahmedabad Taskforce: Social Media Head",
+    bio: "Ahmedabad Taskforce: Social Media Head",
+    imageUrl: "/placeholder.svg",
+    actionFigureUrl: "/action-fig/Sathwikaw.jpeg",
+    specialty: "Social Media Management",
+    category: "Ahd TaskForce",
+    socialLinks: [],
+  },
+  {
+    name: "Dr Natnael Dejene",
+    role: "Ahmedabad Taskforce: External Comms",
+    bio: "Ahmedabad Taskforce: External Comms",
+    imageUrl: "/placeholder.svg",
+    specialty: "External Communications",
+    category: "Ahd TaskForce",
+    socialLinks: [],
+  },
+  {
+    name: "Dr Devika Menrai",
+    role: "Ahmedabad Taskforce: Internal Comms & Ground-ops Coordination",
+    bio: "Ahmedabad Taskforce: Internal Comms & Ground-ops Coordination",
+    imageUrl: "/placeholder.svg",
+    specialty: "Internal Communications & Operations",
+    category: "Ahd TaskForce",
+    socialLinks: [],
+  },
+  {
+    name: "Dr Rachit Shah",
+    role: "Ahmedabad Taskforce: External Comms",
+    bio: "Ahmedabad Taskforce: External Comms",
+    imageUrl: "/placeholder.svg",
+    specialty: "External Communications",
+    category: "Ahd TaskForce",
+    socialLinks: [],
+  },
+  {
+    name: "Dr Raj Mistry",
+    role: "IMA State Convener, Gujarat, BJMC",
+    bio: "BJMC Taskforce Lead (Ahmedabad)",
+    imageUrl: "/assets/Raj.jpeg",
+    specialty: "Operations",
+    category: "Ahd TaskForce",
+    socialLinks: [
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/dr_raj_mistry?igsh=MXpsYXZzY3p4dzEw",
+      },
+    ],
+  },
+  {
+    name: "Dr Lavish",
+    role: "HR Local Liaison",
+    bio: "HR Local Liaison",
+    imageUrl: "/placeholder.svg",
+    specialty: "Human Resources",
+    category: "Ahd TaskForce",
+    socialLinks: [],
+  },
+  {
+    name: "Dr Krish",
+    role: "Ground Operations Coordinator",
+    bio: "Ground Operations Coordinator",
+    imageUrl: "/placeholder.svg",
+    specialty: "Ground Operations",
+    category: "Ahd TaskForce",
+    socialLinks: [],
+  },
+  {
+    name: "Dr Avdhesh",
+    role: "Gujarat College Coordination",
+    bio: "Gujarat College Coordination",
+    imageUrl: "/placeholder.svg",
+    specialty: "College Coordination",
+    category: "Ahd TaskForce",
+    socialLinks: [],
+  },
+  {
+    name: "Dr Umang",
+    role: "P2P Coordination",
+    bio: "P2P Coordination",
+    imageUrl: "/placeholder.svg",
+    specialty: "Peer-to-Peer Coordination",
+    category: "Ahd TaskForce",
+    socialLinks: [],
+  },
+  {
+    name: "Dr Khushi",
+    role: "Community Mapping",
+    bio: "Community Mapping",
+    imageUrl: "/placeholder.svg",
+    specialty: "Community Mapping",
+    category: "Ahd TaskForce",
+    socialLinks: [],
+  },
+  // Leadership
+  {
+    name: "Vamsi Pratap",
+    role: "NestUp Space Founder, Business Development Head at Being.Lagom",
+    bio: "BJMC Taskforce : Strategic Partnerships Lead",
+    imageUrl: "/assets/Vamsi_07.jpeg",
+    actionFigureUrl: "/action-fig/Vamsi Pratap.jpeg",
+    specialty: "Business Development",
+    category: "Leadership",
+    socialLinks: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/vamsi-pratap-b0a196ab/",
+      },
+    ],
+  },
+
+  // Core Leads
+  {
+    name: "Shehani Jayalath",
+    role: "Grants Specialist",
+    bio: "Clinical Research Manager, BlinkLab Ltd.",
+    imageUrl: "/placeholder.svg",
+    actionFigureUrl: "/action-fig/Shehani action figure.jpg",
+    specialty: "Grants & Clinical Research",
+    category: "Core Leads",
+    socialLinks: [],
+  },
+  {
+    name: "Dr. Sibi Chakravathy",
+    role: "Partnerships Lead",
+    bio: "Partnerships Lead",
+    imageUrl: "/placeholder.svg",
+    specialty: "Partnerships",
+    category: "Core Leads",
+    socialLinks: [],
+  },
+  {
+    name: "Dr Raghumoy Ghosh",
+    role: "Operations Lead",
+    bio: "Project Research Scientist, Dept. of Hematology, PGI Chandigarh",
+    imageUrl:
+      "https://media.licdn.com/dms/image/v2/C5103AQHp29dHnaaa7g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1530876982749?e=1757548800&v=beta&t=UrEcgHJW1kG_1rg3UdpIsRmbHhM2jXQrfC5NuEqkrCw",
+    actionFigureUrl: "/action-fig/Raghumoy.png",
+    specialty: "Research & Operations",
+    category: "Core Leads",
+    socialLinks: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/raghumoyghosh751051a6/",
+      },
+    ],
+  },
+
+  // Psychology & Clinical Team
+  {
+    name: "Andy",
+    role: "Psych Team",
+    bio: "Psych Team Member",
+    imageUrl: "/placeholder.svg",
+    specialty: "Psychology",
+    category: "Psychology & Clinical Team",
+    socialLinks: [],
+  },
+  {
+    name: "Dr. Faraaz",
+    role: "Psych Team",
+    bio: "Psych Team Member",
+    imageUrl: "/placeholder.svg",
+    specialty: "Psychology",
+    category: "Psychology & Clinical Team",
+    socialLinks: [],
+  },
+
+  // Social Media & Communications
+  {
+    name: "Dr. Achu Bose",
+    role: "Social Media Strategist",
+    bio: "Social Media Strategist",
+    imageUrl: "/placeholder.svg",
+    actionFigureUrl: "/action-fig/Bose.jpeg",
+    specialty: "Social Media Strategy",
+    category: "Social Media & Communications",
+    socialLinks: [],
+  },
+  {
+    name: "Arya Manoj",
+    role: "Social Media Team",
+    bio: "Social Media Team Member",
+    imageUrl: "/placeholder.svg",
+    specialty: "Social Media",
+    category: "Social Media & Communications",
+    socialLinks: [],
+  },
+  {
+    name: "Dr. Simran Shakya",
+    role: "Social Media Team",
+    bio: "Social Media Team Member",
+    imageUrl: "/placeholder.svg",
+    actionFigureUrl: "/action-fig/Simran.jpeg",
+    specialty: "Social Media",
+    category: "Social Media & Communications",
+    socialLinks: [],
+  },
+  {
+    name: "Dr. Shamali Pai",
+    role: "Social Media Team",
+    bio: "Social Media Team Member",
+    imageUrl: "/placeholder.svg",
+    actionFigureUrl: "/action-fig/Shamali.png",
+    specialty: "Social Media",
+    category: "Social Media & Communications",
+    socialLinks: [],
+  },
+  {
+    name: "Dr. Shenara",
+    role: "External Comms Team",
+    bio: "External Communications Team Member",
+    imageUrl: "/placeholder.svg",
+    actionFigureUrl: "/action-fig/Shenara.jpeg",
+    specialty: "External Communications",
+    category: "Social Media & Communications",
+    socialLinks: [],
+  },
+
+  // Curriculum & Education
+  {
+    name: "Dr. Lubna",
+    role: "Curriculum Team",
+    bio: "Curriculum Team Member",
+    imageUrl: "/placeholder.svg",
+    specialty: "Curriculum Development",
+    category: "Curriculum & Education",
+    socialLinks: [],
+  },
+
+  // Operations & Support
+  {
+    name: "Dr. Sadiya Khan",
+    role: "Ops Team",
+    bio: "Operations Team Member",
+    imageUrl: "/placeholder.svg",
+    actionFigureUrl: "/action-fig/Sadiya Khan.jpeg",
+    specialty: "Operations",
+    category: "Operations & Support",
+    socialLinks: [],
+  },
+  {
+    name: "Harshitha K",
+    role: "Ops Volunteer",
+    bio: "Medical Intern, India",
+    imageUrl: "/placeholder.svg",
+    actionFigureUrl: "/action-fig/Harshitha.png",
+    specialty: "Operations Support",
+    category: "Operations & Support",
+    socialLinks: [],
+  },
+
+  // Tech
+  {
+    name: "Ashes",
+    role: "Tech Team",
+    bio: "Technology Team Member",
+    imageUrl: "/placeholder.svg",
+    specialty: "Technology",
+    category: "Tech",
+    socialLinks: [],
+  },
+  {
+    name: "Gaurav",
+    role: "Tech Team",
+    bio: "Technology Team Member",
+    imageUrl: "/placeholder.svg",
+    specialty: "Technology",
+    category: "Tech",
+    socialLinks: [],
+  },
+  {
+    name: "Prabhav",
+    role: "Tech Team",
+    bio: "Technology Team Member",
+    imageUrl: "/placeholder.svg",
+    specialty: "Technology",
+    category: "Tech",
+    socialLinks: [],
+  },
 ];
 
-function Team2({
-  title = "Meet Our Team",
-  subtitle = "Our dedicated team of healthcare professionals and mental health experts working together to support healthcare workers worldwide.",
+// Flippable Team Card Component
+function TeamCard({ member }: { member: TeamMember }) {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const handleClick = () => {
+    if (member.actionFigureUrl) {
+      setIsFlipped(!isFlipped);
+    }
+  };
+
+  if (member.actionFigureUrl) {
+    // Flippable card for members with action figures
+    return (
+      <div
+        className="group relative cursor-pointer h-80 w-full"
+        onClick={handleClick}
+        style={{ perspective: "1000px" }}
+      >
+        <div
+          className={cn(
+            "relative w-full h-full transition-transform duration-700 transform-style-preserve-3d",
+            isFlipped && "rotate-y-180"
+          )}
+        >
+          {/* Front side */}
+          <div className="absolute inset-0 w-full h-full backface-hidden rounded-lg overflow-hidden">
+            <div className="relative h-full w-full">
+              <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 transition-opacity group-hover:opacity-40"></div>
+              <img
+                src={member.imageUrl || "/placeholder.svg"}
+                alt={member.name}
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+
+            {/* Default state - compact info */}
+            <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/80 to-transparent p-6 transition-all duration-300 group-hover:opacity-0">
+              <h3 className="text-xl font-bold text-white">{member.name}</h3>
+              <p className="text-white/80 text-sm line-clamp-2">
+                {member.role}
+              </p>
+            </div>
+
+            {/* Hover state - expanded info */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 opacity-0 transition-all duration-300 group-hover:opacity-100 flex flex-col justify-end">
+              <h3 className="text-xl font-bold text-white mb-2">
+                {member.name}
+              </h3>
+              <p className="text-white/90 text-sm mb-3 leading-relaxed">
+                {member.role}
+              </p>
+              <p className="text-white/80 text-xs mb-4 leading-relaxed">
+                {member.bio}
+              </p>
+              <div className="flex space-x-3">
+                {member.socialLinks?.map((link) => (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-primary transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {link.platform === "facebook" && <Facebook size={18} />}
+                    {link.platform === "twitter" && <Twitter size={18} />}
+                    {link.platform === "linkedin" && <Linkedin size={18} />}
+                    {link.platform === "instagram" && <Instagram size={18} />}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Back side - Action Figure */}
+          <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-lg overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">
+            <img
+              src={member.actionFigureUrl}
+              alt={`${member.name} Action Figure`}
+              className="h-full w-full object-contain p-4"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Regular card for members without action figures
+  return (
+    <div className="group relative cursor-pointer">
+      <div className="relative h-80 w-full overflow-hidden rounded-lg transition-all duration-300 group-hover:h-96">
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 transition-opacity group-hover:opacity-40"></div>
+        <img
+          src={member.imageUrl || "/placeholder.svg"}
+          alt={member.name}
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
+
+      {/* Default state - compact info */}
+      <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/80 to-transparent p-6 transition-all duration-300 group-hover:opacity-0">
+        <h3 className="text-xl font-bold text-white">{member.name}</h3>
+        <p className="text-white/80 text-sm line-clamp-2">{member.role}</p>
+      </div>
+
+      {/* Hover state - expanded info */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 opacity-0 transition-all duration-300 group-hover:opacity-100 flex flex-col justify-end">
+        <h3 className="text-xl font-bold text-white mb-2">{member.name}</h3>
+        <p className="text-white/90 text-sm mb-3 leading-relaxed">
+          {member.role}
+        </p>
+        <p className="text-white/80 text-xs mb-4 leading-relaxed">
+          {member.bio}
+        </p>
+        <div className="flex space-x-3">
+          {member.socialLinks?.map((link) => (
+            <a
+              key={link.platform}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-primary transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {link.platform === "facebook" && <Facebook size={18} />}
+              {link.platform === "twitter" && <Twitter size={18} />}
+              {link.platform === "linkedin" && <Linkedin size={18} />}
+              {link.platform === "instagram" && <Instagram size={18} />}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Team3({
+  title = "Meet the team that makes the magic happen",
+  subtitle = "We are physicians, psychologists, nurses, students, and advocates. We've been where you are. We've stayed up late, missed meals, and cried in on-call rooms. We also know what it feels like to be heard, to be helped, and to belong.",
   members = teamMembers,
   className,
 }: TeamProps) {
-  return (
-    <section
-      className={`relative w-full overflow-hidden py-16 md:py-24 ${
-        className || ""
-      }`}
-    >
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.15),transparent_70%)]" />
-        <div className="bg-primary/5 absolute top-1/4 left-1/4 h-64 w-64 rounded-full blur-3xl" />
-        <div className="bg-primary/10 absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full blur-3xl" />
-      </div>
+  const [activeFilter, setActiveFilter] = useState<string>("Ahd TaskForce");
 
-      <div className="container mx-auto px-4 md:px-6">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="mx-auto mb-12 max-w-3xl text-center md:mb-16"
-        >
-          <h2 className="from-foreground/80 via-foreground to-foreground/80 dark:from-foreground/70 dark:via-foreground dark:to-foreground/70 mb-4 bg-gradient-to-r bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl lg:text-5xl">
+  const filterCategories = [
+    "Ahd TaskForce",
+    "Leadership",
+    "Core Leads",
+    "Psychology & Clinical Team",
+    "Social Media & Communications",
+    "Curriculum & Education",
+    "Operations & Support",
+    "Tech",
+  ];
+
+  const filteredMembers = members.filter(
+    (member) => member.category === activeFilter
+  );
+
+  return (
+    <section className={cn("w-full py-16 bg-background", className)}>
+      <div className="container mx-auto px-4">
+        <div className="mb-12 text-center">
+          <h2 className="mb-6 text-3xl lg:text-4xl font-bold text-primary">
             {title}
           </h2>
-          <p className="text-muted-foreground md:text-lg">{subtitle}</p>
-        </motion.div>
+          <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            {subtitle}
+          </p>
+        </div>
 
-        {/* Team members grid */}
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-8 lg:grid-cols-4">
-          {members.map((member, index) => (
-            <TeamMemberCard key={member.name} member={member} index={index} />
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          {filterCategories.map((category) => (
+            <Button
+              key={category}
+              variant={activeFilter === category ? "default" : "outline"}
+              size="sm"
+              onClick={() => setActiveFilter(category)}
+              className="text-sm"
+            >
+              {category}
+            </Button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
+          {filteredMembers.map((member) => (
+            <TeamCard key={member.name} member={member} />
           ))}
         </div>
       </div>
     </section>
-  );
-}
-
-function TeamMemberCard({
-  member,
-  index,
-}: {
-  member: TeamMember;
-  index: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.1 * (index % 4) }}
-      viewport={{ once: true }}
-      className="group relative overflow-hidden rounded-xl"
-    >
-      {/* Image container */}
-      <div className="bg-muted relative aspect-square overflow-hidden rounded-xl">
-        <div className="from-background/80 absolute inset-0 z-10 bg-gradient-to-t via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-        <img
-          src={member.imageUrl}
-          alt={member.name}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-          className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
-          style={{
-            objectPosition: "center top",
-            minHeight: "100%",
-            minWidth: "100%",
-          }}
-        />
-
-        {/* Social links that appear on hover */}
-        {member.socialLinks && (
-          <div className="absolute right-0 bottom-4 left-0 z-20 flex justify-center gap-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            {member.socialLinks.map((link) => (
-              <a
-                key={link.platform}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-background/80 text-foreground hover:bg-primary hover:text-primary-foreground flex h-9 w-9 items-center justify-center rounded-full backdrop-blur-sm transition-all"
-              >
-                {link.platform === "linkedin" && (
-                  <Linkedin className="h-5 w-5" />
-                )}
-                {link.platform === "instagram" && (
-                  <Instagram className="h-5 w-5" />
-                )}
-              </a>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Name and role */}
-      <div className="mt-4 text-center">
-        <h3 className="text-lg font-semibold">{member.name}</h3>
-        <p className="text-primary text-sm">{member.role}</p>
-        <p className="text-muted-foreground text-xs mt-1">{member.specialty}</p>
-      </div>
-    </motion.div>
   );
 }
 
@@ -343,7 +708,7 @@ export function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-background">
+    <section id="about" className="pt-8 pb-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -357,181 +722,255 @@ export function AboutSection() {
             </p>
           </div>
 
-          {/* Our Story */}
+          {/* Video Placeholder */}
           <div className="mb-16">
             <Card>
               <CardContent className="p-8 lg:p-12">
-                <div className="max-w-4xl mx-auto text-center space-y-6">
-                  <p className="text-lg text-foreground leading-relaxed">
-                    It began with <strong>exhaustion</strong>. Not the kind that
-                    sleep fixes. The kind where your body keeps moving but your
-                    soul stays behind.
-                  </p>
-
-                  <p className="text-lg text-foreground leading-relaxed">
-                    We were doctors, nurses, medical students - watching our
-                    colleagues break down in supply closets, hearing friends
-                    talk about leaving medicine forever, and carrying the weight
-                    of patients we couldn't save.
-                  </p>
-
-                  <p className="text-lg text-foreground leading-relaxed">
-                    <strong>
-                      COVID didn't create the cracks. It split them wide open.
-                    </strong>
-                  </p>
-
-                  <p className="text-lg text-foreground leading-relaxed">
-                    We knew something had to change - not someday, but{" "}
-                    <em>now</em>.
-                  </p>
-
-                  <div className="pt-4 border-t border-primary/20">
-                    <p className="text-xl font-semibold text-primary mb-2">
-                      That's why we built Being.Lagom.
-                    </p>
-                    <p className="text-lg text-foreground">
-                      By healthcare workers, for healthcare workers.
-                    </p>
-                    <p className="text-lg text-accent font-medium mt-4">
-                      Because caring for ourselves is not selfish - it's
-                      survival.
-                    </p>
+                <div className="max-w-4xl mx-auto">
+                  {/* Video placeholder with same dimensions as the text content */}
+                  <div className="relative w-full aspect-video bg-muted rounded-lg flex items-center justify-center border-2 border-dashed border-muted-foreground/30">
+                    <div className="text-center space-y-4">
+                      <div className="w-16 h-16 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
+                        <svg
+                          className="w-8 h-8 text-primary"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                      <div className="space-y-2">
+                        <h3 className="text-xl font-semibold text-foreground">
+                          Video Coming Soon
+                        </h3>
+                        <p className="text-muted-foreground">
+                          Our story will be shared through a compelling video
+                          experience
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Vision & Mission */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl text-primary">
-                  Our Vision
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  To create a world where every healthcare professional has
-                  access to compassionate, specialized mental health support. We
-                  envision a future where seeking help is seen as a sign of
-                  strength, not weakness.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl text-primary">
-                  Our Mission
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Being.Lagom serves as a lifeline, lantern, and long-term
-                  movement, providing healthcare professionals with the tools,
-                  community, and support they need to thrive both personally and
-                  professionally.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* What "Lagom" Means */}
-          <div className="mt-16">
-            <Card>
-              <CardContent className="p-8 lg:p-12 text-center">
-                <h3 className="text-2xl font-bold text-primary mb-6">
-                  What "Lagom" Means
-                </h3>
-                <div className="max-w-3xl mx-auto space-y-4">
-                  <p className="text-lg text-foreground leading-relaxed">
-                    Lagom is a Swedish word for{" "}
-                    <strong>just the right amount</strong>.
-                  </p>
-                  <p className="text-lg text-foreground leading-relaxed">
-                    Not too little, not too much - exactly what's needed.
-                  </p>
-                  <p className="text-lg text-accent font-medium mt-6">
-                    We believe mental health support should feel the same:
-                    balanced, compassionate, and sustainable.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-          <br></br>
-          {/* Achievements */}
+          {/* Healing Quote */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-primary mb-8 text-center">
-              Our Impact
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {achievements.map((achievement, index) => (
-                <Card key={index} className="text-center p-6">
-                  <div className="flex justify-center mb-4">
-                    {achievement.icon}
-                  </div>
-                  <h4 className="text-2xl font-bold text-primary mb-2">
-                    {achievement.title}
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {achievement.description}
+            <div className="text-center max-w-4xl mx-auto">
+              <div className="relative">
+                {/* Quote marks */}
+                <div className="text-6xl text-primary/20 font-serif absolute -top-4 -left-4">
+                  "
+                </div>
+                <div className="text-6xl text-primary/20 font-serif absolute -bottom-8 -right-4">
+                  "
+                </div>
+
+                <blockquote className="relative z-10 px-8 py-6">
+                  <p className="text-2xl lg:text-3xl text-foreground font-light leading-relaxed mb-4">
+                    When we heal the healers, we heal the system
                   </p>
-                </Card>
-              ))}
+                  <hr className="w-24 h-0.5 bg-primary mx-auto my-6" />
+                  <p className="text-lg text-muted-foreground italic">
+                    Healthcare transformation begins with caring for those who
+                    care for others
+                  </p>
+                </blockquote>
+              </div>
             </div>
           </div>
 
-          {/* Core Team - Using the new Team2 component */}
-          <Team2 />
-
-          {/* Global Movement */}
-          <Card className="border-none">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl text-primary">
-                Join the Global Movement
-              </CardTitle>
-              <CardDescription className="text-lg">
-                Being.Lagom is more than a platform—it's a movement spreading
-                worldwide
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="text-center">
-                {/* World Map Component */}
-                <div className="mb-8">
-                  <WorldMap dots={countryData} />
-                </div>
-
-                {/* Description and Countries */}
-                <div className="max-w-4xl mx-auto">
-                  <p className="text-muted-foreground mb-8 text-lg">
-                    Healthcare workers around the globe are coming together to
-                    break the stigma around mental health in medicine. Join
-                    thousands of professionals who are choosing to prioritize
-                    their wellbeing.
+          {/* Our Purpose */}
+          <div className="mb-16">
+            <Card>
+              <CardHeader className="text-center">
+                <CardTitle className="text-2xl text-primary">
+                  Our Purpose
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-8">
+                <div className="max-w-4xl mx-auto text-center space-y-4">
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
-
-                  <h3 className="text-lg font-semibold text-primary mb-4">
-                    Countries We Serve
-                  </h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1">
-                    {countriesServed.map((country, index) => (
-                      <Badge
-                        key={index}
-                        variant="secondary"
-                        className="text-sm px-2 py-1 justify-center"
-                      >
-                        {country}
-                      </Badge>
-                    ))}
-                  </div>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    Sed ut perspiciatis unde omnis iste natus error sit
+                    voluptatem accusantium doloremque laudantium, totam rem
+                    aperiam, eaque ipsa quae ab illo inventore veritatis et
+                    quasi architecto beatae vitae dicta sunt explicabo.
+                  </p>
                 </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* What "Lagom" Means - Quote Format */}
+          <div className="mb-16">
+            <div className="text-center max-w-4xl mx-auto">
+              <div className="relative">
+                {/* Quote marks */}
+                <div className="text-6xl text-primary/20 font-serif absolute -top-4 -left-4">
+                  "
+                </div>
+                <div className="text-6xl text-primary/20 font-serif absolute -bottom-8 -right-4">
+                  "
+                </div>
+
+                <blockquote className="relative z-10 px-8 py-6">
+                  <p className="text-2xl lg:text-3xl text-foreground font-light leading-relaxed mb-4">
+                    Lagom is a Swedish word for{" "}
+                    <strong className="text-primary">
+                      just the right amount
+                    </strong>
+                    .
+                  </p>
+                  <hr className="w-24 h-0.5 bg-primary mx-auto my-6" />
+                  <p className="text-xl lg:text-2xl text-foreground font-light leading-relaxed">
+                    Not too little, not too much - exactly what's needed.
+                  </p>
+                  <p className="text-lg text-accent font-medium mt-6 italic">
+                    We believe mental health support should feel the same:
+                    balanced, compassionate, and sustainable.
+                  </p>
+                </blockquote>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
+
+          {/* What We Do */}
+          <div className="mb-16">
+            <div className="text-center mb-4">
+              <h3 className="text-2xl font-bold text-primary mb-4">
+                What We Do
+              </h3>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                We work at both the personal and systemic level - because
+                burnout isn't just an individual failing, it's a structural one.
+              </p>
+            </div>
+            <div className="max-w-3xl mx-auto">
+              {/* What We Do Image */}
+              <div className="relative w-full rounded-lg overflow-hidden">
+                <img
+                  src="/what-we-do.png"
+                  alt="What We Do - Visual representation of our work at personal and systemic levels"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Brainwave Divider */}
+          <BrainwaveDivider />
+
+          {/* Core Team - Using the new Team3 component */}
+          <Team3 />
+
+          {/* Why it Works? */}
+          <div className="mb-16">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-primary mb-4">
+                Why it Works?
+              </h3>
+              <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+                Because we are you. We're not parachuting in solutions from the
+                outside. Every program is co-designed with healthcare workers,
+                guided by our values.
+              </p>
+            </div>
+            <div className="max-w-3xl mx-auto">
+              {/* Core Values Image */}
+              <div className="relative w-full rounded-lg overflow-hidden">
+                <img
+                  src="/core-values.png"
+                  alt="Core Values - Our guiding principles for healthcare worker support"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Join Us */}
+          <div className="mb-16">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-primary mb-4">Join us</h3>
+              <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+                Whether you're a healthcare worker in need of support, a
+                policymaker who can influence change, or someone who simply
+                believes that the people who care for us deserve to be cared for
+                - you have a place here.
+              </p>
+              <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed mt-4">
+                Together, we can create a world where healthcare workers don't
+                just survive their careers - they flourish in them.
+              </p>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+              <Button size="lg" className="px-8 py-3">
+                Get Support
+              </Button>
+              <Button variant="outline" size="lg" className="px-8 py-3">
+                Partner With Us
+              </Button>
+              <Button variant="secondary" size="lg" className="px-8 py-3">
+                Donate
+              </Button>
+            </div>
+
+            {/* Feature Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="mb-4 flex justify-center">
+                  <Target className="w-12 h-12 text-primary" />
+                </div>
+                <h4 className="text-xl font-semibold text-primary mb-3">
+                  Mental Health Support
+                </h4>
+                <p className="text-muted-foreground leading-relaxed">
+                  Access to counseling, therapy, and wellness resources designed
+                  specifically for healthcare professionals.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="mb-4 flex justify-center">
+                  <Users className="w-12 h-12 text-primary" />
+                </div>
+                <h4 className="text-xl font-semibold text-primary mb-3">
+                  Community Connection
+                </h4>
+                <p className="text-muted-foreground leading-relaxed">
+                  Connect with peers who understand your challenges and share
+                  experiences in a supportive environment.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="mb-4 flex justify-center">
+                  <Heart className="w-12 h-12 text-primary" />
+                </div>
+                <h4 className="text-xl font-semibold text-primary mb-3">
+                  Advocacy & Change
+                </h4>
+                <p className="text-muted-foreground leading-relaxed">
+                  Join our mission to improve working conditions and policies
+                  that affect healthcare workers nationwide.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

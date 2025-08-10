@@ -14,6 +14,7 @@ import { AboutPage } from "./pages/AboutPage";
 import { AssessmentPage } from "./pages/AssessmentPage";
 
 import { ContactPage } from "./pages/ContactPage";
+import { PartnershipPage } from "./pages/PartnershipPage";
 import { MerchandisePage } from "./pages/MerchandisePage";
 import { GamesPage } from "./pages/GamesPage";
 import { CompliancePage } from "./pages/CompliancePage";
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="/assessment" element={<AssessmentPage />} />
             <Route path="/mindfulness" element={<GamesPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/partnership" element={<PartnershipPage />} />
             <Route path="/merchandise" element={<MerchandisePage />} />
             <Route path="/compliance" element={<CompliancePage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />

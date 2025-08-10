@@ -12,7 +12,10 @@ export function PartnershipSection() {
             Working Together for Lasting Change
           </p>
           <p className="text-base text-gray-500 max-w-3xl mx-auto leading-relaxed">
-            We believe the wellbeing of healthcare professionals is a collective responsibility. From hospitals and universities to community groups and policy leaders, our partnerships create real, measurable impact in mental health and wellness.
+            We believe the wellbeing of healthcare professionals is a collective
+            responsibility. From hospitals and universities to community groups
+            and policy leaders, our partnerships create real, measurable impact
+            in mental health and wellness.
           </p>
         </div>
 

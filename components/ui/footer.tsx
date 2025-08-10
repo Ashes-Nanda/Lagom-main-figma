@@ -119,7 +119,7 @@ export function BeingLagomFooter() {
         { href: "/resources", label: "Self-Help Resources" },
         { href: "/assessment", label: "Assessment Tool" },
         { href: "/contact", label: "Crisis Support" },
-        { href: "/contact", label: "Contact Us" },
+        { href: "/partnership", label: "Partner with us" },
         { href: "/about", label: "About Us" },
         { href: "/faq", label: "FAQ" },
       ]}

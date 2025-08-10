@@ -10,20 +10,18 @@ function AnimatedHero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
     () => [
-      { text: "Healthcare Workers", lang: "en", font: "font-sans" }, // English
+      { text: "Healthcare Professionals", lang: "en", font: "font-sans" }, // English
       { text: "医疗保健专家", lang: "zh", font: "font-chinese" }, // Chinese
       { text: "स्वास्थ्य कर्मचारी", lang: "hi", font: "font-hindi" }, // Hindi (India)
       { text: "આરોગ્ય કર્મચારીઓ", lang: "gu", font: "font-gujarati" }, // Gujarati
       { text: "የጤና ባለሞያዎች", lang: "am", font: "font-amharic" }, // Amharic
       { text: "Trabajadores de la Salud", lang: "es", font: "font-sans" }, // Spanish (Spain)
-      { text: "Pekerja Penjagaan Kesihatan", lang: "ms", font: "font-sans" }, // Malay (Singapore)
-      { text: "Mitarbeiter im Gesundheitswesen", lang: "de", font: "font-sans" }, // German (Germany)
       { text: "Profissionais de saúde", lang: "pt-BR", font: "font-sans" }, // Portuguese (Brazil)
       { text: "医療従事者", lang: "ja", font: "font-japanese" }, // Japanese (Japan)
       { text: "Gezondheidswerkers", lang: "nl", font: "font-sans" }, // Dutch (Netherlands)
       { text: "Vårdpersonal", lang: "sv", font: "font-sans" }, // Swedish (Sweden)
       { text: "Travailleurs de la santé", lang: "fr", font: "font-sans" },
-      { text: "සෞඛ්‍ය සේවකයින්", lang: "si", font: "font-sans"} 
+      { text: "සෞඛ්‍ය සේවකයින්", lang: "si", font: "font-sans" },
     ],
     []
   );
