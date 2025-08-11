@@ -1,7 +1,7 @@
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Alert, AlertDescription } from "./ui/alert";
-import { PhoneCall, MessageSquare, AlertTriangle } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 import { CountrySearch } from "./ui/CountrySearch";
 
 export function CrisisSupport() {
