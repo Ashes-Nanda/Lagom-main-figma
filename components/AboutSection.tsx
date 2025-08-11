@@ -42,7 +42,7 @@ const teamMembers: TeamMember[] = [
     name: "Dr. Vyshnavi Desiraju",
     role: "Medical doctor, Executive Director of Being.Lagom (Singapore)",
     bio: "Ahmedabad Taskforce: Strategy Lead",
-    imageUrl: "/assets/Vyshnavi_1.jpg",
+    imageUrl: "/assets/Vyshnavi.jpg",
     actionFigureUrl: "/action-fig/Vyshnavi-action.png",
     specialty: "Strategy & Leadership",
     category: "Ahd TaskForce",
@@ -692,30 +692,17 @@ export function AboutSection() {
           {/* Our Purpose */}
           <div className="mb-16">
             <Card>
-              <CardHeader className="text-center">
+              <CardHeader className="text-center pb-2">
                 <CardTitle className="text-2xl text-primary">
                   Our Purpose
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-8">
+              <CardContent className="pt-2 px-8 pb-8">
                 <div className="max-w-4xl mx-auto text-center space-y-4">
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                  </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    Sed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem accusantium doloremque laudantium, totam rem
-                    aperiam, eaque ipsa quae ab illo inventore veritatis et
-                    quasi architecto beatae vitae dicta sunt explicabo.
+                    Being.Lagom exists to create safe trauma-informed spaces, by
+                    HCPs for HCPs, to seek mental health support, build
+                    institutional resilience, and transform care culture.
                   </p>
                 </div>
               </CardContent>
