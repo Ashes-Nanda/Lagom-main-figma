@@ -1,11 +1,5 @@
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import {
-  
   Users,
   Target,
   Heart,
@@ -144,7 +138,7 @@ const teamMembers: TeamMember[] = [
     name: "Dr Sathwikaw Manikandan",
     role: "Ahmedabad Taskforce: Social Media Head",
     bio: "Ahmedabad Taskforce: Social Media Head",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/sath_16.jpg",
     actionFigureUrl: "/action-fig/Sathwikaw.jpeg",
     specialty: "Social Media Management",
     category: "Ahd TaskForce",
@@ -154,7 +148,7 @@ const teamMembers: TeamMember[] = [
     name: "Dr Natnael Dejene",
     role: "Ahmedabad Taskforce: External Comms",
     bio: "Ahmedabad Taskforce: External Comms",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/Nate.jpg",
     specialty: "External Communications",
     category: "Ahd TaskForce",
     socialLinks: [],
@@ -163,7 +157,7 @@ const teamMembers: TeamMember[] = [
     name: "Dr Devika Menrai",
     role: "Ahmedabad Taskforce: Internal Comms & Ground-ops Coordination",
     bio: "Ahmedabad Taskforce: Internal Comms & Ground-ops Coordination",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/devika.jpg",
     specialty: "Internal Communications & Operations",
     category: "Ahd TaskForce",
     socialLinks: [],
@@ -172,7 +166,7 @@ const teamMembers: TeamMember[] = [
     name: "Dr Rachit Shah",
     role: "Ahmedabad Taskforce: External Comms",
     bio: "Ahmedabad Taskforce: External Comms",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/Rachit.jpg",
     specialty: "External Communications",
     category: "Ahd TaskForce",
     socialLinks: [],
@@ -315,7 +309,7 @@ const teamMembers: TeamMember[] = [
     name: "Dr. Achu Bose",
     role: "Social Media Strategist",
     bio: "Social Media Strategist",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/Achu.png",
     actionFigureUrl: "/action-fig/Bose.jpeg",
     specialty: "Social Media Strategy",
     category: "Social Media & Communications",
@@ -334,7 +328,7 @@ const teamMembers: TeamMember[] = [
     name: "Dr. Simran Shakya",
     role: "Social Media Team",
     bio: "Social Media Team Member",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/Simran_28.jpg",
     actionFigureUrl: "/action-fig/Simran.jpeg",
     specialty: "Social Media",
     category: "Social Media & Communications",
@@ -354,7 +348,7 @@ const teamMembers: TeamMember[] = [
     name: "Dr. Shenara",
     role: "External Comms Team",
     bio: "External Communications Team Member",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/Shenara_28.jpeg",
     actionFigureUrl: "/action-fig/Shenara.jpeg",
     specialty: "External Communications",
     category: "Social Media & Communications",
@@ -387,7 +381,7 @@ const teamMembers: TeamMember[] = [
     name: "Harshitha K",
     role: "Ops Volunteer",
     bio: "Medical Intern, India",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/Harshitha_19.jpg",
     actionFigureUrl: "/action-fig/Harshitha.png",
     specialty: "Operations Support",
     category: "Operations & Support",
@@ -621,7 +615,6 @@ function Team3({
 }
 
 export function AboutSection() {
-
   return (
     <section id="about" className="pt-8 pb-20 bg-[#FFFBF5]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -833,26 +826,26 @@ export function AboutSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="px-8 py-3"
-                onClick={() => window.location.href = '/directory'}
+                onClick={() => (window.location.href = "/directory")}
               >
                 Get Support
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
+              <Button
+                variant="outline"
+                size="lg"
                 className="px-8 py-3"
-                onClick={() => window.location.href = '/partnership'}
+                onClick={() => (window.location.href = "/partnership")}
               >
                 Partner With Us
               </Button>
-              <Button 
-                variant="secondary" 
-                size="lg" 
+              <Button
+                variant="secondary"
+                size="lg"
                 className="px-8 py-3"
-                onClick={() => alert('Donation functionality coming soon!')}
+                onClick={() => alert("Donation functionality coming soon!")}
               >
                 Donate
               </Button>

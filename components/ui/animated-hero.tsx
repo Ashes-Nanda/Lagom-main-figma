@@ -44,14 +44,14 @@ function AnimatedHero() {
           {/* Animated Headline */}
           <div className="flex flex-col">
             <div className="text-4xl md:text-6xl max-w-4xl tracking-tighter text-center font-regular">
-              <div className="text-primary mb-0 leading-tight">
+              <div className="text-black mb-0 leading-tight">
                 Mental Health Support for
               </div>
               <div className="relative flex justify-center overflow-hidden text-center min-h-[2.2em] md:min-h-[2.4em] items-center -mt-4">
                 {titles.map((title, index) => (
                   <motion.span
                     key={index}
-                    className={`absolute font-semibold text-primary ${title.font} whitespace-nowrap flex items-center justify-center`}
+                    className={`absolute font-semibold text-black ${title.font} whitespace-nowrap flex items-center justify-center`}
                     lang={title.lang}
                     initial={{ opacity: 0, y: "-100" }}
                     transition={{ type: "spring", stiffness: 50 }}

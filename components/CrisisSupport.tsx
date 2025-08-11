@@ -6,7 +6,7 @@ import { CountrySearch } from "./ui/CountrySearch";
 
 export function CrisisSupport() {
   return (
-    <section id="crisis-support" className="py-20 bg-destructive/5">
+    <section id="crisis-support" className="py-20 bg-[#FFFBF5]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -42,109 +42,7 @@ export function CrisisSupport() {
             </AlertDescription>
           </Alert>
 
-          {/* Section Header */}
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-primary mb-4">
-              1. Immediate Help – One Tap to Call/Text
-            </h3>
-            <p className="text-muted-foreground">
-              Buttons are large, color-coded, and mobile-friendly for instant
-              dialing
-            </p>
-          </div>
 
-          {/* Emergency Contacts by Country */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  🇺🇸 United States
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center text-sm text-foreground leading-relaxed">
-                  <PhoneCall className="w-4 h-4 mr-2 text-red-600 flex-shrink-0" />
-                  <span>
-                    Call or Text <span className="font-bold">988</span> –
-                    Suicide & Crisis Lifeline
-                  </span>
-                </div>
-                <div className="flex items-center text-sm text-foreground leading-relaxed">
-                  <MessageSquare className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
-                  <span>
-                    Text HOME to <span className="font-bold">741741</span> –
-                    Crisis Text Line
-                  </span>
-                </div>
-                <div className="flex items-center text-sm text-foreground leading-relaxed">
-                  <PhoneCall className="w-4 h-4 mr-2 text-green-600 flex-shrink-0" />
-                  <span>
-                    Call <span className="font-bold">1-800-662-4357</span> –
-                    SAMHSA Mental Health
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">🇮🇳 India</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center text-sm text-foreground leading-relaxed">
-                  <PhoneCall className="w-4 h-4 mr-2 text-red-600 flex-shrink-0" />
-                  <span>
-                    Call <span className="font-bold">+91 95822 16860</span> –
-                    Snehi Helpline
-                  </span>
-                </div>
-                <div className="flex items-center text-sm text-foreground leading-relaxed">
-                  <PhoneCall className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
-                  <span>
-                    Call <span className="font-bold">+91 98204 66726</span> –
-                    AASRA
-                  </span>
-                </div>
-                <div className="flex items-center text-sm text-foreground leading-relaxed">
-                  <PhoneCall className="w-4 h-4 mr-2 text-green-600 flex-shrink-0" />
-                  <span>
-                    Call <span className="font-bold">1860 266 2345</span> –
-                    Vandrevala Foundation
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  🇬🇧 United Kingdom
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center text-sm text-foreground leading-relaxed">
-                  <PhoneCall className="w-4 h-4 mr-2 text-red-600 flex-shrink-0" />
-                  <span>
-                    Call <span className="font-bold">116 123</span> – Samaritans
-                  </span>
-                </div>
-                <div className="flex items-center text-sm text-foreground leading-relaxed">
-                  <MessageSquare className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
-                  <span>
-                    Text <span className="font-bold">85258</span> – Shout Crisis
-                    Text Line
-                  </span>
-                </div>
-                <div className="flex items-center text-sm text-foreground leading-relaxed">
-                  <PhoneCall className="w-4 h-4 mr-2 text-green-600 flex-shrink-0" />
-                  <span>
-                    Call <span className="font-bold">111</span> – NHS Mental
-                    Health Helpline
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
 
           {/* Find My Country */}
           <div className="mb-12">
@@ -161,7 +59,7 @@ export function CrisisSupport() {
           {/* Healthcare Professional Support */}
           <div className="mb-12">
             <h3 className="text-2xl font-bold text-primary mb-6 text-center">
-              2. For Healthcare Professionals – Talk to Someone Who Gets It
+              1. For Healthcare Professionals – Talk to Someone Who Gets It
             </h3>
             <p className="text-center text-muted-foreground mb-8">
               Buttons link to Being.Lagom's specialised services
@@ -245,7 +143,7 @@ export function CrisisSupport() {
           {/* If You're Not Ready to Talk */}
           <div className="mb-12">
             <h3 className="text-2xl font-bold text-primary mb-6 text-center">
-              3. If You're Not Ready to Talk
+              2. If You're Not Ready to Talk
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -290,7 +188,7 @@ export function CrisisSupport() {
           <Card>
             <CardHeader>
               <CardTitle className="text-center">
-                4. Tips for Using This Page Under Stress
+                3. Tips for Using This Page Under Stress
               </CardTitle>
             </CardHeader>
             <CardContent>

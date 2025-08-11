@@ -14,9 +14,29 @@ export function HomePage() {
     <div className="bg-[#FFFBF5] min-h-screen">
       {/* <Header /> */}
       <PageLayout withTopPadding={false} className="bg-transparent">
-        <HeroSection />
-        <BrainwaveDivider />
-        <PartnershipSection />
+        {/* Combined Hero and Partnership section with unified background */}
+        <div 
+          className="relative"
+          style={{
+            backgroundImage: "url('/background.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat"
+          }}
+        >
+          {/* Background overlay for opacity control */}
+          <div 
+            className="absolute inset-0 bg-[#FFFBF5]"
+            style={{ opacity: 0.66 }}
+          />
+          
+          {/* Content wrapper */}
+          <div className="relative z-10">
+            <HeroSection />
+            <PartnershipSection />
+          </div>
+        </div>
+        
         <BrainwaveDivider />
         <InstagramGallery />
         <BrainwaveDivider />
