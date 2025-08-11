@@ -6,28 +6,14 @@ import {
   SectionContainer,
   ContentContainer,
 } from "../components/layout";
-import { SearchBar } from "../components/ui/SearchBar";
-import { ComboboxDemo } from "../components/ui/filter-demo";
-import { Filter } from "../components/ui/filters";
+
+// Removed unused imports
 import { BeingLagomFooter } from "../components/ui/footer";
 import { Button } from "../components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function DirectoryPage() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filters] = useState<Filter[]>([]);
   const [activeTab, setActiveTab] = useState<"support" | "events">("support");
-
-  // Convert filters to the format expected by EventsSection
-  const activeFilters = filters.map((filter) => ({
-    groupId: filter.type.toLowerCase(),
-    optionId: filter.value[0] || "",
-    label: filter.value[0] || "",
-  }));
-
-  const handleSearchClear = () => {
-    setSearchQuery("");
-  };
 
   const fadeVariants = {
     hidden: { opacity: 0, y: 20 },

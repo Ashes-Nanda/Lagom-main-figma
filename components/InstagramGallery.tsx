@@ -56,16 +56,12 @@ const instagramReels = [
 export function InstagramGallery() {
   const [expandedReel, setExpandedReel] = useState<number | null>(null);
 
-  const handleReelClick = (reelId: string, id: number) => {
+  const handleReelClick = (id: number) => {
     // Toggle expanded state for inline playback
     setExpandedReel(expandedReel === id ? null : id);
   };
 
-  const handlePlayButtonClick = (
-    e: React.MouseEvent,
-    reelId: string,
-    id: number
-  ) => {
+  const handlePlayButtonClick = (e: React.MouseEvent, id: number) => {
     e.stopPropagation(); // Prevent card click
     setExpandedReel(expandedReel === id ? null : id);
   };
@@ -100,7 +96,7 @@ export function InstagramGallery() {
                   >
                     <div
                       className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
-                      onClick={() => handleReelClick(reel.reelId, reel.id)}
+                      onClick={() => handleReelClick(reel.id)}
                     >
                       <div className="aspect-[3/4] relative">
                         {expandedReel === reel.id ? (
@@ -126,7 +122,7 @@ export function InstagramGallery() {
                             <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
                               <button
                                 onClick={(e) =>
-                                  handlePlayButtonClick(e, reel.reelId, reel.id)
+                                  handlePlayButtonClick(e, reel.id)
                                 }
                                 className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors duration-200"
                               >

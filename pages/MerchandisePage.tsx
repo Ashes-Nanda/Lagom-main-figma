@@ -1,8 +1,8 @@
 import {
   Card,
-  CardContent,
+  
   CardDescription,
-  CardHeader,
+  
   CardTitle,
 } from "../components/ui/card";
 import { Button } from "../components/ui/button";
@@ -20,7 +20,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  
 } from "../components/ui/dialog";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -37,7 +37,6 @@ interface FormData {
 }
 
 export function MerchandisePage() {
-  const [selectedProduct, setSelectedProduct] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [formData, setFormData] = useState<FormData>({
@@ -92,7 +91,6 @@ export function MerchandisePage() {
   ];
 
   const handleIndicateInterest = (productName: string) => {
-    setSelectedProduct(productName);
     setFormData((prev) => ({ ...prev, product: productName }));
     setIsModalOpen(true);
   };
