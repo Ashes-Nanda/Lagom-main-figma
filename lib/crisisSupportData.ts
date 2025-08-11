@@ -17,30 +17,121 @@ export interface CountryData {
 // Crisis support data sourced from WHO and Befrienders International
 export const CRISIS_SUPPORT_DATA: CountryData[] = [
   {
-    code: 'US',
-    name: 'United States',
-    flag: '🇺🇸',
+    code: 'SG',
+    name: 'Singapore',
+    flag: '🇸🇬',
     contacts: [
       { 
-        name: 'Suicide & Crisis Lifeline', 
-        phone: '988', 
-        type: 'both', 
-        hours: '24/7',
-        description: 'Call or text for immediate support'
-      },
-      { 
-        name: 'Crisis Text Line', 
-        phone: '741741', 
-        type: 'text', 
-        description: 'Text HOME to 741741',
-        hours: '24/7'
-      },
-      { 
-        name: 'SAMHSA Mental Health', 
-        phone: '1-800-662-4357', 
+        name: 'National Mindline', 
+        phone: '1771', 
         type: 'call', 
         hours: '24/7',
-        description: 'Treatment referral and information service'
+        description: '24/7 mental health support'
+      },
+      { 
+        name: 'Institute of Mental Health Helpline', 
+        phone: '6389 2222', 
+        type: 'call', 
+        hours: '24/7',
+        description: '24-hour mental health crisis support'
+      },
+      { 
+        name: 'Samaritans of Singapore', 
+        phone: '1-767', 
+        type: 'call', 
+        hours: '24/7',
+        description: '24-hour crisis hotline'
+      },
+      { 
+        name: 'Hear4U WhatsApp', 
+        phone: '6978 2728', 
+        type: 'text', 
+        hours: 'Various',
+        description: 'WhatsApp counselling service'
+      }
+    ]
+  },
+  {
+    code: 'NL',
+    name: 'Netherlands',
+    flag: '🇳🇱',
+    contacts: [
+      { 
+        name: '113 Suicide Prevention', 
+        phone: '113', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Primary crisis hotline'
+      },
+      { 
+        name: '113 Suicide Prevention (Alternative)', 
+        phone: '0800 0113', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Alternative crisis hotline number'
+      },
+      { 
+        name: 'GGZ Nederland Mental Health', 
+        phone: '0900 1450', 
+        type: 'call', 
+        hours: '09:00-21:00',
+        description: 'Mental health helpline'
+      },
+      { 
+        name: 'Emergency Services', 
+        phone: '112', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Police, medical emergency'
+      },
+      { 
+        name: 'LGBTQIA+ Switchboard', 
+        phone: '0800 228 888', 
+        type: 'call', 
+        hours: '18:00-21:00',
+        description: 'LGBTQIA+ support (evenings)'
+      }
+    ]
+  },
+  {
+    code: 'LK',
+    name: 'Sri Lanka',
+    flag: '🇱🇰',
+    contacts: [
+      { 
+        name: 'National Mental Health Helpline', 
+        phone: '1926', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'National mental health support'
+      },
+      { 
+        name: 'Sumithrayo', 
+        phone: '0112 692 909', 
+        type: 'call', 
+        hours: '09:00-20:00',
+        description: 'Suicide prevention and emotional support'
+      },
+      { 
+        name: 'Emergency Services', 
+        phone: '110', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Medical emergency'
+      },
+      { 
+        name: 'Police Emergency', 
+        phone: '119', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Police emergency'
+      },
+      { 
+        name: 'Women\'s Protection Helpline', 
+        phone: '1938', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Women\'s protection and support'
       }
     ]
   },
@@ -50,25 +141,145 @@ export const CRISIS_SUPPORT_DATA: CountryData[] = [
     flag: '🇮🇳',
     contacts: [
       { 
-        name: 'Snehi Helpline', 
-        phone: '+91 95822 16860', 
+        name: 'Emergency Suicide Hotline', 
+        phone: '112', 
         type: 'call', 
         hours: '24/7',
-        description: 'Delhi-based crisis helpline'
+        description: 'National emergency number'
       },
       { 
-        name: 'AASRA', 
-        phone: '+91 98204 66726', 
+        name: 'Emergency Suicide Hotline (Alternative)', 
+        phone: '8888817666', 
         type: 'call', 
         hours: '24/7',
-        description: 'Mumbai-based suicide prevention'
+        description: 'Alternative emergency suicide hotline'
+      },
+      { 
+        name: 'ND Prana Lifeline', 
+        phone: '1800 121 203040', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Mental health crisis support'
       },
       { 
         name: 'Vandrevala Foundation', 
-        phone: '1860 266 2345', 
+        phone: '9999 666 555', 
         type: 'call', 
         hours: '24/7',
-        description: 'Mental health support and counseling'
+        description: 'Crisis helpline and mental health support'
+      },
+      { 
+        name: '1 Life Crisis Support', 
+        phone: '78930 78930', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Crisis support and counseling'
+      },
+      { 
+        name: 'Manodarpan', 
+        phone: '844 844 0632', 
+        type: 'call', 
+        hours: 'Various',
+        description: 'Support for students and teachers'
+      }
+    ]
+  },
+  {
+    code: 'AU',
+    name: 'Australia',
+    flag: '🇦🇺',
+    contacts: [
+      { 
+        name: 'Lifeline', 
+        phone: '13 11 14', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Crisis support and suicide prevention'
+      },
+      { 
+        name: 'Beyond Blue', 
+        phone: '1300 22 4636', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Mental health support'
+      },
+      { 
+        name: 'Suicide Call Back Service', 
+        phone: '1300 659 467', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Suicide prevention callback service'
+      },
+      { 
+        name: 'Emergency Services', 
+        phone: '000', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Police, ambulance, fire emergency'
+      },
+      { 
+        name: 'Drs4Drs Australia', 
+        phone: 'Various', 
+        type: 'call', 
+        hours: 'Various',
+        description: 'Specifically supports doctors',
+        website: 'https://www.drs4drs.com.au'
+      }
+    ]
+  },
+  {
+    code: 'MY',
+    name: 'Malaysia',
+    flag: '🇲🇾',
+    contacts: [
+      { 
+        name: 'Befrienders Malaysia', 
+        phone: '15999', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Primary crisis hotline'
+      },
+      { 
+        name: 'Talian Kasih', 
+        phone: '03-2935 9935', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Mental health helpline'
+      },
+      { 
+        name: 'Emergency Services', 
+        phone: '999', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Emergency number'
+      }
+    ]
+  },
+  {
+    code: 'CN',
+    name: 'China',
+    flag: '🇨🇳',
+    contacts: [
+      { 
+        name: 'Mental Health Hotline', 
+        phone: '12356', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Nationwide mental health and psychological distress hotline'
+      },
+      { 
+        name: 'Beijing/Guangzhou Crisis Hotline', 
+        phone: '81899120', 
+        type: 'call', 
+        hours: '24/7',
+        description: '24/7 crisis hotline for Beijing and Guangzhou'
+      },
+      { 
+        name: 'LifeLine Across China', 
+        phone: 'Various', 
+        type: 'call', 
+        hours: 'Various',
+        description: 'English-speaking crisis hotline'
       }
     ]
   },
@@ -92,165 +303,47 @@ export const CRISIS_SUPPORT_DATA: CountryData[] = [
         hours: '24/7'
       },
       { 
-        name: 'NHS Mental Health Helpline', 
+        name: 'NHS Mental Health Crisis', 
         phone: '111', 
         type: 'call', 
         hours: '24/7',
-        description: 'NHS urgent mental health support'
+        description: 'NHS mental health crisis services (choose mental health option)'
+      },
+      { 
+        name: 'Greater Manchester Crisis Line', 
+        phone: '0800 953 0285', 
+        type: 'call', 
+        hours: '24/7',
+        description: 'Local crisis helpline for Greater Manchester area'
       }
     ]
   },
   {
-    code: 'CA',
-    name: 'Canada',
-    flag: '🇨🇦',
+    code: 'US',
+    name: 'United States',
+    flag: '🇺🇸',
     contacts: [
       { 
-        name: 'Talk Suicide Canada', 
-        phone: '1-833-456-4566', 
-        type: 'call', 
-        hours: '24/7',
-        description: 'National suicide prevention service'
-      },
-      { 
-        name: 'Crisis Text Line', 
-        phone: '686868', 
-        type: 'text', 
-        description: 'Text TALK to 686868',
-        hours: '24/7'
-      },
-      { 
-        name: 'Kids Help Phone', 
-        phone: '1-800-668-6868', 
+        name: '988 Lifeline', 
+        phone: '988', 
         type: 'both', 
         hours: '24/7',
-        description: 'Support for young people up to age 29'
-      }
-    ]
-  },
-  {
-    code: 'AU',
-    name: 'Australia',
-    flag: '🇦🇺',
-    contacts: [
-      { 
-        name: 'Lifeline', 
-        phone: '13 11 14', 
-        type: 'call', 
-        hours: '24/7',
-        description: 'Crisis support and suicide prevention'
+        description: 'National Suicide Prevention Lifeline - call or text'
       },
       { 
-        name: 'Beyond Blue', 
-        phone: '1300 22 4636', 
+        name: 'Lorna Breen Foundation', 
+        phone: 'Various', 
         type: 'call', 
-        hours: '24/7',
-        description: 'Depression, anxiety and suicide prevention'
+        hours: 'Various',
+        description: 'Resources for healthcare providers',
+        website: 'https://www.drlornabreen.org'
       },
       { 
-        name: 'Crisis Text Line', 
-        phone: '0477 13 11 14', 
-        type: 'text', 
-        hours: '24/7',
-        description: 'Text-based crisis support'
-      }
-    ]
-  },
-  {
-    code: 'DE',
-    name: 'Germany',
-    flag: '🇩🇪',
-    contacts: [
-      { 
-        name: 'Telefonseelsorge', 
-        phone: '0800 111 0 111', 
+        name: 'Employee Assistance Programs', 
+        phone: 'Various', 
         type: 'call', 
-        hours: '24/7',
-        description: 'Free telephone counseling service'
-      },
-      { 
-        name: 'Telefonseelsorge (Alternative)', 
-        phone: '0800 111 0 222', 
-        type: 'call', 
-        hours: '24/7',
-        description: 'Alternative number for telephone counseling'
-      }
-    ]
-  },
-  {
-    code: 'FR',
-    name: 'France',
-    flag: '🇫🇷',
-    contacts: [
-      { 
-        name: 'SOS Amitié', 
-        phone: '09 72 39 40 50', 
-        type: 'call', 
-        hours: '24/7',
-        description: 'Emotional support and suicide prevention'
-      },
-      { 
-        name: 'Suicide Écoute', 
-        phone: '01 45 39 40 00', 
-        type: 'call', 
-        hours: '24/7',
-        description: 'National suicide prevention hotline'
-      }
-    ]
-  },
-  {
-    code: 'JP',
-    name: 'Japan',
-    flag: '🇯🇵',
-    contacts: [
-      { 
-        name: 'TELL Lifeline', 
-        phone: '03-5774-0992', 
-        type: 'call', 
-        hours: '9:00-23:00',
-        description: 'English-language crisis support'
-      },
-      { 
-        name: 'Inochi no Denwa', 
-        phone: '0570-783-556', 
-        type: 'call', 
-        hours: '24/7',
-        description: 'Japanese crisis support hotline'
-      }
-    ]
-  },
-  {
-    code: 'BR',
-    name: 'Brazil',
-    flag: '🇧🇷',
-    contacts: [
-      { 
-        name: 'CVV - Centro de Valorização da Vida', 
-        phone: '188', 
-        type: 'call', 
-        hours: '24/7',
-        description: 'Suicide prevention and emotional support'
-      }
-    ]
-  },
-  {
-    code: 'ZA',
-    name: 'South Africa',
-    flag: '🇿🇦',
-    contacts: [
-      { 
-        name: 'SADAG', 
-        phone: '0800 567 567', 
-        type: 'call', 
-        hours: '8:00-20:00',
-        description: 'South African Depression and Anxiety Group'
-      },
-      { 
-        name: 'Lifeline', 
-        phone: '0861 322 322', 
-        type: 'call', 
-        hours: '24/7',
-        description: 'Crisis counseling and suicide prevention'
+        hours: 'Various',
+        description: 'Many hospitals have specialized crisis support for healthcare workers'
       }
     ]
   }

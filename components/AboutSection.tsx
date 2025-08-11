@@ -584,7 +584,7 @@ function Team3({
   );
 
   return (
-    <section className={cn("w-full py-16 bg-background", className)}>
+    <section className={cn("w-full py-16 bg-[#FFFBF5]", className)}>
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
           <h2 className="mb-6 text-3xl lg:text-4xl font-bold text-primary">
@@ -623,7 +623,7 @@ function Team3({
 export function AboutSection() {
 
   return (
-    <section id="about" className="pt-8 pb-20 bg-background">
+    <section id="about" className="pt-8 pb-20 bg-[#FFFBF5]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -833,13 +833,27 @@ export function AboutSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <Button size="lg" className="px-8 py-3">
+              <Button 
+                size="lg" 
+                className="px-8 py-3"
+                onClick={() => window.location.href = '/directory'}
+              >
                 Get Support
               </Button>
-              <Button variant="outline" size="lg" className="px-8 py-3">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="px-8 py-3"
+                onClick={() => window.location.href = '/partnership'}
+              >
                 Partner With Us
               </Button>
-              <Button variant="secondary" size="lg" className="px-8 py-3">
+              <Button 
+                variant="secondary" 
+                size="lg" 
+                className="px-8 py-3"
+                onClick={() => alert('Donation functionality coming soon!')}
+              >
                 Donate
               </Button>
             </div>

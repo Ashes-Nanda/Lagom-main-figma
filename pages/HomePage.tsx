@@ -4,6 +4,7 @@ import { PartnershipSection } from "../components/PartnershipSection";
 import { PageLayout } from "../components/layout";
 import { BeingLagomFooter } from "../components/ui/footer";
 import { BrainwaveDivider } from "../components/ui/BrainwaveDivider";
+import { InstagramGallery } from "../components/InstagramGallery";
 import Faq from "../components/ui/faq";
 import { ChatbotFAB } from "../components/ChatbotFAB";
 // import { Header } from "../components/Header";
@@ -16,6 +17,8 @@ export function HomePage() {
         <HeroSection />
         <BrainwaveDivider />
         <PartnershipSection />
+        <BrainwaveDivider />
+        <InstagramGallery />
         <BrainwaveDivider />
         <Faq />
         <div style={{ background: "#0BB8C6", color: "white" }}>

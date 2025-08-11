@@ -39,7 +39,7 @@ export function DirectoryPage() {
     <div className="bg-[#FFFBF5] min-h-screen">
       <PageLayout withTopPadding={false} className="bg-transparent">
         {/* Header Section */}
-        <SectionContainer spacing="sm" size="xl">
+        <SectionContainer spacing="sm" size="xl" background="default" className="bg-[#FFFBF5]">
           <ContentContainer spacing="tight" centerContent={true} preventOverflow={true}>
             <div className="text-center mb-6">
               <h1 className="text-3xl lg:text-4xl font-bold text-primary mb-3">
@@ -108,34 +108,8 @@ export function DirectoryPage() {
                 exit="exit"
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <SectionContainer spacing="lg" size="xl">
-                  <ContentContainer spacing="normal" centerContent={true} preventOverflow={true}>
-                    {/* Search and Filter Header */}
-                    <div className="mb-8 space-y-4">
-                      {/* Search Bar */}
-                      <div className="max-w-2xl mx-auto">
-                        <SearchBar
-                          placeholder="Search events, workshops, support groups..."
-                          value={searchQuery}
-                          onChange={setSearchQuery}
-                          onClear={handleSearchClear}
-                          className="w-full"
-                        />
-                      </div>
-
-                      {/* Advanced Filter System */}
-                      <div className="flex flex-col gap-4">
-                        <ComboboxDemo />
-                      </div>
-                    </div>
-
-                    {/* Events Content */}
-                    <EventsSection
-                      searchQuery={searchQuery}
-                      activeFilters={activeFilters}
-                    />
-                  </ContentContainer>
-                </SectionContainer>
+                {/* Events Content - No search/filter */}
+                <EventsSection />
               </motion.div>
             )}
           </AnimatePresence>

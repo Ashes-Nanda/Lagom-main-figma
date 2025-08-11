@@ -14,6 +14,7 @@ import { AboutPage } from "./pages/AboutPage";
 import { AssessmentPage } from "./pages/AssessmentPage";
 
 import { ContactPage } from "./pages/ContactPage";
+import { EventsPage } from "./pages/EventsPage";
 import { PartnershipPage } from "./pages/PartnershipPage";
 import { MerchandisePage } from "./pages/MerchandisePage";
 import { GamesPage } from "./pages/GamesPage";
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/assessment" element={<AssessmentPage />} />
             <Route path="/mindfulness" element={<GamesPage />} />
+            <Route path="/events" element={<EventsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/partnership" element={<PartnershipPage />} />
             <Route path="/merchandise" element={<MerchandisePage />} />
@@ -42,11 +44,6 @@ export default function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-service" element={<TermsOfServicePage />} />
             <Route path="/cookie-policy" element={<CookiePolicyPage />} />
-            {/* Redirect old events route to directory since events are now merged */}
-            <Route
-              path="/events"
-              element={<Navigate to="/directory" replace />}
-            />
             {/* Catch-all route for any unmatched URLs - redirects to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

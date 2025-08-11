@@ -229,7 +229,7 @@ export function SelfHelpResources({
   );
 
   return (
-    <section id="resources" className="bg-background">
+    <section id="resources" className="bg-[#FFFBF5]">
       <div className="max-w-6xl mx-auto">
         {!hasResults ? (
           <NoResults />

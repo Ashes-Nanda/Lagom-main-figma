@@ -4,7 +4,24 @@ import { ExternalLink } from "lucide-react";
 
 export function SupportPathSection() {
   const handleP2PClick = () => {
-    window.open("https://placeholder-p2p.com", "_blank");
+    window.open("https://forms.gle/2yHZx7rmyBhuP2tR6", "_blank");
+  };
+
+  const handlePathClick = (pathId: string) => {
+    switch (pathId) {
+      case "green":
+        window.open("https://drive.google.com/drive/folders/1Qr2502FunAdN2Z3bGIUAMpyQnsaoSFir?usp=drive_link", "_blank");
+        break;
+      case "yellow":
+        window.open("https://beinglagom.detalks.com/therapists", "_blank");
+        break;
+      case "red":
+        // Navigate to contact page which contains crisis support
+        window.location.href = "/contact";
+        break;
+      default:
+        break;
+    }
   };
 
   const supportPaths = [
@@ -50,7 +67,7 @@ export function SupportPathSection() {
   ];
 
   return (
-    <section className="py-8 bg-background">
+    <section className="py-8 bg-[#FFFBF5]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Main heading */}
@@ -92,6 +109,7 @@ export function SupportPathSection() {
                     {path.description}
                   </p>
                   <Button
+                    onClick={() => handlePathClick(path.id)}
                     className={`w-full ${path.bgColor} ${path.textColor} hover:opacity-80 border ${path.borderColor} mt-auto`}
                     variant="outline"
                   >
@@ -139,14 +157,12 @@ export function SupportPathSection() {
                 Take our triage assessment to get personalized recommendations
                 for your support journey.
               </p>
-              <Button variant="outline" size="lg" asChild>
-                <a
-                  href="https://forms.gle/VW2ESGsyT1yAzvgC8"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Start Triage Assessment
-                </a>
+              <Button 
+                variant="outline" 
+                size="lg"
+                onClick={() => window.location.href = "/assessment"}
+              >
+                Start Triage Assessment
               </Button>
             </div>
           </div>

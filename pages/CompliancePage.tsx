@@ -110,7 +110,7 @@ export function CompliancePage() {
               </p>
             </section>
 
-            <section className="bg-muted/50 p-6 rounded-lg">
+            <section className="bg-[#FFFBF5] p-6 rounded-lg border border-gray-200">
               <p className="text-muted-foreground leading-relaxed italic">
                 This document embodies Being.Lagom's unwavering dedication to legal compliance, privacy, ethical governance, and accountable service to all communities. The organization's compliance standards guide daily operations, crisis management, and future planning, as a matter of legal obligation and moral conviction.
               </p>
