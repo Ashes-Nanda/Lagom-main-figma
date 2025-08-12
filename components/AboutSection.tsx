@@ -175,7 +175,7 @@ const teamMembers: TeamMember[] = [
     name: "Dr Raj Mistry",
     role: "IMA State Convener, Gujarat, BJMC",
     bio: "BJMC Taskforce Lead (Ahmedabad)",
-    imageUrl: "/assets/raj.jpeg",
+    imageUrl: "/assets/Mistry.jpg",
     specialty: "Operations",
     category: "Ahd TaskForce",
     socialLinks: [
