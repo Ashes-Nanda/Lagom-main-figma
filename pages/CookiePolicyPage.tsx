@@ -59,7 +59,7 @@ export function CookiePolicyPage() {
               </p>
             </section>
 
-            <section className="bg-[#FFFBF5] p-6 rounded-lg border border-gray-200">
+            <section className="bg-[#fffbf5] p-6 rounded-lg border border-gray-200">
               <p className="text-muted-foreground leading-relaxed italic">
                 This document embodies Being.Lagom's commitment to transparency in data collection and user privacy protection through responsible use of web technologies.
               </p>

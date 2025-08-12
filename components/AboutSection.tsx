@@ -114,7 +114,7 @@ const teamMembers: TeamMember[] = [
     name: "Dr Shweta Sinha",
     role: "Ph.D. Multisector Communication, MBA, M.Sc, Molecular and Genetic Medicine",
     bio: "Branding and Business Consultant, Professor in 3 NY universities, Ahmedabad Taskforce: MedEd Curriculum Design & Comms Strategist",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/Shweta.jpg",
     specialty: "MedEd Curriculum Design & Communications",
     category: "Ahd TaskForce",
     socialLinks: [],
@@ -392,8 +392,8 @@ const teamMembers: TeamMember[] = [
   {
     name: "Ashes",
     role: "Tech Team",
-    bio: "Technology Team Member",
-    imageUrl: "/placeholder.svg",
+    bio: "Website Developer",
+    imageUrl: "/assets/Ashes.jpg",
     specialty: "Technology",
     category: "Tech",
     socialLinks: [],
@@ -578,7 +578,7 @@ function Team3({
   );
 
   return (
-    <section className={cn("w-full py-16 bg-[#FFFBF5]", className)}>
+    <section className={cn("w-full py-16 bg-[#fffbf5]", className)}>
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
           <h2 className="mb-6 text-3xl lg:text-4xl font-bold text-primary">
@@ -616,7 +616,7 @@ function Team3({
 
 export function AboutSection() {
   return (
-    <section id="about" className="pt-8 pb-20 bg-[#FFFBF5]">
+    <section id="about" className="pt-8 pb-20 bg-[#fffbf5]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">

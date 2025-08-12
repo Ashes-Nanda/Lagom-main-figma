@@ -22,6 +22,7 @@ import { CompliancePage } from "./pages/CompliancePage";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { TermsOfServicePage } from "./pages/TermsOfServicePage";
 import { CookiePolicyPage } from "./pages/CookiePolicyPage";
+import { AdminPage } from "./pages/AdminPage";
 
 export default function App() {
   return (
@@ -44,6 +45,7 @@ export default function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-service" element={<TermsOfServicePage />} />
             <Route path="/cookie-policy" element={<CookiePolicyPage />} />
+            <Route path="/admin" element={<AdminPage />} />
             {/* Catch-all route for any unmatched URLs - redirects to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

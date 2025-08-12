@@ -23,7 +23,7 @@ export function ResourcesPage() {
   };
 
   return (
-    <div className="bg-[#FFFBF5] min-h-screen">
+    <div className="bg-[#fffbf5] min-h-screen">
       <PageLayout withTopPadding={false} className="bg-transparent">
       <SectionContainer 
         spacing="lg" 
@@ -76,7 +76,7 @@ export function ResourcesPage() {
           />
         </ContentContainer>
       </SectionContainer>
-      <div style={{ background: '#0BB8C6', color: 'white' }}>
+      <div style={{ background: '#fffbf5', color: 'black' }}>
         <BeingLagomFooter />
       </div>
     </PageLayout>

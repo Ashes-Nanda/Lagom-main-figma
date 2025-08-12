@@ -294,7 +294,7 @@ export function MindfulnessPage() {
 
   if (activeGame) {
     return (
-      <div className="bg-[#FFFBF5] min-h-screen py-20">
+      <div className="bg-[#fffbf5] min-h-screen py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
@@ -322,7 +322,7 @@ export function MindfulnessPage() {
   }
 
   return (
-    <div className="bg-[#FFFBF5] min-h-screen py-20">
+    <div className="bg-[#fffbf5] min-h-screen py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">

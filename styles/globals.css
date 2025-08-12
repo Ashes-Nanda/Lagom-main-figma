@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap'); /* Chinese Simplified */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap'); /* Hindi */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap'); /* Gujarati */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap'); /* Amharic */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap"); /* Chinese Simplified */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"); /* Hindi */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap"); /* Gujarati */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap"); /* Amharic */
 
 @tailwind base;
 @tailwind components;
@@ -12,7 +12,7 @@
 
 :root {
   --font-size: 14px;
-  --background: 58 75% 96%;
+  --background: 40 100% 98%;
   --foreground: 230 70% 18%;
   --card: 0 0% 100%;
   --card-foreground: 230 70% 18%;
@@ -51,71 +51,71 @@
   --sidebar-accent-foreground: 230 70% 18%;
   --sidebar-border: 194 57% 74%;
   --sidebar-ring: 194 32% 37%;
-  
+
   /* Improved contrast colors */
-  --text-primary: 230 70% 18%;      /* Darker text for better contrast */
-  --text-secondary: 194 32% 37%;    /* Medium contrast for secondary text */
-  --text-muted: 194 32% 37%;        /* Maintained for muted text */
-  
+  --text-primary: 230 70% 18%; /* Darker text for better contrast */
+  --text-secondary: 194 32% 37%; /* Medium contrast for secondary text */
+  --text-muted: 194 32% 37%; /* Maintained for muted text */
+
   /* Standardized Typography Hierarchy */
-  --text-xs: 0.75rem;      /* 12px */
-  --text-sm: 0.875rem;     /* 14px */
-  --text-base: 1rem;       /* 16px */
-  --text-lg: 1.125rem;     /* 18px */
-  --text-xl: 1.25rem;      /* 20px */
-  --text-2xl: 1.5rem;      /* 24px */
-  --text-3xl: 1.875rem;    /* 30px */
-  --text-4xl: 2.25rem;     /* 36px */
-  --text-5xl: 3rem;        /* 48px */
-  
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
+
   /* Standardized heading hierarchy */
-  --heading-1: 2.5rem;     /* 40px - Page titles */
-  --heading-2: 2rem;       /* 32px - Section headings */
-  --heading-3: 1.5rem;     /* 24px - Subsection headings */
-  --heading-4: 1.25rem;    /* 20px - Card titles */
-  --heading-5: 1.125rem;   /* 18px - Small headings */
-  --heading-6: 1rem;       /* 16px - Smallest headings */
-  
+  --heading-1: 2.5rem; /* 40px - Page titles */
+  --heading-2: 2rem; /* 32px - Section headings */
+  --heading-3: 1.5rem; /* 24px - Subsection headings */
+  --heading-4: 1.25rem; /* 20px - Card titles */
+  --heading-5: 1.125rem; /* 18px - Small headings */
+  --heading-6: 1rem; /* 16px - Smallest headings */
+
   /* Line heights for typography */
   --line-height-tight: 1.25;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.625;
   --line-height-loose: 2;
-  
+
   /* Letter spacing */
   --letter-spacing-tight: -0.025em;
   --letter-spacing-normal: 0;
   --letter-spacing-wide: 0.025em;
-  
+
   /* Standardized spacing system */
-  --spacing-xs: 0.25rem;    /* 4px */
-  --spacing-sm: 0.5rem;     /* 8px */
-  --spacing-md: 1rem;       /* 16px */
-  --spacing-lg: 1.5rem;     /* 24px */
-  --spacing-xl: 2rem;       /* 32px */
-  --spacing-2xl: 3rem;      /* 48px */
-  --spacing-3xl: 4rem;      /* 64px */
-  --spacing-4xl: 5rem;      /* 80px */
-  
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+  --spacing-3xl: 4rem; /* 64px */
+  --spacing-4xl: 5rem; /* 80px */
+
   /* Section spacing */
-  --section-padding-sm: 2rem;    /* 32px mobile */
-  --section-padding-md: 3rem;    /* 48px mobile */
-  --section-padding-lg: 4rem;    /* 64px mobile */
-  --section-padding-xl: 5rem;    /* 80px mobile */
-  
+  --section-padding-sm: 2rem; /* 32px mobile */
+  --section-padding-md: 3rem; /* 48px mobile */
+  --section-padding-lg: 4rem; /* 64px mobile */
+  --section-padding-xl: 5rem; /* 80px mobile */
+
   /* Container padding */
-  --container-padding-mobile: 1rem;     /* 16px */
-  --container-padding-tablet: 1.5rem;   /* 24px */
-  --container-padding-desktop: 2rem;    /* 32px */
-  
+  --container-padding-mobile: 1rem; /* 16px */
+  --container-padding-tablet: 1.5rem; /* 24px */
+  --container-padding-desktop: 2rem; /* 32px */
+
   /* Touch targets (minimum 44px for accessibility) */
-  --touch-target-min: 2.75rem;  /* 44px */
-  --touch-target-comfortable: 3rem;  /* 48px */
-  --touch-target-large: 3.5rem;  /* 56px */
-  
+  --touch-target-min: 2.75rem; /* 44px */
+  --touch-target-comfortable: 3rem; /* 48px */
+  --touch-target-large: 3.5rem; /* 56px */
+
   /* Header height for spacing calculations */
-  --header-height: 4rem;  /* 64px - matches h-16 */
-  
+  --header-height: 4rem; /* 64px - matches h-16 */
+
   /* Responsive breakpoints for consistent spacing */
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
@@ -160,11 +160,11 @@
   --sidebar-accent-foreground: 58 75% 96%;
   --sidebar-border: 194 32% 37%;
   --sidebar-ring: 194 57% 74%;
-  
+
   /* Improved contrast colors for dark mode */
-  --text-primary: 58 75% 96%;      /* Light text for dark backgrounds */
-  --text-secondary: 194 57% 74%;   /* Medium contrast for secondary text */
-  --text-muted: 220 7% 79%;        /* Muted text for dark mode */
+  --text-primary: 58 75% 96%; /* Light text for dark backgrounds */
+  --text-secondary: 194 57% 74%; /* Medium contrast for secondary text */
+  --text-muted: 220 7% 79%; /* Muted text for dark mode */
 }
 
 @theme inline {
@@ -216,75 +216,6 @@
   body {
     @apply bg-background text-foreground font-inter;
   }
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
 }
 
 /* Standardized spacing utilities */
@@ -297,7 +228,7 @@
     letter-spacing: var(--letter-spacing-tight);
     color: hsl(var(--text-primary));
   }
-  
+
   .typography-h2 {
     font-size: var(--heading-2);
     font-weight: var(--font-weight-semibold);
@@ -305,7 +236,7 @@
     letter-spacing: var(--letter-spacing-tight);
     color: hsl(var(--text-primary));
   }
-  
+
   .typography-h3 {
     font-size: var(--heading-3);
     font-weight: var(--font-weight-semibold);
@@ -313,7 +244,7 @@
     letter-spacing: var(--letter-spacing-normal);
     color: hsl(var(--text-primary));
   }
-  
+
   .typography-h4 {
     font-size: var(--heading-4);
     font-weight: var(--font-weight-medium);
@@ -321,7 +252,7 @@
     letter-spacing: var(--letter-spacing-normal);
     color: hsl(var(--text-primary));
   }
-  
+
   .typography-h5 {
     font-size: var(--heading-5);
     font-weight: var(--font-weight-medium);
@@ -329,7 +260,7 @@
     letter-spacing: var(--letter-spacing-normal);
     color: hsl(var(--text-primary));
   }
-  
+
   .typography-h6 {
     font-size: var(--heading-6);
     font-weight: var(--font-weight-medium);
@@ -337,7 +268,7 @@
     letter-spacing: var(--letter-spacing-normal);
     color: hsl(var(--text-primary));
   }
-  
+
   .typography-body {
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
@@ -345,7 +276,7 @@
     letter-spacing: var(--letter-spacing-normal);
     color: hsl(var(--text-secondary));
   }
-  
+
   .typography-body-large {
     font-size: var(--text-lg);
     font-weight: var(--font-weight-normal);
@@ -353,7 +284,7 @@
     letter-spacing: var(--letter-spacing-normal);
     color: hsl(var(--text-secondary));
   }
-  
+
   .typography-body-small {
     font-size: var(--text-sm);
     font-weight: var(--font-weight-normal);
@@ -361,7 +292,7 @@
     letter-spacing: var(--letter-spacing-normal);
     color: hsl(var(--text-muted));
   }
-  
+
   .typography-caption {
     font-size: var(--text-xs);
     font-weight: var(--font-weight-normal);
@@ -370,14 +301,14 @@
     text-transform: uppercase;
     color: hsl(var(--text-muted));
   }
-  
+
   .typography-button {
     font-size: var(--text-base);
     font-weight: var(--font-weight-medium);
     line-height: var(--line-height-normal);
     letter-spacing: var(--letter-spacing-normal);
   }
-  
+
   .typography-link {
     font-weight: var(--font-weight-medium);
     text-decoration: underline;
@@ -385,11 +316,11 @@
     transition: color 0.2s ease;
     color: hsl(var(--accent));
   }
-  
+
   .typography-link:hover {
     color: hsl(var(--accent) / 0.8);
   }
-  
+
   /* Responsive typography utilities */
   .typography-responsive-h1 {
     font-size: clamp(2rem, 4vw, var(--heading-1));
@@ -398,7 +329,7 @@
     letter-spacing: var(--letter-spacing-tight);
     color: hsl(var(--text-primary));
   }
-  
+
   .typography-responsive-h2 {
     font-size: clamp(1.75rem, 3vw, var(--heading-2));
     font-weight: var(--font-weight-semibold);
@@ -406,7 +337,7 @@
     letter-spacing: var(--letter-spacing-tight);
     color: hsl(var(--text-primary));
   }
-  
+
   .typography-responsive-h3 {
     font-size: clamp(1.375rem, 2.5vw, var(--heading-3));
     font-weight: var(--font-weight-semibold);
@@ -420,170 +351,176 @@
     padding-top: var(--section-padding-sm);
     padding-bottom: var(--section-padding-sm);
   }
-  
+
   .section-spacing-md {
     padding-top: var(--section-padding-md);
     padding-bottom: var(--section-padding-md);
   }
-  
+
   .section-spacing-lg {
     padding-top: var(--section-padding-lg);
     padding-bottom: var(--section-padding-lg);
   }
-  
+
   .section-spacing-xl {
     padding-top: var(--section-padding-xl);
     padding-bottom: var(--section-padding-xl);
   }
-  
+
   /* Responsive section spacing */
   @media (min-width: 768px) {
     .section-spacing-sm {
       padding-top: calc(var(--section-padding-sm) * 1.25);
       padding-bottom: calc(var(--section-padding-sm) * 1.25);
     }
-    
+
     .section-spacing-md {
       padding-top: calc(var(--section-padding-md) * 1.25);
       padding-bottom: calc(var(--section-padding-md) * 1.25);
     }
-    
+
     .section-spacing-lg {
       padding-top: calc(var(--section-padding-lg) * 1.25);
       padding-bottom: calc(var(--section-padding-lg) * 1.25);
     }
-    
+
     .section-spacing-xl {
       padding-top: calc(var(--section-padding-xl) * 1.25);
       padding-bottom: calc(var(--section-padding-xl) * 1.25);
     }
   }
-  
+
   /* Container padding utilities */
   .container-padding {
     padding-left: var(--container-padding-mobile);
     padding-right: var(--container-padding-mobile);
   }
-  
+
   @media (min-width: 768px) {
     .container-padding {
       padding-left: var(--container-padding-tablet);
       padding-right: var(--container-padding-tablet);
     }
   }
-  
+
   @media (min-width: 1024px) {
     .container-padding {
       padding-left: var(--container-padding-desktop);
       padding-right: var(--container-padding-desktop);
     }
   }
-  
+
   /* Touch target utilities */
   .touch-target {
     min-height: var(--touch-target-min);
     min-width: var(--touch-target-min);
   }
-  
+
   .touch-target-comfortable {
     min-height: var(--touch-target-comfortable);
     min-width: var(--touch-target-comfortable);
   }
-  
+
   .touch-target-large {
     min-height: var(--touch-target-large);
     min-width: var(--touch-target-large);
   }
-  
+
   /* Interactive element spacing */
   .interactive-spacing {
     margin: var(--spacing-sm);
   }
-  
+
   /* Focus-visible utilities for accessibility */
   .focus-ring {
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
   }
-  
+
   /* Consistent button spacing */
   .button-spacing {
     gap: var(--spacing-sm);
   }
-  
+
   /* Form element spacing */
   .form-spacing > * + * {
     margin-top: var(--spacing-md);
   }
-  
+
   /* Card spacing utilities */
   .card-spacing {
     padding: var(--spacing-lg);
   }
-  
+
   .card-spacing-sm {
     padding: var(--spacing-md);
   }
-  
+
   .card-spacing-lg {
     padding: var(--spacing-xl);
   }
-  
+
   /* Responsive margin utilities */
   .responsive-margin-y {
     margin-top: var(--spacing-md);
     margin-bottom: var(--spacing-md);
   }
-  
+
   @media (min-width: 768px) {
     .responsive-margin-y {
       margin-top: var(--spacing-lg);
       margin-bottom: var(--spacing-lg);
     }
   }
-  
+
   @media (min-width: 1024px) {
     .responsive-margin-y {
       margin-top: var(--spacing-xl);
       margin-bottom: var(--spacing-xl);
     }
   }
-  
+
   /* Consistent list spacing */
   .list-spacing > li + li {
     margin-top: var(--spacing-sm);
   }
-  
+
   /* Navigation spacing utilities */
   .nav-spacing {
     gap: var(--spacing-sm);
   }
-  
+
   @media (min-width: 768px) {
     .nav-spacing {
       gap: var(--spacing-md);
     }
   }
-  
+
   /* Prevent content jump during loading */
   .stable-layout {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
-  
+
   /* Ensure content doesn't get cut off on small screens */
   .safe-content {
-    padding-left: max(var(--container-padding-mobile), env(safe-area-inset-left));
-    padding-right: max(var(--container-padding-mobile), env(safe-area-inset-right));
+    padding-left: max(
+      var(--container-padding-mobile),
+      env(safe-area-inset-left)
+    );
+    padding-right: max(
+      var(--container-padding-mobile),
+      env(safe-area-inset-right)
+    );
   }
-  
+
   /* Consistent section dividers */
   .section-divider {
     border-top: 1px solid hsl(var(--border));
     margin-top: var(--spacing-2xl);
     margin-bottom: var(--spacing-2xl);
   }
-  
+
   /* Accessible skip links */
   .skip-link {
     position: absolute;
@@ -597,21 +534,21 @@
     z-index: 1000;
     transition: top 0.3s;
   }
-  
+
   .skip-link:focus {
     top: 6px;
   }
-  
+
   /* Header offset utility to prevent content overlap */
   .header-offset {
     padding-top: var(--header-height);
   }
-  
+
   /* Safe area utilities for consistent spacing */
   .safe-area-top {
     padding-top: max(var(--header-height), env(safe-area-inset-top));
   }
-  
+
   .safe-area-bottom {
     padding-bottom: env(safe-area-inset-bottom);
   }
@@ -711,7 +648,9 @@
     }
 
     /* Input text */
-    input, textarea, select {
+    input,
+    textarea,
+    select {
       font-size: var(--text-base);
       font-weight: var(--font-weight-normal);
       line-height: var(--line-height-normal);
@@ -729,7 +668,8 @@
     }
 
     /* Lists */
-    ul, ol {
+    ul,
+    ol {
       font-size: var(--text-base);
       font-weight: var(--font-weight-normal);
       line-height: var(--line-height-relaxed);
@@ -793,27 +733,26 @@ html {
 @media (max-width: 640px) {
   :root {
     /* Scale down headings on mobile for better readability */
-    --heading-1: 2rem;       /* 32px on mobile */
-    --heading-2: 1.75rem;    /* 28px on mobile */
-    --heading-3: 1.375rem;   /* 22px on mobile */
-    --heading-4: 1.125rem;   /* 18px on mobile */
-    --heading-5: 1rem;       /* 16px on mobile */
-    --heading-6: 0.875rem;   /* 14px on mobile */
+    --heading-1: 2rem; /* 32px on mobile */
+    --heading-2: 1.75rem; /* 28px on mobile */
+    --heading-3: 1.375rem; /* 22px on mobile */
+    --heading-4: 1.125rem; /* 18px on mobile */
+    --heading-5: 1rem; /* 16px on mobile */
+    --heading-6: 0.875rem; /* 14px on mobile */
   }
 }
 
 @media (min-width: 1024px) {
   :root {
     /* Scale up headings on desktop for better hierarchy */
-    --heading-1: 3rem;       /* 48px on desktop */
-    --heading-2: 2.25rem;    /* 36px on desktop */
-    --heading-3: 1.75rem;    /* 28px on desktop */
-    --heading-4: 1.375rem;   /* 22px on desktop */
-    --heading-5: 1.25rem;    /* 20px on desktop */
-    --heading-6: 1.125rem;   /* 18px on desktop */
+    --heading-1: 3rem; /* 48px on desktop */
+    --heading-2: 2.25rem; /* 36px on desktop */
+    --heading-3: 1.75rem; /* 28px on desktop */
+    --heading-4: 1.375rem; /* 22px on desktop */
+    --heading-5: 1.25rem; /* 20px on desktop */
+    --heading-6: 1.125rem; /* 18px on desktop */
   }
 }
-
 
 /* Standardized Card Heights and Grid Alignment */
 @layer components {
@@ -823,19 +762,19 @@ html {
     gap: 1.5rem;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
-  
+
   @media (min-width: 768px) {
     .standard-card-grid {
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
   }
-  
+
   @media (min-width: 1024px) {
     .standard-card-grid {
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
   }
-  
+
   /* Fixed height card containers for consistent grid alignment */
   .standard-card {
     display: flex;
@@ -843,25 +782,25 @@ html {
     height: 100%;
     min-height: 400px;
   }
-  
+
   .standard-card-content {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
   }
-  
+
   .standard-card-description {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
   }
-  
+
   .standard-card-actions {
     margin-top: auto;
     padding-top: 1rem;
   }
-  
+
   /* Consistent image aspect ratios */
   .standard-card-image {
     aspect-ratio: 16 / 9;
@@ -869,7 +808,7 @@ html {
     width: 100%;
     height: 100%;
   }
-  
+
   /* Read more functionality styling */
   .read-more-button {
     font-size: 0.75rem;
@@ -883,17 +822,17 @@ html {
     gap: 0.25rem;
     transition: color 0.2s ease;
   }
-  
+
   .read-more-button:hover {
     color: hsl(var(--accent) / 0.8);
   }
-  
+
   .read-more-button:focus-visible {
     outline: 2px solid hsl(var(--ring));
     outline-offset: 2px;
     border-radius: 0.25rem;
   }
-  
+
   /* Consistent metadata styling */
   .card-metadata {
     display: flex;
@@ -903,18 +842,18 @@ html {
     color: hsl(var(--muted-foreground));
     margin-bottom: 0.5rem;
   }
-  
+
   .card-metadata:last-child {
     margin-bottom: 0;
   }
-  
+
   .card-metadata-icon {
     width: 1rem;
     height: 1rem;
     color: hsl(var(--accent));
     flex-shrink: 0;
   }
-  
+
   /* Badge positioning and spacing */
   .card-badges {
     display: flex;
@@ -923,19 +862,19 @@ html {
     flex-wrap: wrap;
     margin-bottom: 0.75rem;
   }
-  
+
   /* Responsive card adjustments */
   @media (max-width: 767px) {
     .standard-card {
       min-height: 350px;
     }
-    
+
     .standard-card-grid {
       grid-template-columns: 1fr;
       gap: 1rem;
     }
   }
-  
+
   /* Ensure consistent button heights in card actions */
   .card-action-buttons {
     display: flex;
@@ -943,26 +882,26 @@ html {
     gap: 0.5rem;
     min-height: 2.5rem;
   }
-  
+
   .card-action-buttons .button {
     height: 2.5rem;
   }
-  
+
   /* Multi-language font utilities */
   .font-chinese {
-    font-family: 'Noto Sans SC', 'Inter', sans-serif;
+    font-family: "Noto Sans SC", "Inter", sans-serif;
   }
-  
+
   .font-hindi {
-    font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+    font-family: "Noto Sans Devanagari", "Inter", sans-serif;
   }
-  
+
   .font-gujarati {
-    font-family: 'Noto Sans Gujarati', 'Inter', sans-serif;
+    font-family: "Noto Sans Gujarati", "Inter", sans-serif;
   }
-  
+
   .font-amharic {
-    font-family: 'Noto Sans Ethiopic', 'Inter', sans-serif;
+    font-family: "Noto Sans Ethiopic", "Inter", sans-serif;
   }
 
   /* Accessibility improvements for cards */
@@ -970,36 +909,42 @@ html {
     outline: 2px solid hsl(var(--ring));
     outline-offset: 2px;
   }
-  
+
   /* Hover effects for better interactivity */
   .standard-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
-  
+
   .standard-card {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  
+
   /* Ensure text doesn't overflow in cards */
   .card-title {
     overflow-wrap: break-word;
     hyphens: auto;
   }
-  
+
   .card-description {
     overflow-wrap: break-word;
     hyphens: auto;
     line-height: 1.5;
   }
-  
+
   /* Loading state for cards */
   .card-loading {
-    background: linear-gradient(90deg, hsl(var(--muted)) 25%, hsl(var(--muted) / 0.5) 50%, hsl(var(--muted)) 75%);
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 25%,
+      hsl(var(--muted) / 0.5) 50%,
+      hsl(var(--muted)) 75%
+    );
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
   }
-  
+
   @keyframes loading {
     0% {
       background-position: 200% 0;
@@ -1015,21 +960,12 @@ html {
   .transform-style-preserve-3d {
     transform-style: preserve-3d;
   }
-  
+
   .backface-hidden {
     backface-visibility: hidden;
   }
-  
+
   .rotate-y-180 {
     transform: rotateY(180deg);
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }

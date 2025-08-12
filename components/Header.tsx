@@ -58,7 +58,7 @@ export function Header() {
 
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#FFFBF5] text-black">
+    <header className="sticky top-0 z-50 w-full bg-[#fffbf5] text-black">
       <div className="container mx-auto px-3 sm:px-4 lg:px-6 max-w-7xl">
         <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo */}
@@ -80,7 +80,7 @@ export function Header() {
             <ExpandableTabs 
               tabs={expandableTabs}
               onChange={handleTabChange}
-              className="bg-[#FFFBF5] border-gray-200"
+              className="bg-[#fffbf5] border-gray-200"
               activeColor="text-primary"
             />
           </div>

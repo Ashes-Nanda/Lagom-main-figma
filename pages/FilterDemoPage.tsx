@@ -4,7 +4,7 @@ import { BeingLagomFooter } from "../components/ui/footer";
 
 export function FilterDemoPage() {
   return (
-    <div className="bg-[#FFFBF5] min-h-screen">
+    <div className="bg-[#fffbf5] min-h-screen">
       <PageLayout withTopPadding={false} className="bg-transparent">
       <SectionContainer 
         spacing="lg" 

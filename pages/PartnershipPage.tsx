@@ -11,7 +11,7 @@ import { Building, Users, Globe, Heart, Handshake, Target, Mail, Phone } from "l
 export function PartnershipPage() {
   return (
     <PageLayout withTopPadding={false} className="pt-8">
-      <section id="partnership" className="py-20 bg-[#FFFBF5]">
+      <section id="partnership" className="py-20 bg-[#fffbf5]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">

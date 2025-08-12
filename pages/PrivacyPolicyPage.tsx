@@ -62,7 +62,7 @@ export function PrivacyPolicyPage() {
               </p>
             </section>
 
-            <section className="bg-[#FFFBF5] p-6 rounded-lg border border-gray-200">
+            <section className="bg-[#fffbf5] p-6 rounded-lg border border-gray-200">
               <p className="text-muted-foreground leading-relaxed italic">
                 This privacy policy is reviewed annually and updated whenever material changes occur to ensure ongoing legal adequacy and operational transparency.
               </p>

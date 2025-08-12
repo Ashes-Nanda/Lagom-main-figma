@@ -157,7 +157,7 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
   }, [comboTimer]);
 
   return (
-    <div className="min-h-screen bg-[#FFFBF5] p-4">
+    <div className="min-h-screen bg-[#fffbf5] p-4">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <Button onClick={onBack} variant="outline">

@@ -67,7 +67,7 @@ export function InstagramGallery() {
   };
 
   return (
-    <section className="py-16 bg-[#FFFBF5]">
+    <section className="py-16 bg-[#fffbf5]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">

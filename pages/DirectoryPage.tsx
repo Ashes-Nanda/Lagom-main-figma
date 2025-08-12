@@ -22,10 +22,10 @@ export function DirectoryPage() {
   };
 
   return (
-    <div className="bg-[#FFFBF5] min-h-screen">
+    <div className="bg-[#fffbf5] min-h-screen">
       <PageLayout withTopPadding={false} className="bg-transparent">
         {/* Header Section */}
-        <SectionContainer spacing="sm" size="xl" background="default" className="bg-[#FFFBF5]">
+        <SectionContainer spacing="sm" size="xl" background="default" className="bg-[#fffbf5]">
           <ContentContainer spacing="tight" centerContent={true} preventOverflow={true}>
             <div className="text-center mb-6">
               <h1 className="text-3xl lg:text-4xl font-bold text-primary mb-3">

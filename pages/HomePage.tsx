@@ -11,7 +11,7 @@ import { ChatbotFAB } from "../components/ChatbotFAB";
 
 export function HomePage() {
   return (
-    <div className="bg-[#FFFBF5] min-h-screen">
+    <div className="bg-[#fffbf5] min-h-screen">
       {/* <Header /> */}
       <PageLayout withTopPadding={false} className="bg-transparent">
         {/* Combined Hero and Partnership section with unified background */}
@@ -26,7 +26,7 @@ export function HomePage() {
         >
           {/* Background overlay for opacity control */}
           <div 
-            className="absolute inset-0 bg-[#FFFBF5]"
+            className="absolute inset-0 bg-[#fffbf5]"
             style={{ opacity: 0.66 }}
           />
           

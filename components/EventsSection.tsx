@@ -75,7 +75,7 @@ export function EventsSection() {
   ];
 
   return (
-    <section id="events" className="bg-[#FFFBF5] py-8">
+    <section id="events" className="bg-[#fffbf5] py-8">
       <div className="max-w-6xl mx-auto px-4">
         {/* Hero Section - Reduced spacing */}
         <div className="text-center mb-8">
