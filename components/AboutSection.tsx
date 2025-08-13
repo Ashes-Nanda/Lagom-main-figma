@@ -1,18 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import {
-  Users,
-  Target,
-  Heart,
-  Linkedin,
-  Instagram,
-  Facebook,
-  Twitter,
-} from "lucide-react";
+import { Users, Target, Heart } from "lucide-react";
+import { Linkedin, Instagram, Facebook, Twitter } from "lucide-react";
 
 import { cn } from "../lib/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { BrainwaveDivider } from "./ui/BrainwaveDivider";
+import { LazyImage } from "./ui/lazy-image";
+import { LoadingState } from "./ui/loading-spinner";
+import { TeamCardSkeleton } from "./ui/skeleton";
 
 interface TeamMember {
   name: string;
@@ -37,7 +33,7 @@ interface TeamProps {
 
 // Team members data for Being.Lagom
 const teamMembers: TeamMember[] = [
-  // Ahd TaskForce Members
+  // Amd TaskForce Members
   {
     name: "Dr. Vyshnavi Desiraju",
     role: "Medical doctor, Executive Director of Being.Lagom (Singapore)",
@@ -45,7 +41,7 @@ const teamMembers: TeamMember[] = [
     imageUrl: "/assets/Vyshnavi.jpg",
     actionFigureUrl: "/action-fig/Vyshnavi-action.png",
     specialty: "Strategy & Leadership",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [
       {
         platform: "linkedin",
@@ -59,7 +55,7 @@ const teamMembers: TeamMember[] = [
     bio: "Ahmedabad Taskforce: Clinical Triage+ Research Lead",
     imageUrl: "/assets/vanessa_5.JPG",
     specialty: "Clinical Psychology",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [
       {
         platform: "linkedin",
@@ -74,7 +70,7 @@ const teamMembers: TeamMember[] = [
     imageUrl:
       "https://media.licdn.com/dms/image/v2/D4D03AQGyw9md4EKG4w/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1721802767353?e=1757548800&v=beta&t=mrFbfAAXqqXr6CwtK_ILnUIcPt7_D9HQ177U5jWIu2w",
     specialty: "Counselling Psychology",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [
       {
         platform: "linkedin",
@@ -88,7 +84,7 @@ const teamMembers: TeamMember[] = [
     bio: "Ahmedabad Taskforce: Psychologist Volunteer Network Manager",
     imageUrl: "/assets/Dhwani_7.jpg",
     specialty: "Quality Assurance",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [
       {
         platform: "linkedin",
@@ -102,7 +98,7 @@ const teamMembers: TeamMember[] = [
     bio: "Ahmedabad Taskforce: Fundraising Lead",
     imageUrl: "/assets/Ravi_27.jpeg",
     specialty: "Finance & Fundraising",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [
       {
         platform: "linkedin",
@@ -116,7 +112,7 @@ const teamMembers: TeamMember[] = [
     bio: "Branding and Business Consultant, Professor in 3 NY universities, Ahmedabad Taskforce: MedEd Curriculum Design & Comms Strategist",
     imageUrl: "/assets/Shweta.jpg",
     specialty: "MedEd Curriculum Design & Communications",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [],
   },
   {
@@ -126,7 +122,7 @@ const teamMembers: TeamMember[] = [
     imageUrl:
       "https://media.licdn.com/dms/image/v2/D4E03AQEu9QDWZ6OW2Q/profile-displayphoto-shrink_400_400/B4EZRkgOs4HMAg-/0/1736852959129?e=1757548800&v=beta&t=1caZUpg_WWMm6cFfTywoTzHRTDxM1oGfRaBKTtYv0J0",
     specialty: "Clinical Advisory & Lifestyle Medicine",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [
       {
         platform: "linkedin",
@@ -135,13 +131,22 @@ const teamMembers: TeamMember[] = [
     ],
   },
   {
+    name: "Dr Hvovi Bhagwagar",
+    role: "Clinical Research Lead",
+    bio: "Ph.D. in Social Sciences from Tata Institute of Social Sciences (TISS), Mumbai,  Master’s in Clinical Psychology from SNDT University.Registered as an Associate Mental Health Professional with the Maharashtra State Mental Health Authority (MSMHA).",
+    imageUrl: "/assets/Hvovi.jpeg",
+    specialty: "EMDR",
+    category: "Amd TaskForce",
+    socialLinks: [],
+  },
+  {
     name: "Dr Sathwikaw Manikandan",
     role: "Ahmedabad Taskforce: Social Media Head",
     bio: "Ahmedabad Taskforce: Social Media Head",
     imageUrl: "/assets/sath_16.jpg",
     actionFigureUrl: "/action-fig/Sathwikaw.jpeg",
     specialty: "Social Media Management",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [],
   },
   {
@@ -150,7 +155,7 @@ const teamMembers: TeamMember[] = [
     bio: "Ahmedabad Taskforce: External Comms",
     imageUrl: "/assets/Nate.jpg",
     specialty: "External Communications",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [],
   },
   {
@@ -159,7 +164,7 @@ const teamMembers: TeamMember[] = [
     bio: "Ahmedabad Taskforce: Internal Comms & Ground-ops Coordination",
     imageUrl: "/assets/devika.jpg",
     specialty: "Internal Communications & Operations",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [],
   },
   {
@@ -168,7 +173,7 @@ const teamMembers: TeamMember[] = [
     bio: "Ahmedabad Taskforce: External Comms",
     imageUrl: "/assets/Rachit.jpg",
     specialty: "External Communications",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [],
   },
   {
@@ -177,7 +182,7 @@ const teamMembers: TeamMember[] = [
     bio: "BJMC Taskforce Lead (Ahmedabad)",
     imageUrl: "/assets/Mistry.jpg",
     specialty: "Operations",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [
       {
         platform: "instagram",
@@ -191,7 +196,7 @@ const teamMembers: TeamMember[] = [
     bio: "HR Local Liaison",
     imageUrl: "/assets/Lavish.jpg",
     specialty: "Human Resources",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [],
   },
   {
@@ -200,7 +205,7 @@ const teamMembers: TeamMember[] = [
     bio: "Ground Operations Coordinator",
     imageUrl: "/assets/Krish_1.jpg",
     specialty: "Ground Operations",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [],
   },
   {
@@ -209,7 +214,7 @@ const teamMembers: TeamMember[] = [
     bio: "Gujarat College Coordination",
     imageUrl: "/assets/Avdhesh_1.jpg",
     specialty: "College Coordination",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [],
   },
   {
@@ -218,7 +223,7 @@ const teamMembers: TeamMember[] = [
     bio: "P2P Coordination",
     imageUrl: "/assets/Umang.jpg",
     specialty: "Peer-to-Peer Coordination",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [],
   },
   {
@@ -227,32 +232,44 @@ const teamMembers: TeamMember[] = [
     bio: "Community Mapping",
     imageUrl: "/assets/Khushi.jpg",
     specialty: "Community Mapping",
-    category: "Ahd TaskForce",
+    category: "Amd TaskForce",
     socialLinks: [],
   },
+  
+
   // Leadership
   {
-    name: "Vamsi Pratap",
-    role: "NestUp Space Founder, Business Development Head at Being.Lagom",
-    bio: "BJMC Taskforce : Strategic Partnerships Lead",
-    imageUrl: "/assets/Vamsi_07.jpeg",
-    actionFigureUrl: "/action-fig/Vamsi Pratap.jpeg",
-    specialty: "Business Development",
+    name: "Dr. Vyshnavi Desiraju",
+    role: "Medical doctor, Executive Director of Being.Lagom (Singapore)",
+    bio: "Ahmedabad Taskforce: Strategy Lead",
+    imageUrl: "/assets/Vyshnavi.jpg",
+    actionFigureUrl: "/action-fig/Vyshnavi-action.png",
+    specialty: "Strategy & Leadership",
     category: "Leadership",
     socialLinks: [
       {
         platform: "linkedin",
-        url: "https://www.linkedin.com/in/vamsi-pratap-b0a196ab/",
+        url: "https://www.linkedin.com/in/vyshnavi-desiraju-b09b1799",
       },
     ],
   },
-
+  
   // Core Leads
+  {
+    name: "Dr Sathwikaw Manikandan",
+    role: "Ahmedabad Taskforce: Social Media Head",
+    bio: "Ahmedabad Taskforce: Social Media Head",
+    imageUrl: "/assets/sath_16.jpg",
+    actionFigureUrl: "/action-fig/Sathwikaw.jpeg",
+    specialty: "Social Media Management",
+    category: "Core Leads",
+    socialLinks: [],
+  },
   {
     name: "Shehani Jayalath",
     role: "Grants Specialist",
     bio: "Clinical Research Manager, BlinkLab Ltd.",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/Shehani.jpeg",
     actionFigureUrl: "/action-fig/Shehani action figure.jpg",
     specialty: "Grants & Clinical Research",
     category: "Core Leads",
@@ -283,13 +300,36 @@ const teamMembers: TeamMember[] = [
       },
     ],
   },
+  {
+    name: "Raviraj Jain",
+    role: "Senior Manager at KPMG UK, Chartered Accountant",
+    bio: "Ahmedabad Taskforce: Fundraising Lead",
+    imageUrl: "/assets/Ravi_27.jpeg",
+    specialty: "Finance & Fundraising",
+    category: "Core Leads",
+    socialLinks: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/raviraj-jain-aca-8098ba58/",
+      },
+    ],
+  },
+  {
+    name: "Dr Natnael Dejene",
+    role: "Ahmedabad Taskforce: External Comms",
+    bio: "Ahmedabad Taskforce: External Comms",
+    imageUrl: "/assets/Nate.jpg",
+    specialty: "External Communications",
+    category: "Core Leads",
+    socialLinks: [],
+  },
 
   // Psychology & Clinical Team
   {
     name: "Andy",
     role: "Psych Team",
     bio: "Psych Team Member",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/Andy.jpeg",
     specialty: "Psychology",
     category: "Psychology & Clinical Team",
     socialLinks: [],
@@ -306,6 +346,16 @@ const teamMembers: TeamMember[] = [
 
   // Social Media & Communications
   {
+    name: "Dr Sathwikaw Manikandan",
+    role: "Ahmedabad Taskforce: Social Media Head",
+    bio: "Ahmedabad Taskforce: Social Media Head",
+    imageUrl: "/assets/sath_16.jpg",
+    actionFigureUrl: "/action-fig/Sathwikaw.jpeg",
+    specialty: "Social Media Management",
+    category: "Social Media & Communications",
+    socialLinks: [],
+  },
+  {
     name: "Dr. Achu Bose",
     role: "Social Media Strategist",
     bio: "Social Media Strategist",
@@ -319,7 +369,7 @@ const teamMembers: TeamMember[] = [
     name: "Arya Manoj",
     role: "Social Media Team",
     bio: "Social Media Team Member",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/Genie.jpg",
     specialty: "Social Media",
     category: "Social Media & Communications",
     socialLinks: [],
@@ -338,7 +388,7 @@ const teamMembers: TeamMember[] = [
     name: "Dr. Shamali Pai",
     role: "Social Media Team",
     bio: "Social Media Team Member",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/Shamali.jpeg",
     actionFigureUrl: "/action-fig/Shamali.png",
     specialty: "Social Media",
     category: "Social Media & Communications",
@@ -368,10 +418,27 @@ const teamMembers: TeamMember[] = [
 
   // Operations & Support
   {
+    name: "Dr Raghumoy Ghosh",
+    role: "Operations Lead",
+    bio: "Project Research Scientist, Dept. of Hematology, PGI Chandigarh",
+    imageUrl:
+      "https://media.licdn.com/dms/image/v2/C5103AQHp29dHnaaa7g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1530876982749?e=1757548800&v=beta&t=UrEcgHJW1kG_1rg3UdpIsRmbHhM2jXQrfC5NuEqkrCw",
+    actionFigureUrl: "/action-fig/Raghumoy.png",
+    specialty: "Research & Operations",
+    category: "Operations and Support",
+    socialLinks: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/raghumoyghosh751051a6/",
+      },
+    ],
+  },
+
+  {
     name: "Dr. Sadiya Khan",
     role: "Ops Team",
     bio: "Operations Team Member",
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/assets/Sadiya.jpeg",
     actionFigureUrl: "/action-fig/Sadiya Khan.jpeg",
     specialty: "Operations",
     category: "Operations & Support",
@@ -383,6 +450,16 @@ const teamMembers: TeamMember[] = [
     bio: "Medical Intern, India",
     imageUrl: "/assets/Harshitha_19.jpg",
     actionFigureUrl: "/action-fig/Harshitha.png",
+    specialty: "Operations Support",
+    category: "Operations & Support",
+    socialLinks: [],
+  },
+  {
+    name: "Staffan Stewart",
+    role: "Business Development Specialist",
+    bio: "Staff Nurse, Singapore",
+    imageUrl: "/assets/Staffan.jpg",
+    actionFigureUrl: "/action-fig/Andy.png",
     specialty: "Operations Support",
     category: "Operations & Support",
     socialLinks: [],
@@ -446,7 +523,7 @@ function TeamCard({ member }: { member: TeamMember }) {
           <div className="absolute inset-0 w-full h-full backface-hidden rounded-lg overflow-hidden">
             <div className="relative h-full w-full">
               <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 transition-opacity group-hover:opacity-40"></div>
-              <img
+              <LazyImage
                 src={member.imageUrl || "/placeholder.svg"}
                 alt={member.name}
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -494,7 +571,7 @@ function TeamCard({ member }: { member: TeamMember }) {
 
           {/* Back side - Action Figure */}
           <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-lg overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">
-            <img
+            <LazyImage
               src={member.actionFigureUrl}
               alt={`${member.name} Action Figure`}
               className="h-full w-full object-contain p-4"
@@ -510,7 +587,7 @@ function TeamCard({ member }: { member: TeamMember }) {
     <div className="group relative cursor-pointer">
       <div className="relative h-80 w-full overflow-hidden rounded-lg transition-all duration-300 group-hover:h-96">
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 transition-opacity group-hover:opacity-40"></div>
-        <img
+        <LazyImage
           src={member.imageUrl || "/placeholder.svg"}
           alt={member.name}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -560,10 +637,11 @@ function Team3({
   members = teamMembers,
   className,
 }: TeamProps) {
-  const [activeFilter, setActiveFilter] = useState<string>("Ahd TaskForce");
+  const [activeFilter, setActiveFilter] = useState<string>("Amd TaskForce");
+  const [isLoading, setIsLoading] = useState(true);
 
   const filterCategories = [
-    "Ahd TaskForce",
+    "Amd TaskForce",
     "Leadership",
     "Core Leads",
     "Psychology & Clinical Team",
@@ -576,6 +654,12 @@ function Team3({
   const filteredMembers = members.filter(
     (member) => member.category === activeFilter
   );
+
+  // Simulate loading state
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className={cn("w-full py-16 bg-[#fffbf5]", className)}>
@@ -605,9 +689,14 @@ function Team3({
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
-          {filteredMembers.map((member) => (
-            <TeamCard key={member.name} member={member} />
-          ))}
+          {isLoading
+            ? // Show skeleton loaders while loading
+              Array.from({ length: 8 }).map((_, index) => (
+                <TeamCardSkeleton key={index} />
+              ))
+            : filteredMembers.map((member) => (
+                <TeamCard key={member.name} member={member} />
+              ))}
         </div>
       </div>
     </section>

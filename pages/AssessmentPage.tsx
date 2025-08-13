@@ -4,6 +4,7 @@ import { Progress } from "../components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
 import { Label } from "../components/ui/label";
 import { Alert, AlertDescription } from "../components/ui/alert";
+import { LoadingSpinner } from "../components/ui/loading-spinner";
 import { useState } from "react";
 import { Heart, FileText, BarChart3, AlertTriangle, Users, Brain } from "lucide-react";
 
@@ -13,6 +14,7 @@ export function AssessmentPage() {
   const [who5Answers, setWho5Answers] = useState<Record<number, number>>({});
   const [optionalAnswers, setOptionalAnswers] = useState<Record<number, number>>({});
   const [, setSkipOptional] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // WHO-5 Well-Being Index Questions
   const who5Questions = [
@@ -116,7 +118,12 @@ export function AssessmentPage() {
     setOptionalAnswers(prev => ({ ...prev, [currentQuestion]: value }));
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    setIsSubmitting(true);
+    
+    // Simulate API call delay for better UX
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
     if (currentSection === 'who5') {
       if (currentQuestion < who5Questions.length - 1) {
         setCurrentQuestion(prev => prev + 1);
@@ -131,6 +138,8 @@ export function AssessmentPage() {
         setCurrentSection('results');
       }
     }
+    
+    setIsSubmitting(false);
   };
 
   const handlePrevious = () => {
@@ -431,10 +440,17 @@ export function AssessmentPage() {
                   </Button>
                   <Button
                     onClick={handleNext}
-                    disabled={currentAnswer === undefined}
+                    disabled={currentAnswer === undefined || isSubmitting}
                     className="bg-primary text-primary-foreground hover:bg-primary/90"
                   >
-                    {currentQuestion === who5Questions.length - 1 ? "Continue" : "Next"}
+                    {isSubmitting ? (
+                      <>
+                        <LoadingSpinner size="sm" className="mr-2" />
+                        Processing...
+                      </>
+                    ) : (
+                      currentQuestion === who5Questions.length - 1 ? "Continue" : "Next"
+                    )}
                   </Button>
                 </div>
               </CardContent>
@@ -515,10 +531,17 @@ export function AssessmentPage() {
                   </Button>
                   <Button
                     onClick={handleNext}
-                    disabled={currentAnswer === undefined}
+                    disabled={currentAnswer === undefined || isSubmitting}
                     className="bg-primary text-primary-foreground hover:bg-primary/90"
                   >
-                    {currentQuestion === optionalQuestions.length - 1 ? "Get Results" : "Next"}
+                    {isSubmitting ? (
+                      <>
+                        <LoadingSpinner size="sm" className="mr-2" />
+                        {currentQuestion === optionalQuestions.length - 1 ? "Generating Results..." : "Processing..."}
+                      </>
+                    ) : (
+                      currentQuestion === optionalQuestions.length - 1 ? "Get Results" : "Next"
+                    )}
                   </Button>
                 </div>
               </CardContent>

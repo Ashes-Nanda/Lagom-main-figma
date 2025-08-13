@@ -1,4 +1,12 @@
-import { Home, Heart, BookOpen, Info, ClipboardCheck, Gamepad2, ShoppingBag } from "lucide-react";
+import { 
+  Home, 
+  Heart, 
+  BookOpen, 
+  Info, 
+  ClipboardCheck, 
+  Gamepad2, 
+  ShoppingBag 
+} from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { MobileNavigation } from "./navigation/MobileNavigation";
 import { ExpandableTabs } from "./ui/expandable-tabs";
@@ -68,6 +76,7 @@ export function Header() {
                 src={beingLagomLogo}
                 alt="Being.Lagom"
                 className="h-10 w-auto sm:h-12 transition-transform hover:scale-105"
+                loading="eager"
               />
               <span className="font-bold text-lg hidden lg:block">
                 Being.Lagom

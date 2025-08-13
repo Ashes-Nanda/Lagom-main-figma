@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Badge } from '../ui/badge';
 import { Plus, Edit, Trash2, Linkedin, Instagram, Facebook, Twitter } from 'lucide-react';
+import { LoadingSpinner } from '../ui/loading-spinner';
 
 interface TeamMember {
   id: string;
@@ -68,6 +69,7 @@ export function TeamManagement() {
   const [formData, setFormData] = useState<Partial<TeamMember>>({
     socialLinks: []
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleAddMember = () => {
     setEditingMember(null);
@@ -87,8 +89,12 @@ export function TeamManagement() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
     
     if (editingMember) {
       // Update existing member
@@ -106,6 +112,7 @@ export function TeamManagement() {
       setMembers([...members, newMember]);
     }
     
+    setIsSubmitting(false);
     setIsDialogOpen(false);
     setFormData({ socialLinks: [] });
   };
@@ -354,8 +361,15 @@ export function TeamManagement() {
               <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
                 Cancel
               </Button>
-              <Button type="submit">
-                {editingMember ? 'Update' : 'Add'} Member
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <LoadingSpinner size="sm" className="mr-2" />
+                    {editingMember ? 'Updating...' : 'Adding...'}
+                  </>
+                ) : (
+                  `${editingMember ? 'Update' : 'Add'} Member`
+                )}
               </Button>
             </div>
           </form>
