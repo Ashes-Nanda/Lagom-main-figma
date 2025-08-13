@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { BrainwaveDivider } from "./ui/BrainwaveDivider";
 import { LazyImage } from "./ui/lazy-image";
-import { LoadingState } from "./ui/loading-spinner";
 import { TeamCardSkeleton } from "./ui/skeleton";
 
 interface TeamMember {
@@ -235,7 +234,6 @@ const teamMembers: TeamMember[] = [
     category: "Amd TaskForce",
     socialLinks: [],
   },
-  
 
   // Leadership
   {
@@ -253,7 +251,7 @@ const teamMembers: TeamMember[] = [
       },
     ],
   },
-  
+
   // Core Leads
   {
     name: "Dr Sathwikaw Manikandan",
