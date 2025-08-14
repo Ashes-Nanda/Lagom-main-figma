@@ -23,16 +23,17 @@ const instagramReels = [
   },
   {
     id: 3,
-    embedUrl: "https://www.instagram.com/reel/C0HBg5iIF4e/embed",
-    title: "Wellness Journey",
-    reelId: "C0HBg5iIF4e",
-  },
-  {
-    id: 4,
     embedUrl: "https://www.instagram.com/reel/DJobC2RRLgK/embed",
     title: "Community Stories",
     reelId: "DJobC2RRLgK",
   },
+  {
+    id: 4,
+    embedUrl: "https://www.instagram.com/reel/C0HBg5iIF4e/embed",
+    title: "Wellness Journey",
+    reelId: "C0HBg5iIF4e",
+  },
+
   {
     id: 5,
     embedUrl: "https://www.instagram.com/reel/DLCVnYjRQP8/embed",

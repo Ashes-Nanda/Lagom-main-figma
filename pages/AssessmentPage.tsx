@@ -215,7 +215,7 @@ export function AssessmentPage() {
   // Intro Section
   if (currentSection === 'intro') {
     return (
-      <div className="py-20 bg-[#fffbf5]">
+      <div className="pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-20 bg-[#fffbf5]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -270,7 +270,7 @@ export function AssessmentPage() {
   // Results Section
   if (currentSection === 'results') {
     return (
-      <div className="py-20 bg-[#fffbf5]">
+      <div className="pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-20 bg-[#fffbf5]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -382,7 +382,7 @@ export function AssessmentPage() {
     const currentAnswer = who5Answers[currentQuestion];
 
     return (
-      <div className="py-20 bg-[#fffbf5]">
+      <div className="pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-20 bg-[#fffbf5]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
@@ -467,7 +467,7 @@ export function AssessmentPage() {
     const currentAnswer = optionalAnswers[currentQuestion];
 
     return (
-      <div className="py-20 bg-[#fffbf5]">
+      <div className="pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-20 bg-[#fffbf5]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">

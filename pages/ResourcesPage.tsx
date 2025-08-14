@@ -24,7 +24,7 @@ export function ResourcesPage() {
 
   return (
     <div className="bg-[#fffbf5] min-h-screen">
-      <PageLayout withTopPadding={false} className="bg-transparent">
+      <PageLayout withTopPadding={false} className="bg-transparent pt-24 sm:pt-28 md:pt-32 lg:pt-36">
       <SectionContainer 
         spacing="lg" 
         size="xl"

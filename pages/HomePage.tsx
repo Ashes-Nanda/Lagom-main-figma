@@ -15,7 +15,7 @@ export function HomePage() {
   return (
     <div className="bg-[#fffbf5] min-h-screen">
       {/* <Header /> */}
-      <PageLayout withTopPadding={false} className="bg-transparent">
+      <PageLayout withTopPadding={false} className="bg-transparent pt-24 sm:pt-28 md:pt-32 lg:pt-36">
         {/* Combined Hero and Partnership section with unified background */}
         <div 
           className="relative"

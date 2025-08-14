@@ -1,18 +1,17 @@
-import { 
-  Home, 
-  Heart, 
-  BookOpen, 
-  Info, 
-  ClipboardCheck, 
-  Gamepad2, 
-  ShoppingBag 
+import {
+  Home,
+  Heart,
+  BookOpen,
+  Info,
+  ClipboardCheck,
+  Gamepad2,
+  ShoppingBag,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { MobileNavigation } from "./navigation/MobileNavigation";
 import { ExpandableTabs } from "./ui/expandable-tabs";
 
-
-const beingLagomLogo = "/lagom-logo.png";
+const beingLagomLogo = "/Logo.png";
 
 interface NavigationItem {
   label: string;
@@ -22,7 +21,7 @@ interface NavigationItem {
 
 export function Header() {
   const navigate = useNavigate();
-  
+
   const navItems: NavigationItem[] = [
     { path: "/", label: "Home" },
     { path: "/directory", label: "Connect with Care" },
@@ -54,42 +53,47 @@ export function Header() {
 
   const handleTabChange = (index: number | null) => {
     if (index === null) return;
-    
-    const routes = ["/", "/directory", null, "/resources", "/mindfulness", "/merchandise", null, "/about", "/assessment"];
+
+    const routes = [
+      "/",
+      "/directory",
+      null,
+      "/resources",
+      "/mindfulness",
+      "/merchandise",
+      null,
+      "/about",
+      "/assessment",
+    ];
     const route = routes[index];
-    
+
     if (route) {
       navigate(route);
     }
   };
 
-
-
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#fffbf5] text-black">
+    <div className="absolute top-0 left-0 right-0 z-50 w-full text-black">
       <div className="container mx-auto px-3 sm:px-4 lg:px-6 max-w-7xl">
-        <div className="flex items-center justify-between h-16 gap-4">
+        <div className="flex items-center justify-between h-24 sm:h-28 md:h-32 lg:h-36 gap-4">
           {/* Logo */}
           <div className="flex items-center flex-shrink-0">
-            <Link to="/" className="flex items-center space-x-3">
+            <Link to="/" className="flex items-center">
               <img
                 src={beingLagomLogo}
                 alt="Being.Lagom"
-                className="h-10 w-auto sm:h-12 transition-transform hover:scale-105"
+                className="h-20 w-auto sm:h-24 md:h-28 lg:h-32 transition-transform hover:scale-105"
                 loading="eager"
               />
-              <span className="font-bold text-lg hidden lg:block">
-                Being.Lagom
-              </span>
             </Link>
           </div>
 
           {/* Desktop ExpandableTabs Navigation */}
           <div className="hidden md:flex items-center ml-auto">
-            <ExpandableTabs 
+            <ExpandableTabs
               tabs={expandableTabs}
               onChange={handleTabChange}
-              className="bg-[#fffbf5] border-gray-200"
+              className="bg-transparent border-transparent"
               activeColor="text-primary"
             />
           </div>
@@ -100,6 +104,6 @@ export function Header() {
           </div>
         </div>
       </div>
-    </header>
+    </div>
   );
 }

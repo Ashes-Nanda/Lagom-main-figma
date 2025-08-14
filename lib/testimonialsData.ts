@@ -7,10 +7,10 @@ export interface Testimonial {
 
 export const testimonials: Testimonial[] = [
   {
-    quote: "Being.Lagom provided me with the support I desperately needed during my residency. The peer-to-peer connections and mental health resources helped me navigate the most challenging period of my medical career.",
-    name: "Dr. Sarah Chen",
-    designation: "Internal Medicine Resident",
-    src: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    quote: "Mental health is health, it deserves care before the spiral begins. Being.Lagom’s positivity, and mindfulness remind every healthcare professional that we’re part of a shared journey, and in it, no one ever walks alone.",
+    name: "Mike Chin",
+    designation: "Med Student, Past Overall Chairperson of AMSA International",
+    src: "/testi/Mike.jpg"
   },
   {
     quote: "As a nurse working through the pandemic, I felt completely burned out. Being.Lagom's trauma-informed approach and understanding community made me feel heard and supported in ways I never experienced before.",

@@ -127,7 +127,7 @@ export function GamesPage() {
   }
 
   return (
-    <div className="bg-[#fffbf5] min-h-screen">
+    <div className="bg-[#fffbf5] min-h-screen pt-24 sm:pt-28 md:pt-32 lg:pt-36">
       <section className="relative py-8 lg:py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">

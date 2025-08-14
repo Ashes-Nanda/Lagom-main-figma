@@ -10,7 +10,7 @@ import { Building, Users, Globe, Heart, Handshake, Target, Mail, Phone } from "l
 
 export function PartnershipPage() {
   return (
-    <PageLayout withTopPadding={false} className="pt-8">
+    <PageLayout withTopPadding={false} className="pt-24 sm:pt-28 md:pt-32 lg:pt-36">
       <section id="partnership" className="py-20 bg-[#fffbf5]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">

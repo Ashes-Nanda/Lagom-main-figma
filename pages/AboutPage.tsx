@@ -5,7 +5,7 @@ import { BrainwaveDivider } from "../components/ui/BrainwaveDivider";
 
 export function AboutPage() {
   return (
-    <PageLayout withTopPadding={false} className="pt-20">
+    <PageLayout withTopPadding={false} className="pt-24 sm:pt-28 md:pt-32 lg:pt-36">
       <AboutSection />
       
       {/* Coming Soon Section */}
