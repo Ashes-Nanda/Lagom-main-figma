@@ -1,78 +1,104 @@
-import { useState } from 'react';
-import { Button } from '../ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { 
-  Users, 
-  Calendar, 
-  ShoppingBag, 
-  MessageSquare, 
-  Phone, 
-  MapPin, 
-  FileText, 
+import { useState } from "react";
+import { Button } from "../ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
+import {
+  Users,
+  Calendar,
+  ShoppingBag,
+  MessageSquare,
+  Phone,
+  MapPin,
+  FileText,
   LogOut,
   Settings,
-  BarChart3
-} from 'lucide-react';
+  BarChart3,
+} from "lucide-react";
 
 // Import admin components
-import { TeamManagement } from './TeamManagement';
-import { EventsManagement } from './EventsManagement';
-import { MerchandiseManagement } from './MerchandiseManagement';
-import { FAQManagement } from './FAQManagement';
-import { ContactManagement } from './ContactManagement';
-import { SupportPathsManagement } from './SupportPathsManagement';
-import { FooterManagement } from './FooterManagement';
-import { LegalPagesManagement } from './LegalPagesManagement';
+import { TeamManagement } from "./TeamManagement";
+import { EventsManagement } from "./EventsManagement";
+import { MerchandiseManagement } from "./MerchandiseManagement";
+import { FAQManagement } from "./FAQManagement";
+import { ContactManagement } from "./ContactManagement";
+import { SupportPathsManagement } from "./SupportPathsManagement";
+import { FooterManagement } from "./FooterManagement";
+import { LegalPagesManagement } from "./LegalPagesManagement";
 
 interface AdminDashboardProps {
   onLogout: () => void;
 }
 
-type AdminSection = 
-  | 'overview' 
-  | 'team' 
-  | 'events' 
-  | 'merchandise' 
-  | 'faq' 
-  | 'contact' 
-  | 'support-paths' 
-  | 'footer' 
-  | 'legal';
+type AdminSection =
+  | "overview"
+  | "team"
+  | "events"
+  | "merchandise"
+  | "faq"
+  | "contact"
+  | "support-paths"
+  | "footer"
+  | "legal";
 
 export function AdminDashboard({ onLogout }: AdminDashboardProps) {
-  const [activeSection, setActiveSection] = useState<AdminSection>('overview');
+  const [activeSection, setActiveSection] = useState<AdminSection>("overview");
 
   const menuItems = [
-    { id: 'overview' as AdminSection, label: 'Overview', icon: BarChart3 },
-    { id: 'team' as AdminSection, label: 'Team Management', icon: Users },
-    { id: 'events' as AdminSection, label: 'Events & Programs', icon: Calendar },
-    { id: 'merchandise' as AdminSection, label: 'Merchandise', icon: ShoppingBag },
-    { id: 'faq' as AdminSection, label: 'FAQ Management', icon: MessageSquare },
-    { id: 'contact' as AdminSection, label: 'Contact & Crisis Support', icon: Phone },
-    { id: 'support-paths' as AdminSection, label: 'Support Paths', icon: MapPin },
-    { id: 'footer' as AdminSection, label: 'Footer Management', icon: Settings },
-    { id: 'legal' as AdminSection, label: 'Legal Pages', icon: FileText },
+    { id: "overview" as AdminSection, label: "Overview", icon: BarChart3 },
+    { id: "team" as AdminSection, label: "Team Management", icon: Users },
+    {
+      id: "events" as AdminSection,
+      label: "Events & Programs",
+      icon: Calendar,
+    },
+    {
+      id: "merchandise" as AdminSection,
+      label: "Merchandise",
+      icon: ShoppingBag,
+    },
+    { id: "faq" as AdminSection, label: "FAQ Management", icon: MessageSquare },
+    {
+      id: "contact" as AdminSection,
+      label: "Contact & Crisis Support",
+      icon: Phone,
+    },
+    {
+      id: "support-paths" as AdminSection,
+      label: "Support Paths",
+      icon: MapPin,
+    },
+    {
+      id: "footer" as AdminSection,
+      label: "Footer Management",
+      icon: Settings,
+    },
+    { id: "legal" as AdminSection, label: "Legal Pages", icon: FileText },
   ];
 
   const renderContent = () => {
     switch (activeSection) {
-      case 'overview':
+      case "overview":
         return <AdminOverview />;
-      case 'team':
+      case "team":
         return <TeamManagement />;
-      case 'events':
+      case "events":
         return <EventsManagement />;
-      case 'merchandise':
+      case "merchandise":
         return <MerchandiseManagement />;
-      case 'faq':
+      case "faq":
         return <FAQManagement />;
-      case 'contact':
+      case "contact":
         return <ContactManagement />;
-      case 'support-paths':
+      case "support-paths":
         return <SupportPathsManagement />;
-      case 'footer':
+      case "footer":
         return <FooterManagement />;
-      case 'legal':
+      case "legal":
         return <LegalPagesManagement />;
       default:
         return <AdminOverview />;
@@ -84,14 +110,14 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-semibold text-gray-900">
-                Being.Lagom Admin Panel
-              </h1>
-            </div>
-            <Button 
-              variant="outline" 
+          <div className="flex justify-between items-center h-24 sm:h-28 md:h-32 lg:h-36">
+            <img
+              src="/Logo.png"
+              alt="Being.Lagom Admin"
+              className="h-20 w-auto sm:h-24 md:h-28 lg:h-32"
+            />
+            <Button
+              variant="outline"
               onClick={onLogout}
               className="flex items-center gap-2"
             >
@@ -115,8 +141,8 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                     onClick={() => setActiveSection(item.id)}
                     className={`w-full flex items-center gap-3 px-3 py-2 text-left rounded-lg transition-colors ${
                       activeSection === item.id
-                        ? 'bg-primary text-primary-foreground'
-                        : 'text-gray-700 hover:bg-gray-100'
+                        ? "bg-primary text-primary-foreground"
+                        : "text-gray-700 hover:bg-gray-100"
                     }`}
                   >
                     <Icon size={18} />
@@ -128,9 +154,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
           </aside>
 
           {/* Main Content */}
-          <main className="flex-1">
-            {renderContent()}
-          </main>
+          <main className="flex-1">{renderContent()}</main>
         </div>
       </div>
     </div>
@@ -139,17 +163,22 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
 
 function AdminOverview() {
   const stats = [
-    { label: 'Team Members', value: '25', change: '+2 this month' },
-    { label: 'Upcoming Events', value: '5', change: '3 this week' },
-    { label: 'Merchandise Items', value: '4', change: 'All active' },
-    { label: 'FAQ Items', value: '6', change: 'Recently updated' },
+    { label: "Team Members", value: "25", change: "+2 this month" },
+    { label: "Upcoming Events", value: "5", change: "3 this week" },
+    { label: "Merchandise Items", value: "4", change: "All active" },
+    { label: "FAQ Items", value: "6", change: "Recently updated" },
   ];
 
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Dashboard Overview</h2>
-        <p className="text-gray-600">Welcome to the Being.Lagom admin panel. Manage your content and settings here.</p>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          Dashboard Overview
+        </h2>
+        <p className="text-gray-600">
+          Welcome to the Being.Lagom admin panel. Manage your content and
+          settings here.
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -169,7 +198,9 @@ function AdminOverview() {
       <Card>
         <CardHeader>
           <CardTitle>Quick Actions</CardTitle>
-          <CardDescription>Common tasks you might want to perform</CardDescription>
+          <CardDescription>
+            Common tasks you might want to perform
+          </CardDescription>
         </CardHeader>
         <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Button variant="outline" className="justify-start">

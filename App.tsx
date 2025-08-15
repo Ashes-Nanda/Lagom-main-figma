@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 import { Header } from "./components/Header";
 import { ContactFAB } from "./components/ContactFAB";
@@ -24,35 +25,44 @@ import { TermsOfServicePage } from "./pages/TermsOfServicePage";
 import { CookiePolicyPage } from "./pages/CookiePolicyPage";
 import { AdminPage } from "./pages/AdminPage";
 
+function AppContent() {
+  const location = useLocation();
+  const isAdminPage = location.pathname === "/admin";
+
+  return (
+    <div className="min-h-screen bg-background">
+      {!isAdminPage && <Header />}
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/directory" element={<DirectoryPage />} />
+          <Route path="/resources" element={<ResourcesPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/assessment" element={<AssessmentPage />} />
+          <Route path="/mindfulness" element={<GamesPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/partnership" element={<PartnershipPage />} />
+          <Route path="/merchandise" element={<MerchandisePage />} />
+          <Route path="/compliance" element={<CompliancePage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+          <Route path="/cookie-policy" element={<CookiePolicyPage />} />
+          <Route path="/admin" element={<AdminPage />} />
+          {/* Catch-all route for any unmatched URLs - redirects to home */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+      {!isAdminPage && <ContactFAB />}
+      {!isAdminPage && <ChatbotFAB />}
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-background">
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/directory" element={<DirectoryPage />} />
-            <Route path="/resources" element={<ResourcesPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/assessment" element={<AssessmentPage />} />
-            <Route path="/mindfulness" element={<GamesPage />} />
-            <Route path="/events" element={<EventsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/partnership" element={<PartnershipPage />} />
-            <Route path="/merchandise" element={<MerchandisePage />} />
-            <Route path="/compliance" element={<CompliancePage />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-            <Route path="/cookie-policy" element={<CookiePolicyPage />} />
-            <Route path="/admin" element={<AdminPage />} />
-            {/* Catch-all route for any unmatched URLs - redirects to home */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
-        <ContactFAB />
-        <ChatbotFAB />
-      </div>
+      <AppContent />
     </Router>
   );
 }

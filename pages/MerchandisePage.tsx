@@ -1,10 +1,4 @@
-import {
-  Card,
-  
-  CardDescription,
-  
-  CardTitle,
-} from "../components/ui/card";
+import { Card, CardDescription, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import {
@@ -20,13 +14,13 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  
 } from "../components/ui/dialog";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 // No additional icons needed
 import { useState } from "react";
 import { BeingLagomFooter } from "../components/ui/footer";
+import { merchandiseInterestStorage } from "../lib/merchandiseInterestData";
 
 interface FormData {
   product: string;
@@ -34,17 +28,27 @@ interface FormData {
   email: string;
   city: string;
   state: string;
+  selectedColor?: string;
+  selectedSize?: string;
 }
 
 export function MerchandisePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [selectedColors, setSelectedColors] = useState<{
+    [key: number]: string;
+  }>({});
+  const [selectedSizes, setSelectedSizes] = useState<{ [key: number]: string }>(
+    {}
+  );
   const [formData, setFormData] = useState<FormData>({
     product: "",
     number: "",
     email: "",
     city: "",
     state: "",
+    selectedColor: "",
+    selectedSize: "",
   });
 
   const products = [
@@ -90,34 +94,56 @@ export function MerchandisePage() {
     },
   ];
 
-  const handleIndicateInterest = (productName: string) => {
-    setFormData((prev) => ({ ...prev, product: productName }));
+  const handleIndicateInterest = (productName: string, productId: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      product: productName,
+      selectedColor: selectedColors[productId] || "",
+      selectedSize: selectedSizes[productId] || "",
+    }));
     setIsModalOpen(true);
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Here you would typically send the data to your backend
-    console.log("Form submitted:", formData);
+    try {
+      // Save to local storage
+      merchandiseInterestStorage.add({
+        product: formData.product,
+        email: formData.email,
+        phone: formData.number,
+        city: formData.city,
+        state: formData.state,
+        selectedColor: formData.selectedColor,
+        selectedSize: formData.selectedSize,
+      });
 
-    // Close modal and show toast
-    setIsModalOpen(false);
-    setShowToast(true);
+      console.log("Form submitted and saved:", formData);
 
-    // Reset form
-    setFormData({
-      product: "",
-      number: "",
-      email: "",
-      city: "",
-      state: "",
-    });
+      // Close modal and show toast
+      setIsModalOpen(false);
+      setShowToast(true);
 
-    // Hide toast after 3 seconds
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
+      // Reset form
+      setFormData({
+        product: "",
+        number: "",
+        email: "",
+        city: "",
+        state: "",
+        selectedColor: "",
+        selectedSize: "",
+      });
+
+      // Hide toast after 3 seconds
+      setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Error saving form data:", error);
+      alert("There was an error saving your information. Please try again.");
+    }
   };
 
   const handleInputChange = (field: keyof FormData, value: string) => {
@@ -177,16 +203,21 @@ export function MerchandisePage() {
                         {product.colors && (
                           <div className="min-w-[140px]">
                             <Label className="text-sm font-medium">Color</Label>
-                            <Select>
+                            <Select
+                              value={selectedColors[product.id] || ""}
+                              onValueChange={(value) =>
+                                setSelectedColors((prev) => ({
+                                  ...prev,
+                                  [product.id]: value,
+                                }))
+                              }
+                            >
                               <SelectTrigger className="w-full mt-1">
                                 <SelectValue placeholder="Select color" />
                               </SelectTrigger>
                               <SelectContent>
                                 {product.colors.map((color) => (
-                                  <SelectItem
-                                    key={color}
-                                    value={color.toLowerCase()}
-                                  >
+                                  <SelectItem key={color} value={color}>
                                     {color}
                                   </SelectItem>
                                 ))}
@@ -198,16 +229,21 @@ export function MerchandisePage() {
                         {product.sizes && (
                           <div className="min-w-[140px]">
                             <Label className="text-sm font-medium">Size</Label>
-                            <Select>
+                            <Select
+                              value={selectedSizes[product.id] || ""}
+                              onValueChange={(value) =>
+                                setSelectedSizes((prev) => ({
+                                  ...prev,
+                                  [product.id]: value,
+                                }))
+                              }
+                            >
                               <SelectTrigger className="w-full mt-1">
                                 <SelectValue placeholder="Select size" />
                               </SelectTrigger>
                               <SelectContent>
                                 {product.sizes.map((size) => (
-                                  <SelectItem
-                                    key={size}
-                                    value={size.toLowerCase()}
-                                  >
+                                  <SelectItem key={size} value={size}>
                                     {size}
                                   </SelectItem>
                                 ))}
@@ -218,7 +254,9 @@ export function MerchandisePage() {
 
                         <div className="flex flex-col justify-end h-full">
                           <Button
-                            onClick={() => handleIndicateInterest(product.name)}
+                            onClick={() =>
+                              handleIndicateInterest(product.name, product.id)
+                            }
                             className="bg-accent text-accent-foreground hover:bg-accent/90 min-w-[140px]"
                           >
                             Indicate Interest
@@ -257,6 +295,28 @@ export function MerchandisePage() {
                 className="bg-gray-50"
               />
             </div>
+            {formData.selectedColor && (
+              <div>
+                <Label htmlFor="selectedColor">Selected Color</Label>
+                <Input
+                  id="selectedColor"
+                  value={formData.selectedColor}
+                  readOnly
+                  className="bg-gray-50"
+                />
+              </div>
+            )}
+            {formData.selectedSize && (
+              <div>
+                <Label htmlFor="selectedSize">Selected Size</Label>
+                <Input
+                  id="selectedSize"
+                  value={formData.selectedSize}
+                  readOnly
+                  className="bg-gray-50"
+                />
+              </div>
+            )}
             <div>
               <Label htmlFor="number">Phone Number</Label>
               <Input

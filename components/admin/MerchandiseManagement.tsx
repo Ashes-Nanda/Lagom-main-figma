@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
@@ -8,7 +8,8 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Badge } from '../ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import { Plus, Edit, Trash2, Download, Mail, Phone } from 'lucide-react';
+import { merchandiseInterestStorage, type MerchandiseInterest } from '../../lib/merchandiseInterestData';
 
 interface Product {
   id: string;
@@ -23,17 +24,7 @@ interface Product {
   featured: boolean;
 }
 
-interface InterestSubmission {
-  id: string;
-  productName: string;
-  customerName: string;
-  email: string;
-  phone: string;
-  city: string;
-  state: string;
-  submittedAt: string;
-  status: 'New' | 'Contacted' | 'Converted' | 'Not Interested';
-}
+// Using the MerchandiseInterest interface from the data file
 
 const productCategories = [
   'Apparel',
@@ -69,23 +60,26 @@ export function MerchandiseManagement() {
     }
   ]);
 
-  const [interestSubmissions, setInterestSubmissions] = useState<InterestSubmission[]>([
-    {
-      id: '1',
-      productName: 'Being.Lagom Classic T-Shirt',
-      customerName: 'Dr. Sarah Johnson',
-      email: 'sarah.johnson@email.com',
-      phone: '+1-555-0123',
-      city: 'New York',
-      state: 'NY',
-      submittedAt: '2025-01-10T14:30:00Z',
-      status: 'New'
-    }
-  ]);
+  const [interestSubmissions, setInterestSubmissions] = useState<MerchandiseInterest[]>([]);
 
   const [isProductDialogOpen, setIsProductDialogOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [productFormData, setProductFormData] = useState<Partial<Product>>({});
+
+  // Load interest submissions from localStorage
+  useEffect(() => {
+    const loadSubmissions = () => {
+      const submissions = merchandiseInterestStorage.getAll();
+      setInterestSubmissions(submissions);
+    };
+
+    loadSubmissions();
+    
+    // Set up interval to refresh data every 30 seconds
+    const interval = setInterval(loadSubmissions, 30000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   const handleAddProduct = () => {
     setEditingProduct(null);
@@ -126,10 +120,53 @@ export function MerchandiseManagement() {
     setProductFormData({});
   };
 
-  const updateSubmissionStatus = (id: string, status: InterestSubmission['status']) => {
-    setInterestSubmissions(submissions =>
-      submissions.map(s => s.id === id ? { ...s, status } : s)
-    );
+  const updateSubmissionStatus = (id: string, status: MerchandiseInterest['status']) => {
+    try {
+      merchandiseInterestStorage.updateStatus(id, status);
+      setInterestSubmissions(submissions =>
+        submissions.map(s => s.id === id ? { ...s, status } : s)
+      );
+    } catch (error) {
+      console.error('Error updating submission status:', error);
+      alert('Error updating status. Please try again.');
+    }
+  };
+
+  const deleteSubmission = (id: string) => {
+    if (confirm('Are you sure you want to delete this submission?')) {
+      try {
+        merchandiseInterestStorage.delete(id);
+        setInterestSubmissions(submissions => submissions.filter(s => s.id !== id));
+      } catch (error) {
+        console.error('Error deleting submission:', error);
+        alert('Error deleting submission. Please try again.');
+      }
+    }
+  };
+
+  const exportSubmissions = () => {
+    const csvContent = [
+      ['Product', 'Email', 'Phone', 'City', 'State', 'Color', 'Size', 'Status', 'Submitted At'],
+      ...interestSubmissions.map(sub => [
+        sub.product,
+        sub.email,
+        sub.phone,
+        sub.city,
+        sub.state,
+        sub.selectedColor || '',
+        sub.selectedSize || '',
+        sub.status,
+        new Date(sub.submittedAt).toLocaleString()
+      ])
+    ].map(row => row.join(',')).join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `merchandise-interest-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
   };
 
   const getStatusColor = (status: string) => {
@@ -233,60 +270,109 @@ export function MerchandiseManagement() {
 
         <TabsContent value="submissions" className="space-y-4">
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-semibold">Customer Interest Submissions</h3>
-            <div className="text-sm text-gray-600">
-              {interestSubmissions.length} total submissions
+            <div>
+              <h3 className="text-lg font-semibold">Customer Interest Submissions</h3>
+              <div className="text-sm text-gray-600">
+                {interestSubmissions.length} total submissions
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={exportSubmissions} className="flex items-center gap-2">
+                <Download className="h-4 w-4" />
+                Export CSV
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => setInterestSubmissions(merchandiseInterestStorage.getAll())}
+                className="flex items-center gap-2"
+              >
+                Refresh
+              </Button>
             </div>
           </div>
 
           <div className="space-y-4">
-            {interestSubmissions.map((submission) => (
-              <Card key={submission.id}>
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-start mb-3">
-                    <div>
-                      <h4 className="font-semibold">{submission.customerName}</h4>
-                      <p className="text-sm text-gray-600">Interested in: {submission.productName}</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Badge className={`text-xs ${getStatusColor(submission.status)}`}>
-                        {submission.status}
-                      </Badge>
-                      <Select
-                        value={submission.status}
-                        onValueChange={(value) => updateSubmissionStatus(submission.id, value as InterestSubmission['status'])}
-                      >
-                        <SelectTrigger className="w-32">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="New">New</SelectItem>
-                          <SelectItem value="Contacted">Contacted</SelectItem>
-                          <SelectItem value="Converted">Converted</SelectItem>
-                          <SelectItem value="Not Interested">Not Interested</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                    <div>
-                      <span className="font-medium">Email:</span> {submission.email}
-                    </div>
-                    <div>
-                      <span className="font-medium">Phone:</span> {submission.phone}
-                    </div>
-                    <div>
-                      <span className="font-medium">Location:</span> {submission.city}, {submission.state}
-                    </div>
-                  </div>
-                  
-                  <div className="mt-2 text-xs text-gray-500">
-                    Submitted: {new Date(submission.submittedAt).toLocaleString()}
-                  </div>
+            {interestSubmissions.length === 0 ? (
+              <Card>
+                <CardContent className="p-8 text-center">
+                  <p className="text-gray-500">No interest submissions yet.</p>
+                  <p className="text-sm text-gray-400 mt-1">
+                    Submissions will appear here when customers indicate interest in merchandise.
+                  </p>
                 </CardContent>
               </Card>
-            ))}
+            ) : (
+              interestSubmissions.map((submission) => (
+                <Card key={submission.id}>
+                  <CardContent className="p-4">
+                    <div className="flex justify-between items-start mb-3">
+                      <div>
+                        <h4 className="font-semibold">{submission.email}</h4>
+                        <p className="text-sm text-gray-600">Interested in: {submission.product}</p>
+                        {(submission.selectedColor || submission.selectedSize) && (
+                          <div className="text-xs text-gray-500 mt-1">
+                            {submission.selectedColor && `Color: ${submission.selectedColor}`}
+                            {submission.selectedColor && submission.selectedSize && ' • '}
+                            {submission.selectedSize && `Size: ${submission.selectedSize}`}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Badge className={`text-xs ${getStatusColor(submission.status)}`}>
+                          {submission.status}
+                        </Badge>
+                        <Select
+                          value={submission.status}
+                          onValueChange={(value) => updateSubmissionStatus(submission.id, value as MerchandiseInterest['status'])}
+                        >
+                          <SelectTrigger className="w-32">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="New">New</SelectItem>
+                            <SelectItem value="Contacted">Contacted</SelectItem>
+                            <SelectItem value="Converted">Converted</SelectItem>
+                            <SelectItem value="Not Interested">Not Interested</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => deleteSubmission(submission.id)}
+                          className="text-red-600 hover:text-red-700"
+                        >
+                          <Trash2 className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                      <div className="flex items-center gap-1">
+                        <Mail className="h-3 w-3 text-gray-400" />
+                        <span className="font-medium">Email:</span> 
+                        <a href={`mailto:${submission.email}`} className="text-blue-600 hover:underline">
+                          {submission.email}
+                        </a>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Phone className="h-3 w-3 text-gray-400" />
+                        <span className="font-medium">Phone:</span> 
+                        <a href={`tel:${submission.phone}`} className="text-blue-600 hover:underline">
+                          {submission.phone}
+                        </a>
+                      </div>
+                      <div>
+                        <span className="font-medium">Location:</span> {submission.city}, {submission.state}
+                      </div>
+                    </div>
+                    
+                    <div className="mt-2 text-xs text-gray-500">
+                      Submitted: {new Date(submission.submittedAt).toLocaleString()}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            )}
           </div>
         </TabsContent>
       </Tabs>

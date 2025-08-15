@@ -22,7 +22,7 @@ export const testimonials: Testimonial[] = [
     quote: "The assessment tools and personalized support pathways helped me identify my burnout patterns early. Being.Lagom doesn't just treat symptoms - they address the root causes of healthcare worker distress.",
     name: "Arya Manoj",
     designation: "Emergency Medicine Physician",
-    src: "/assets/Genie.jpg",
+    src: "/testi/Genie.jpg",
   },
   {
     quote: "Being.Lagom created a safe space where I could be vulnerable about my struggles without fear of judgment. Their peer support network reminded me that I'm not alone in this journey.",
