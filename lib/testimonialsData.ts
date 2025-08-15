@@ -13,16 +13,16 @@ export const testimonials: Testimonial[] = [
     src: "/testi/Mike.jpg"
   },
   {
-    quote: "As a nurse working through the pandemic, I felt completely burned out. Being.Lagom's trauma-informed approach and understanding community made me feel heard and supported in ways I never experienced before.",
-    name: "Maria Rodriguez",
-    designation: "ICU Nurse",
+    quote: "Being.Lagom has given me more than just wellness tools, it has given me a warm, supportive community. Connecting with others who understand our challenges makes every day brighter and reminds me we’re never in this alone.",
+    name: "Dr Mario Alberto",
+    designation: "PG Resident Doctor",
     src: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     quote: "The assessment tools and personalized support pathways helped me identify my burnout patterns early. Being.Lagom doesn't just treat symptoms - they address the root causes of healthcare worker distress.",
-    name: "Dr. James Mitchell",
+    name: "Arya Manoj",
     designation: "Emergency Medicine Physician",
-    src: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "/assets/Genie.jpg",
   },
   {
     quote: "Being.Lagom created a safe space where I could be vulnerable about my struggles without fear of judgment. Their peer support network reminded me that I'm not alone in this journey.",
