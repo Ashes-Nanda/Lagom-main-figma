@@ -25,15 +25,15 @@ export const testimonials: Testimonial[] = [
     src: "/testi/Genie.jpg",
   },
   {
-    quote: "Being.Lagom created a safe space where I could be vulnerable about my struggles without fear of judgment. Their peer support network reminded me that I'm not alone in this journey.",
-    name: "Dr. Priya Patel",
-    designation: "Pediatric Surgeon",
-    src: "https://images.unsplash.com/photo-1594824475317-8da5b113e878?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    quote: "I had to leave practising medicine because of how badly my mental health was affected and more because of how there was no support offered at that time. With being.lagoom I have a platform to connect with other fellow doctors from different stages in life , to upbring their spirit and to learn more from their experience.",
+    name: "Dr. Aswathy Bose",
+    designation: "Healthcare-worker, UHNM, NHS",
+    src: "/testi/Bose.jpeg",
   },
   {
-    quote: "The wellness resources and mindfulness tools from Being.Lagom have become an essential part of my daily routine. They understand the unique pressures we face as healthcare workers.",
-    name: "Alex Thompson",
-    designation: "Mental Health Counselor",
-    src: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    quote: "Being a spectator to Being.lagom I am awestruck to see how the wonderful concoction of humans that run it are dedicated to safeguarding the well-being of health workers. In an era where the health of health workers are neglected and taken for granted, they offer light to them. They give their utmost support to uplift the mental well being of health workers. I admire the work they do.",
+    name: "Dr. Shiladitya Mandal",
+    designation: "Kolkata, India",
+    src: "/testi/Mandal.jpeg",
   },
 ];
