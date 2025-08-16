@@ -258,12 +258,23 @@ export function SanitySimulator({ onBack }: SanitySimulatorProps) {
   if (gameComplete) {
     return (
       <section className="relative py-20 lg:py-32 bg-gradient-to-br from-background via-secondary/10 to-accent/10">
+        {/* Back Button - Positioned below logo area */}
+        <div className="absolute top-24 left-8 z-50">
+          <Button
+            onClick={() => {
+              console.log("Back button clicked in SanitySimulator");
+              onBack();
+            }}
+            variant="outline"
+            className="bg-white/90 backdrop-blur-sm hover:bg-[#0e184e] hover:text-white shadow-lg transition-colors duration-200"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Games
+          </Button>
+        </div>
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <Button onClick={onBack} variant="outline" className="mb-8">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Games
-            </Button>
 
             <Card className="text-center bg-white">
               <CardHeader className="pb-8">
@@ -302,14 +313,25 @@ export function SanitySimulator({ onBack }: SanitySimulatorProps) {
 
   return (
     <section className="relative py-20 lg:py-32 bg-gradient-to-br from-background via-secondary/10 to-accent/10">
+      {/* Back Button - Positioned below logo area */}
+      <div className="absolute top-24 left-8 z-50">
+        <Button
+          onClick={() => {
+            console.log("Back button clicked in SanitySimulator main");
+            onBack();
+          }}
+          variant="outline"
+          className="bg-white/90 backdrop-blur-sm hover:bg-[#0e184e] hover:text-white shadow-lg transition-colors duration-200"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Games
+        </Button>
+      </div>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
           <div className="flex justify-between items-center mb-8">
-            <Button onClick={onBack} variant="outline">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Games
-            </Button>
             <div className="text-right">
               <div className="text-sm text-muted-foreground mb-2">
                 Scenario {currentScenario + 1} of {scenarios.length}

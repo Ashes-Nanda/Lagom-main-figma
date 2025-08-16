@@ -716,6 +716,31 @@ export function AboutSection() {
               </em>
             </p>
           </div>
+          {/* Healing Quote */}
+          <div className="mb-16">
+            <div className="text-center max-w-4xl mx-auto">
+              <div className="relative">
+                {/* Quote marks */}
+                <div className="text-6xl text-primary/20 font-serif absolute -top-4 -left-4">
+                  "
+                </div>
+                <div className="text-6xl text-primary/20 font-serif absolute -bottom-8 -right-4">
+                  "
+                </div>
+
+                <blockquote className="relative z-10 px-8 py-6">
+                  <p className="text-2xl lg:text-3xl text-foreground font-light leading-relaxed mb-4">
+                    When we heal the healers, we heal the system
+                  </p>
+                  <hr className="w-24 h-0.5 bg-primary mx-auto my-6" />
+                  <p className="text-lg text-muted-foreground italic">
+                    Healthcare transformation begins with caring for those who
+                    care for others
+                  </p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
 
           {/* Video Placeholder */}
           <div className="mb-16">
@@ -750,51 +775,9 @@ export function AboutSection() {
             </Card>
           </div>
 
-          {/* Healing Quote */}
-          <div className="mb-16">
-            <div className="text-center max-w-4xl mx-auto">
-              <div className="relative">
-                {/* Quote marks */}
-                <div className="text-6xl text-primary/20 font-serif absolute -top-4 -left-4">
-                  "
-                </div>
-                <div className="text-6xl text-primary/20 font-serif absolute -bottom-8 -right-4">
-                  "
-                </div>
+          
 
-                <blockquote className="relative z-10 px-8 py-6">
-                  <p className="text-2xl lg:text-3xl text-foreground font-light leading-relaxed mb-4">
-                    When we heal the healers, we heal the system
-                  </p>
-                  <hr className="w-24 h-0.5 bg-primary mx-auto my-6" />
-                  <p className="text-lg text-muted-foreground italic">
-                    Healthcare transformation begins with caring for those who
-                    care for others
-                  </p>
-                </blockquote>
-              </div>
-            </div>
-          </div>
-
-          {/* Our Purpose */}
-          <div className="mb-16">
-            <Card>
-              <CardHeader className="text-center pb-2">
-                <CardTitle className="text-2xl text-primary">
-                  Our Purpose
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-2 px-8 pb-8">
-                <div className="max-w-4xl mx-auto text-center space-y-4">
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    Being.Lagom exists to create safe trauma-informed spaces, by
-                    HCPs for HCPs, to seek mental health support, build
-                    institutional resilience, and transform care culture.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          
 
           {/* What "Lagom" Means - Quote Format */}
           <div className="mb-16">

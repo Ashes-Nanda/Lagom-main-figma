@@ -188,12 +188,23 @@ export function BreathingGarden({ onBack }: BreathingGardenProps) {
   if (!selectedTechnique) {
     return (
       <section className="relative py-20 lg:py-32 bg-gradient-to-br from-background via-secondary/10 to-accent/10">
+        {/* Back Button - Positioned below logo area */}
+        <div className="absolute top-24 left-8 z-50">
+          <Button
+            onClick={() => {
+              console.log("Back button clicked in BreathingGarden");
+              onBack();
+            }}
+            variant="outline"
+            className="bg-white/90 backdrop-blur-sm hover:bg-[#0e184e] hover:text-white shadow-lg transition-colors duration-200"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Games
+          </Button>
+        </div>
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <Button onClick={onBack} variant="outline" className="mb-8">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Games
-            </Button>
 
             <div className="text-center mb-16">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary mb-6">
@@ -304,6 +315,21 @@ export function BreathingGarden({ onBack }: BreathingGardenProps) {
     const Icon = selectedTechnique.icon;
     return (
       <section className="relative py-20 lg:py-32 bg-gradient-to-br from-background via-secondary/10 to-accent/10">
+        {/* Back Button - Positioned below logo area */}
+        <div className="absolute top-24 left-8 z-50">
+          <Button
+            onClick={() => {
+              console.log("Back button clicked in BreathingGarden complete");
+              onBack();
+            }}
+            variant="outline"
+            className="bg-white/90 backdrop-blur-sm hover:bg-[#0e184e] hover:text-white shadow-lg transition-colors duration-200"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Games
+          </Button>
+        </div>
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto flex items-center justify-center min-h-[60vh]">
             <Card className="text-center bg-white">
@@ -339,14 +365,25 @@ export function BreathingGarden({ onBack }: BreathingGardenProps) {
 
   return (
     <section className="relative py-20 lg:py-32 bg-gradient-to-br from-background via-secondary/10 to-accent/10">
+      {/* Back Button - Positioned below logo area */}
+      <div className="absolute top-24 left-8 z-50">
+        <Button
+          onClick={() => {
+            console.log("Back button clicked in BreathingGarden main");
+            onBack();
+          }}
+          variant="outline"
+          className="bg-white/90 backdrop-blur-sm hover:bg-[#0e184e] hover:text-white shadow-lg transition-colors duration-200"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Games
+        </Button>
+      </div>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="flex justify-between items-center mb-8">
-            <Button onClick={backToTechniques} variant="outline">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Techniques
-            </Button>
             <div className="text-right">
               <div className="text-sm text-muted-foreground mb-2">
                 Cycle {currentCycle} of {selectedTechnique.cycles}

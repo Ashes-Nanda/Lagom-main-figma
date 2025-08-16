@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "./button";
 import { Link } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "./card";
 
 // Prefetch AboutPage on hover/focus
 const prefetchAboutPage = () => import("../../pages/AboutPage");
@@ -40,7 +41,7 @@ function AnimatedHero() {
   return (
     <div className="w-full">
       <div className="container mx-auto">
-        <div className="flex gap-4 py-8 lg:py-16 items-center justify-center flex-col">
+        <div className="flex gap-4 py-4 lg:py-8 items-center justify-center flex-col">
           {/* Animated Headline */}
           <div className="flex flex-col">
             <div className="text-4xl md:text-6xl max-w-4xl tracking-tighter text-center font-regular">
@@ -74,34 +75,51 @@ function AnimatedHero() {
             </div>
 
             {/* Supporting Subheadline */}
-            <p className="text-base md:text-lg leading-relaxed tracking-tight text-muted-foreground max-w-3xl text-center -mt-2">
+            <p className="text-base md:text-lg leading-relaxed tracking-tight text-muted-foreground max-w-3xl text-center -mt-2 mx-auto">
               By Healthcare Professionals, For Healthcare Professionals
             </p>
+            {/* Call-to-Action Button */}
+            <div className="flex justify-center items-center mt-6">
+              <Button
+                size="lg"
+                className="bg-[#0BB8C6] text-white hover:bg-[#0aa0ad] px-8 py-3 text-base font-semibold w-full sm:w-auto min-w-[180px] shadow-lg border-none"
+                asChild
+              >
+                <Link
+                  to="/about"
+                  onMouseEnter={prefetchAboutPage}
+                  onFocus={prefetchAboutPage}
+                >
+                  Why We Exist?
+                </Link>
+              </Button>
+            </div>
+
+            {/* Our Purpose */}
+            <div className="mt-8 w-full max-w-4xl mx-auto">
+              <Card className="bg-white/60 backdrop-blur-sm border-white/20 shadow-sm">
+                <CardHeader className="text-center pb-3 pt-4">
+                  <CardTitle className="text-2xl text-primary">
+                    Our Purpose
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0 px-6 pb-6">
+                  <p className="text-lg text-muted-foreground leading-relaxed text-center">
+                    Being.Lagom exists to create safe trauma-informed spaces, by
+                    HCPs for HCPs, to seek mental health support, build
+                    institutional resilience, and transform care culture.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
 
             {/* Description */}
-            <p className="text-sm md:text-base leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center -mt-1">
+            <p className="text-sm md:text-base leading-relaxed tracking-tight text-muted-foreground max-w-4xl text-center mt-6 mx-auto">
               We cannot undo the trauma. But we can choose to become part of the
               healing. Not by erasing the pain but by bearing witness to
               it,tending to its roots,and building systems where it doesn't have
               to repeat.
             </p>
-          </div>
-
-          {/* Call-to-Action Button */}
-          <div className="flex justify-center items-center mt-2">
-            <Button
-              size="lg"
-              className="bg-[#0BB8C6] text-white hover:bg-[#0aa0ad] px-8 py-3 text-base font-semibold w-full sm:w-auto min-w-[180px] shadow-lg border-none"
-              asChild
-            >
-              <Link
-                to="/about"
-                onMouseEnter={prefetchAboutPage}
-                onFocus={prefetchAboutPage}
-              >
-                Why We Exist?
-              </Link>
-            </Button>
           </div>
         </div>
       </div>

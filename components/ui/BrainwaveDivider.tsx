@@ -3,7 +3,7 @@ interface BrainwaveDividerProps {
 }
 
 export function BrainwaveDivider({
-  className = "my-12",
+  className = "my-6",
 }: BrainwaveDividerProps) {
   return (
     <div className={`flex items-center justify-center ${className}`}>

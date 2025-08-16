@@ -222,20 +222,24 @@ export function LoveShower({ onBack }: LoveShowerProps) {
       {floatingElements.map(renderElement)}
       {particles.map(renderElement)}
 
+      {/* Back Button - Positioned below logo area */}
+      <div className="absolute top-24 left-8 z-50">
+        <Button
+          onClick={() => {
+            console.log("Back button clicked in LoveShower");
+            onBack();
+          }}
+          variant="outline"
+          className="bg-white/90 backdrop-blur-sm hover:bg-[#0e184e] hover:text-white shadow-lg transition-colors duration-200"
+          aria-label="Back to games"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Games
+        </Button>
+      </div>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="py-8">
-            <Button
-              onClick={onBack}
-              variant="outline"
-              className="mb-4"
-              aria-label="Back to games"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Games
-            </Button>
-          </div>
 
           {/* Main content */}
           <div className="flex flex-col items-center justify-center min-h-[80vh] py-12">

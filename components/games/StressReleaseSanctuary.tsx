@@ -157,10 +157,17 @@ export function StressReleaseSanctuary({ onBack }: StressReleaseSanctuaryProps) 
   }, [comboTimer]);
 
   return (
-    <div className="min-h-screen bg-[#fffbf5] p-4">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-8">
-        <Button onClick={onBack} variant="outline">
+    <div className="min-h-screen bg-[#fffbf5] p-4 relative">
+      {/* Back Button - Positioned below logo area */}
+      <div className="absolute top-24 left-8 z-50">
+        <Button
+          onClick={() => {
+            console.log("Back button clicked in StressReleaseSanctuary");
+            onBack();
+          }}
+          variant="outline"
+          className="bg-white/90 backdrop-blur-sm hover:bg-[#0e184e] hover:text-white shadow-lg transition-colors duration-200"
+        >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Lagom Lab
         </Button>

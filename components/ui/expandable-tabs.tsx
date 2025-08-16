@@ -33,10 +33,10 @@ const buttonVariants = {
     paddingLeft: ".5rem",
     paddingRight: ".5rem",
   },
-  animate: (isSelected: boolean) => ({
-    gap: isSelected ? ".5rem" : 0,
-    paddingLeft: isSelected ? "1rem" : ".5rem",
-    paddingRight: isSelected ? "1rem" : ".5rem",
+  animate: (isExpanded: boolean) => ({
+    gap: isExpanded ? ".5rem" : 0,
+    paddingLeft: isExpanded ? "1rem" : ".5rem",
+    paddingRight: isExpanded ? "1rem" : ".5rem",
   }),
 };
 
@@ -46,7 +46,12 @@ const spanVariants = {
   exit: { width: 0, opacity: 0 },
 };
 
-const transition = { delay: 0.1, type: "spring" as const, bounce: 0, duration: 0.6 };
+const transition = {
+  delay: 0.1,
+  type: "spring" as const,
+  bounce: 0,
+  duration: 0.6,
+};
 
 export function ExpandableTabs({
   tabs,
@@ -55,16 +60,52 @@ export function ExpandableTabs({
   onChange,
 }: ExpandableTabsProps) {
   const [selected, setSelected] = React.useState<number | null>(null);
+  const [hoveredTab, setHoveredTab] = React.useState<number | null>(null);
   const outsideClickRef = React.useRef(null);
+  const hoverTimeoutRef = React.useRef<number | null>(null);
 
   useOnClickOutside(outsideClickRef, () => {
     setSelected(null);
+    setHoveredTab(null);
     onChange?.(null);
   });
+
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleSelect = (index: number) => {
     setSelected(index);
     onChange?.(index);
+  };
+
+  const handleMouseEnter = (index: number) => {
+    // Clear any existing timeout
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+
+    // Set hover with a small delay to reduce sensitivity
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredTab(index);
+    }, 150); // 150ms delay
+  };
+
+  const handleMouseLeave = () => {
+    // Clear any pending hover timeout
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+
+    // Add a small delay before removing hover to prevent flickering
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredTab(null);
+    }, 100); // 100ms delay
   };
 
   const Separator = () => (
@@ -86,14 +127,18 @@ export function ExpandableTabs({
 
         const Icon = tab.icon;
 
+        const isExpanded = hoveredTab === index || selected === index;
+
         return (
           <motion.button
             key={tab.title}
             variants={buttonVariants}
             initial={false}
             animate="animate"
-            custom={selected === index}
+            custom={isExpanded}
             onClick={() => handleSelect(index)}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={handleMouseLeave}
             transition={transition}
             className={cn(
               "relative flex items-center rounded-xl px-4 py-2 text-sm font-medium transition-colors duration-300",
@@ -104,7 +149,7 @@ export function ExpandableTabs({
           >
             <Icon size={20} />
             <AnimatePresence initial={false}>
-              {selected === index && (
+              {isExpanded && (
                 <motion.span
                   variants={spanVariants}
                   initial="initial"

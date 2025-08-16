@@ -2,9 +2,9 @@ import { SectionContainer } from "./layout/SectionContainer";
 
 export function PartnershipSection() {
   return (
-    <SectionContainer className="bg-transparent py-16">
+    <SectionContainer className="bg-transparent py-8">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Partnership and Collaborations
           </h2>
