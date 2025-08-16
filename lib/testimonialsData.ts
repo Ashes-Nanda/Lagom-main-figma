@@ -16,7 +16,7 @@ export const testimonials: Testimonial[] = [
     quote: "Being.Lagom has given me more than just wellness tools, it has given me a warm, supportive community. Connecting with others who understand our challenges makes every day brighter and reminds me we’re never in this alone.",
     name: "Dr Mario Alberto",
     designation: "PG Resident Doctor",
-    src: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "/testi/Mario.jpg",
   },
   {
     quote: "What truly moved me was how deeply they care for others and address the issues healthcare workers face.That compassion inspired me to become a volunteer myself-to give back and be part of the same support system that once held me up.",
