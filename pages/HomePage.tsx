@@ -15,34 +15,37 @@ export function HomePage() {
   return (
     <div className="bg-[#fffbf5] min-h-screen">
       {/* <Header /> */}
-      <PageLayout withTopPadding={false} className="bg-transparent pt-24 sm:pt-28 md:pt-32 lg:pt-36">
+      <PageLayout
+        withTopPadding={false}
+        className="bg-transparent pt-24 sm:pt-28 md:pt-32 lg:pt-36"
+      >
         {/* Combined Hero and Partnership section with unified background */}
-        <div 
+        <div
           className="relative"
           style={{
             backgroundImage: "url('/background.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundRepeat: "no-repeat"
+            backgroundRepeat: "no-repeat",
           }}
         >
           {/* Background overlay for opacity control */}
-          <div 
+          <div
             className="absolute inset-0 bg-[#fffbf5]"
             style={{ opacity: 0.66 }}
           />
-          
+
           {/* Content wrapper */}
           <div className="relative z-10">
             <HeroSection />
             <PartnershipSection />
           </div>
         </div>
-        
+
         <BrainwaveDivider />
         <InstagramGallery />
         <BrainwaveDivider />
-        
+
         {/* Testimonials Section */}
         <section className="py-20 bg-[#fffbf5]">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,7 +54,8 @@ export function HomePage() {
                 Voices of Healing
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Real stories from healthcare workers who found support, community, and healing through Being.Lagom
+                Real stories from healthcare workers who found support,
+                community, and healing through Being.Lagom
               </p>
             </div>
             <div className="flex justify-center">
@@ -75,7 +79,7 @@ export function HomePage() {
             </div>
           </div>
         </section>
-        
+
         <BrainwaveDivider />
         <Faq />
         <div style={{ background: "#0BB8C6", color: "white" }}>
