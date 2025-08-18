@@ -5,7 +5,7 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 import { Header } from "./components/Header";
 import { ContactFAB } from "./components/ContactFAB";
 import { ChatbotFAB } from "./components/ChatbotFAB";
