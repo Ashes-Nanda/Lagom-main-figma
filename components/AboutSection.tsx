@@ -775,10 +775,6 @@ export function AboutSection() {
             </Card>
           </div>
 
-          
-
-          
-
           {/* What "Lagom" Means - Quote Format */}
           <div className="mb-16">
             <div className="text-center max-w-4xl mx-auto">

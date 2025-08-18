@@ -57,7 +57,7 @@ export function HomePage() {
             <div className="flex justify-center">
               <CircularTestimonials
                 testimonials={testimonials}
-                autoplay={true}
+                autoplay={false}
                 colors={{
                   name: "#1e3a8a", // primary color
                   designation: "#6b7280", // muted foreground
