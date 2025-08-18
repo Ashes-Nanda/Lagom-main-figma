@@ -5,6 +5,7 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/next";
 import { Header } from "./components/Header";
 import { ContactFAB } from "./components/ContactFAB";
 import { ChatbotFAB } from "./components/ChatbotFAB";
@@ -63,6 +64,7 @@ export default function App() {
   return (
     <Router>
       <AppContent />
+      <Analytics />
     </Router>
   );
 }
