@@ -29,6 +29,7 @@ import { ContactManagement } from "./ContactManagement";
 import { SupportPathsManagement } from "./SupportPathsManagement";
 import { FooterManagement } from "./FooterManagement";
 import { LegalPagesManagement } from "./LegalPagesManagement";
+import { TriageManagement } from "./TriageManagement";
 
 interface AdminDashboardProps {
   onLogout: () => void;
@@ -43,7 +44,8 @@ type AdminSection =
   | "contact"
   | "support-paths"
   | "footer"
-  | "legal";
+  | "legal"
+  | "triage";
 
 export function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [activeSection, setActiveSection] = useState<AdminSection>("overview");
@@ -73,6 +75,11 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       icon: MapPin,
     },
     {
+      id: "triage" as AdminSection,
+      label: "Triage Responses",
+      icon: FileText,
+    },
+    {
       id: "footer" as AdminSection,
       label: "Footer Management",
       icon: Settings,
@@ -96,6 +103,8 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
         return <ContactManagement />;
       case "support-paths":
         return <SupportPathsManagement />;
+      case "triage":
+        return <TriageManagement />;
       case "footer":
         return <FooterManagement />;
       case "legal":
@@ -162,10 +171,20 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
 }
 
 function AdminOverview() {
+  // Get triage stats from localStorage
+  const getTriageStats = () => {
+    const responses = JSON.parse(localStorage.getItem("triageResponses") || "[]");
+    const highRisk = responses.filter((r: any) => r.riskLevel === "RED").length;
+    const total = responses.length;
+    return { total, highRisk };
+  };
+
+  const triageStats = getTriageStats();
+
   const stats = [
     { label: "Team Members", value: "25", change: "+2 this month" },
     { label: "Upcoming Events", value: "5", change: "3 this week" },
-    { label: "Merchandise Items", value: "4", change: "All active" },
+    { label: "Triage Responses", value: triageStats.total.toString(), change: `${triageStats.highRisk} high risk` },
     { label: "FAQ Items", value: "6", change: "Recently updated" },
   ];
 

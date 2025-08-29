@@ -11,14 +11,27 @@ import {
 import { BeingLagomFooter } from "../components/ui/footer";
 import { Button } from "../components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { TriageModal, TriageData } from "../components/TriageModal";
+import { ClipboardList } from "lucide-react";
 
 export function DirectoryPage() {
   const [activeTab, setActiveTab] = useState<"support" | "events">("support");
+  const [isTriageModalOpen, setIsTriageModalOpen] = useState(false);
 
   const fadeVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -20 }
+  };
+
+  const handleTriageSubmit = (data: TriageData) => {
+    // Save to localStorage
+    const existingResponses = JSON.parse(localStorage.getItem("triageResponses") || "[]");
+    const updatedResponses = [...existingResponses, data];
+    localStorage.setItem("triageResponses", JSON.stringify(updatedResponses));
+    
+    // Show success message or redirect as needed
+    console.log("Triage data saved:", data);
   };
 
   return (
@@ -66,6 +79,17 @@ export function DirectoryPage() {
                 </Button>
               </div>
             </div>
+
+            {/* Follow-up Triage Button */}
+            <div className="flex justify-center mb-6">
+              <Button
+                onClick={() => setIsTriageModalOpen(true)}
+                className="bg-accent hover:bg-accent/90 text-accent-foreground flex items-center gap-2 px-6 py-3 text-lg font-medium shadow-lg"
+              >
+                <ClipboardList size={20} />
+                Follow-up Triage
+              </Button>
+            </div>
           </ContentContainer>
         </SectionContainer>
 
@@ -105,6 +129,13 @@ export function DirectoryPage() {
           <BeingLagomFooter />
         </div>
       </PageLayout>
+
+      {/* Triage Modal */}
+      <TriageModal
+        isOpen={isTriageModalOpen}
+        onClose={() => setIsTriageModalOpen(false)}
+        onSubmit={handleTriageSubmit}
+      />
     </div>
   );
 }
