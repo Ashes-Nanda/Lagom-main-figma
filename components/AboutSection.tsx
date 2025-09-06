@@ -1,5 +1,5 @@
 import { Card, CardContent } from "./ui/card";
-import { Users, Target, Heart } from "lucide-react";
+import { Users, Target, Heart, Play } from "lucide-react";
 import { Linkedin, Instagram, Facebook, Twitter } from "lucide-react";
 
 import { cn } from "../lib/utils";
@@ -701,6 +701,75 @@ function Team3({
   );
 }
 
+// Video Thumbnail Component
+function VideoThumbnail() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(null);
+
+  const handlePlayClick = () => {
+    setIsPlaying(true);
+    if (videoElement) {
+      videoElement.play();
+    }
+  };
+
+  const handleVideoRef = (video: HTMLVideoElement | null) => {
+    setVideoElement(video);
+  };
+
+  if (isPlaying) {
+    return (
+      <video
+        ref={handleVideoRef}
+        className="w-full aspect-video rounded-lg shadow-lg"
+        controls
+        autoPlay
+        aria-label="About Being.Lagom - Our story and mission"
+      >
+        <source src="/about.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    );
+  }
+
+  return (
+    <div 
+      className="relative w-full aspect-video rounded-lg shadow-lg cursor-pointer group overflow-hidden"
+      onClick={handlePlayClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handlePlayClick();
+        }
+      }}
+      tabIndex={0}
+      role="button"
+      aria-label="Play About Being.Lagom video"
+    >
+      {/* Video thumbnail/poster */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+        {/* You can replace this with an actual thumbnail image if you have one */}
+        <div className="text-center space-y-4">
+          <div className="w-20 h-20 mx-auto bg-primary/80 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
+            <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
+          </div>
+          <div className="space-y-2">
+            <h3 className="text-xl font-semibold text-foreground">
+              Watch Our Story
+            </h3>
+            <p className="text-muted-foreground">
+              Click to play our compelling video experience
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      {/* Optional: Add a subtle overlay for better visual effect */}
+      <div className="absolute inset-0 bg-black/10 transition-all duration-300 group-hover:bg-black/20"></div>
+    </div>
+  );
+}
+
 export function AboutSection() {
   return (
     <section id="about" className="pt-8 pb-20 bg-[#fffbf5]">
@@ -742,37 +811,11 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Video Placeholder */}
+          {/* About Video */}
           <div className="mb-16">
-            <Card>
-              <CardContent className="p-8 lg:p-12">
-                <div className="max-w-4xl mx-auto">
-                  {/* Video placeholder with same dimensions as the text content */}
-                  <div className="relative w-full aspect-video bg-muted rounded-lg flex items-center justify-center border-2 border-dashed border-muted-foreground/30">
-                    <div className="text-center space-y-4">
-                      <div className="w-16 h-16 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
-                        <svg
-                          className="w-8 h-8 text-primary"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </div>
-                      <div className="space-y-2">
-                        <h3 className="text-xl font-semibold text-foreground">
-                          Video Coming Soon
-                        </h3>
-                        <p className="text-muted-foreground">
-                          Our story will be shared through a compelling video
-                          experience
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="max-w-4xl mx-auto">
+              <VideoThumbnail />
+            </div>
           </div>
 
           {/* What "Lagom" Means - Quote Format */}
