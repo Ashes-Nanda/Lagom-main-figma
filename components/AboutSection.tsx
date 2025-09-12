@@ -1,4 +1,3 @@
-import { Card, CardContent } from "./ui/card";
 import { Users, Target, Heart, Play } from "lucide-react";
 import { Linkedin, Instagram, Facebook, Twitter } from "lucide-react";
 
