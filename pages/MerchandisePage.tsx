@@ -55,40 +55,49 @@ export function MerchandisePage() {
     {
       id: 1,
       name: "Being.Lagom Classic T-Shirt",
-      description: "Comfortable cotton t-shirt with the Being.Lagom logo",
-      price: "TBA",
+      description: "Comfortable cotton t-shirt with the Being.Lagom logo. Designed by Dr Natnael Dejene, Ethiopia",
+      price: "Rs.1499",
       image: "/merch/1.png",
       category: "Apparel",
       colors: ["Navy", "Cream", "Teal"],
-      sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+      sizes: ["S", "M", "L", "XL", "XXL"],
     },
     {
       id: 2,
-      name: "Being.Lagom Wellness T-Shirt",
-      description:
-        "Soft cotton tee with wellness message for healthcare workers",
-      price: "TBA",
-      image: "/merch/5.png",
+      name: "Being.Lagom Classic T-Shirt",
+      description: "Comfortable cotton t-shirt with the Being.Lagom logo. Designed by Dr Natnael Dejene, Ethiopia",
+      price: "Rs.1499",
+      image: "/merch/black2.jpg",
       category: "Apparel",
-      colors: ["White", "Light Blue", "Sage Green"],
-      sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+      colors: [],
+      sizes: ["S", "M", "L", "XL", "XXL"],
     },
     {
       id: 3,
+      name: "Being.Lagom Classic T-Shirt",
+      description: "Comfortable cotton t-shirt with the Being.Lagom logo. Designed by Dr Natnael Dejene, Ethiopia",
+      price: "Rs.1499",
+      image: "/merch/white.jpg",
+      category: "Apparel",
+      colors: ["Navy", "Cream", "Teal"],
+      sizes: ["S", "M", "L", "XL", "XXL"],
+    },
+    {
+      id: 5,
       name: "Being.Lagom Community T-Shirt",
-      description: "Premium cotton t-shirt celebrating healthcare community",
-      price: "TBA",
+      description: "Premium cotton t-shirt celebrating healthcare community. Designed by Dr Natnael Dejene, Ethiopia",
+      price: "Rs.1499",
       image: "/merch/6.png",
       category: "Apparel",
       colors: ["Black", "Forest Green", "Burgundy"],
       sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     },
     {
-      id: 4,
+      id: 6,
       name: "Being.Lagom Sticker Pack",
       description:
-        "Set of 12 motivational stickers for laptops and water bottles",
-      price: "TBA",
+        "Set of 12 motivational stickers for laptops and water bottles. Designed by Dr Natnael Dejene, Ethiopia",
+      price: "Rs.399",
       image: "/merch/12.png",
       category: "Accessories",
     },
@@ -194,7 +203,7 @@ export function MerchandisePage() {
                           {product.description}
                         </CardDescription>
                         <span className="text-xl font-bold text-primary">
-                          ${product.price}
+                          {product.price}
                         </span>
                       </div>
 
@@ -254,12 +263,12 @@ export function MerchandisePage() {
 
                         <div className="flex flex-col justify-end h-full">
                           <Button
-                            onClick={() =>
-                              handleIndicateInterest(product.name, product.id)
-                            }
+                            asChild
                             className="bg-accent text-accent-foreground hover:bg-accent/90 min-w-[140px]"
                           >
-                            Indicate Interest
+                            <a href="https://forms.gle/nCe5jxhnRAp2J5Z1A" target="_blank" rel="noopener noreferrer">
+                              Indicate Interest
+                            </a>
                           </Button>
                         </div>
                       </div>
