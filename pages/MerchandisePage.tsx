@@ -103,15 +103,6 @@ export function MerchandisePage() {
     },
   ];
 
-  const handleIndicateInterest = (productName: string, productId: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      product: productName,
-      selectedColor: selectedColors[productId] || "",
-      selectedSize: selectedSizes[productId] || "",
-    }));
-    setIsModalOpen(true);
-  };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
