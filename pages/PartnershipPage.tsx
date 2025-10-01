@@ -144,7 +144,7 @@ export function PartnershipPage() {
                         <Mail className="w-5 h-5 text-accent" />
                         <div>
                           <p className="font-medium">Email</p>
-                          <p className="text-sm text-muted-foreground">partnerships@being.lagom</p>
+                          <p className="text-sm text-muted-foreground">admin@beinglagom.com | lagommentalhealth@gmail.com</p>
                         </div>
                       </div>
                     </CardContent>

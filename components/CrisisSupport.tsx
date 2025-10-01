@@ -153,8 +153,10 @@ export function CrisisSupport() {
                     Read real stories from other healthcare workers who've been
                     where you are.
                   </p>
-                  <Button variant="outline" className="w-full mt-auto">
-                    Read Stories
+                  <Button variant="outline" className="w-full mt-auto" asChild>
+                    <a href="/resources">
+                      Read Stories
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
@@ -164,8 +166,10 @@ export function CrisisSupport() {
                   <p className="text-muted-foreground mb-4 flex-grow">
                     Try a 3-minute guided grounding practice.
                   </p>
-                  <Button variant="outline" className="w-full mt-auto">
-                    Start Now
+                  <Button variant="outline" className="w-full mt-auto" asChild>
+                    <a href="/games?game=breathing-garden">
+                      Start Now
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
@@ -176,8 +180,10 @@ export function CrisisSupport() {
                     Learn the signs of burnout, compassion fatigue, and moral
                     injury — and what you can do next.
                   </p>
-                  <Button variant="outline" className="w-full mt-auto">
-                    Learn More
+                  <Button variant="outline" className="w-full mt-auto" asChild>
+                    <a href="/resources">
+                      Learn More
+                    </a>
                   </Button>
                 </CardContent>
               </Card>

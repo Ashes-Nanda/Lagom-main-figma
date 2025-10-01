@@ -4,7 +4,7 @@ import { PartnershipSection } from "../components/PartnershipSection";
 import { PageLayout } from "../components/layout";
 import { BeingLagomFooter } from "../components/ui/footer";
 import { BrainwaveDivider } from "../components/ui/BrainwaveDivider";
-import { InstagramGallery } from "../components/InstagramGallery";
+import { LagomImpact } from "../components/LagomImpact";
 import { CircularTestimonials } from "../components/ui/circular-testimonials";
 import { testimonials } from "../lib/testimonialsData";
 import Faq from "../components/ui/faq";
@@ -43,7 +43,7 @@ export function HomePage() {
         </div>
 
         <BrainwaveDivider />
-        <InstagramGallery />
+        <LagomImpact />
         <BrainwaveDivider />
 
         {/* Testimonials Section */}

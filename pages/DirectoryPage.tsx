@@ -80,16 +80,18 @@ export function DirectoryPage() {
               </div>
             </div>
 
-            {/* Follow-up Triage Button */}
-            <div className="flex justify-center mb-6">
-              <Button
-                onClick={() => setIsTriageModalOpen(true)}
-                className="bg-accent hover:bg-accent/90 text-accent-foreground flex items-center gap-2 px-6 py-3 text-lg font-medium shadow-lg"
-              >
-                <ClipboardList size={20} />
-                Follow-up Triage
-              </Button>
-            </div>
+            {/* Follow-up Triage Button - Only show on Support Paths tab */}
+            {activeTab === "support" && (
+              <div className="flex justify-center mb-6">
+                <Button
+                  onClick={() => setIsTriageModalOpen(true)}
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground flex items-center gap-2 px-6 py-3 text-lg font-medium shadow-lg"
+                >
+                  <ClipboardList size={20} />
+                  Follow-up Triage
+                </Button>
+              </div>
+            )}
           </ContentContainer>
         </SectionContainer>
 
@@ -105,7 +107,7 @@ export function DirectoryPage() {
                 exit="exit"
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <SupportPathSection />
+                <SupportPathSection showTriageAssessment={false} />
               </motion.div>
             )}
 

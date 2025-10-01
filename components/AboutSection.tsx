@@ -1,4 +1,4 @@
-import { Users, Target, Heart, Play } from "lucide-react";
+import { Users, Target, Heart, Play, ChevronDown, ExternalLink } from "lucide-react";
 import { Linkedin, Instagram, Facebook, Twitter } from "lucide-react";
 
 import { cn } from "../lib/utils";
@@ -27,6 +27,91 @@ interface TeamProps {
   subtitle?: string;
   members?: TeamMember[];
   className?: string;
+}
+
+// Donation Button Component
+function DonationButton() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const donationLinks = [
+    {
+      name: "Buy Me a Coffee",
+      url: "https://buymeacoffee.com/beinglagom",
+      description: "Support us with a coffee",
+      icon: "☕"
+    },
+    {
+      name: "PayPal",
+      url: "https://www.paypal.com/ncp/payment/NA3GVN9BUTSYL",
+      description: "Donate via PayPal",
+      icon: "💳"
+    },
+    {
+      name: "Stripe",
+      url: "https://buy.stripe.com/7sY4gy48I438cae37R",
+      description: "Secure payment via Stripe",
+      icon: "🔒"
+    }
+  ];
+
+  const handleDonationClick = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+    setIsOpen(false);
+  };
+
+  return (
+    <div className="relative">
+      <Button
+        variant="secondary"
+        size="lg"
+        className="px-8 py-3 flex items-center gap-2"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        Donate
+        <ChevronDown className={cn("w-4 h-4 transition-transform", isOpen && "rotate-180")} />
+      </Button>
+      
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 z-40" 
+            onClick={() => setIsOpen(false)}
+          />
+          
+          {/* Dropdown */}
+          <div className="absolute top-full mt-2 left-0 right-0 bg-white rounded-lg shadow-lg border border-gray-200 z-50 min-w-[280px]">
+            <div className="p-4">
+              <h3 className="text-lg font-semibold text-primary mb-3">Support Our Mission</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Your donation helps us provide mental health support to healthcare workers.
+              </p>
+              <div className="space-y-2">
+                {donationLinks.map((link) => (
+                  <button
+                    key={link.name}
+                    onClick={() => handleDonationClick(link.url)}
+                    className="w-full flex items-center gap-3 p-3 rounded-md hover:bg-gray-50 transition-colors text-left group"
+                  >
+                    <span className="text-xl">{link.icon}</span>
+                    <div className="flex-1">
+                      <div className="font-medium text-foreground group-hover:text-primary">
+                        {link.name}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {link.description}
+                      </div>
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
 }
 
 // Team members data for Being.Lagom
@@ -936,14 +1021,7 @@ export function AboutSection() {
               >
                 Partner With Us
               </Button>
-              <Button
-                variant="secondary"
-                size="lg"
-                className="px-8 py-3"
-                onClick={() => alert("Donation functionality coming soon!")}
-              >
-                Donate
-              </Button>
+              <DonationButton />
             </div>
 
             {/* Feature Cards */}

@@ -38,6 +38,7 @@ import {
   Edit,
   Save,
   Trash2,
+  Loader2,
 } from "lucide-react";
 import { TriageData } from "../TriageModal";
 
@@ -53,6 +54,7 @@ export function TriageManagement() {
   const [editFollowUp, setEditFollowUp] = useState("");
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isGeneratingReport, setIsGeneratingReport] = useState(false);
 
   // Load triage responses from localStorage
   useEffect(() => {
@@ -71,8 +73,10 @@ export function TriageManagement() {
     if (searchTerm) {
       filtered = filtered.filter(
         (response) =>
-          response.participantName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          response.contactInfo.toLowerCase().includes(searchTerm.toLowerCase())
+          response.fillerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          response.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          response.contactNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          response.collegeHospital.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
@@ -91,12 +95,19 @@ export function TriageManagement() {
   const exportToCSV = () => {
     const headers = [
       "Timestamp",
-      "Participant Name",
-      "Contact Info",
+      "Filler Name",
+      "Email",
+      "Contact No",
+      "College/Hospital",
+      "Triage Date",
       "Risk Level",
       "SPRINT Score",
       "PHQ-9 Score",
       "Total Score",
+      "Incident Description",
+      "Patience Breaking Point",
+      "Sense of Purpose",
+      "Community Benefits",
       "Follow-up Plan",
       "Notes"
     ];
@@ -106,12 +117,19 @@ export function TriageManagement() {
       ...filteredResponses.map((response) =>
         [
           new Date(response.timestamp).toLocaleString(),
-          `"${response.participantName}"`,
-          `"${response.contactInfo}"`,
+          `"${response.fillerName}"`,
+          `"${response.email}"`,
+          `"${response.contactNo}"`,
+          `"${response.collegeHospital}"`,
+          `"${response.triageDate}"`,
           response.riskLevel,
           response.sprintAnswers.reduce((sum, answer) => sum + answer, 0),
           response.phq9Answer,
           response.totalScore,
+          `"${response.incidentDescription.replace(/"/g, '""')}"`,
+          `"${response.patienceBreakingPoint.replace(/"/g, '""')}"`,
+          `"${response.senseOfPurpose.replace(/"/g, '""')}"`,
+          `"${response.communityBenefits.join('; ')}"`,
           `"${response.followUpPlanned}"`,
           `"${response.notes}"`
         ].join(",")
@@ -221,6 +239,68 @@ export function TriageManagement() {
     "Interference with work/daily activities",
     "Interference with relationships"
   ];
+
+  const generateFollowUpReport = async (response: TriageData) => {
+    setIsGeneratingReport(true);
+    
+    // Simulate report generation delay
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    const sprintTotal = response.sprintAnswers.reduce((sum, answer) => sum + answer, 0);
+    const riskEmoji = response.riskLevel === "RED" ? "🟥" : response.riskLevel === "YELLOW" ? "🟨" : "🟩";
+    const caseNumber = response.caseNumber || `#${response.id.slice(-4)}`;
+    
+    const report = `${riskEmoji} ${response.riskLevel} Case ${caseNumber} – ${response.fillerName} (${response.collegeHospital})
+Date of Triage: ${response.triageDate}
+Triager: ${response.triagerName || "Being.Lagom Team"}
+Sprint Score: ${sprintTotal} ${sprintTotal >= 25 ? "(Critical acute stress)" : sprintTotal >= 18 ? "(High acute stress)" : sprintTotal >= 14 ? "(Moderate acute stress)" : "(Low acute stress)"}
+PHQ-9: ${response.phq9Answer} ${response.phq9Answer >= 2 ? "(Significant suicidal ideation)" : "(No significant depressive symptoms)"}
+Consent & Confidentiality: Confirmed ✅
+
+🧠 Presenting Concerns:
+${response.incidentDescription}
+
+📌 Additional Assessment:
+• Patience/Breaking Point: ${response.patienceBreakingPoint}
+• Sense of Purpose: ${response.senseOfPurpose}
+• Community Benefits: ${response.communityBenefits.join(', ') || 'None selected'}
+
+📌 Risk & Follow-Up Plan:
+${response.riskLevel === "RED" ? 
+  `- IMMEDIATE INTERVENTION REQUIRED
+- Match with licensed therapist/psychiatrist
+- Daily check-ins for first week
+- Crisis hotline information provided
+- Emergency contact protocols activated` :
+  response.riskLevel === "YELLOW" ?
+  `- Match with therapist or peer support
+- Weekly check-ins recommended
+- Monitor for escalation
+- Provide coping resources` :
+  `- Peer-to-peer support recommended
+- Monthly check-ins
+- Preventive resources provided
+- Open door policy for future support`}
+
+Clinical Notes: ${response.notes || "Assessment completed, awaiting clinical review."}
+
+This assessment follows Being.Lagom clinical protocols and risk assessment rubrics.`;
+
+    const updatedResponse = {
+      ...response,
+      followUpReport: report,
+      caseNumber: caseNumber
+    };
+    
+    const updatedResponses = triageResponses.map(r => 
+      r.id === response.id ? updatedResponse : r
+    );
+    
+    setTriageResponses(updatedResponses);
+    localStorage.setItem("triageResponses", JSON.stringify(updatedResponses));
+    setSelectedResponse(updatedResponse);
+    setIsGeneratingReport(false);
+  };
 
   return (
     <div className="space-y-6">
@@ -341,8 +421,9 @@ export function TriageManagement() {
                       />
                     </TableHead>
                     <TableHead>Timestamp</TableHead>
-                    <TableHead>Participant</TableHead>
-                    <TableHead>Contact</TableHead>
+                    <TableHead>Filler Name</TableHead>
+                    <TableHead>Email</TableHead>
+                    <TableHead>College/Hospital</TableHead>
                     <TableHead>Risk Level</TableHead>
                     <TableHead>SPRINT Score</TableHead>
                     <TableHead>PHQ-9</TableHead>
@@ -356,7 +437,7 @@ export function TriageManagement() {
                         <Checkbox
                           checked={selectedIds.includes(response.id)}
                           onCheckedChange={(checked) => handleSelectOne(response.id, checked as boolean)}
-                          aria-label={`Select ${response.participantName}`}
+                          aria-label={`Select ${response.fillerName}`}
                         />
                       </TableCell>
                       <TableCell className="text-sm">
@@ -370,9 +451,15 @@ export function TriageManagement() {
                         </div>
                       </TableCell>
                       <TableCell className="font-medium">
-                        {response.participantName}
+                        {response.fillerName}
                       </TableCell>
-                      <TableCell>{response.contactInfo}</TableCell>
+                      <TableCell className="text-sm">
+                        <div>{response.email}</div>
+                        {response.contactNo && (
+                          <div className="text-gray-500">{response.contactNo}</div>
+                        )}
+                      </TableCell>
+                      <TableCell className="text-sm">{response.collegeHospital}</TableCell>
                       <TableCell>{getRiskBadge(response.riskLevel)}</TableCell>
                       <TableCell>
                         {response.sprintAnswers.reduce((sum, answer) => sum + answer, 0)}/32
@@ -402,11 +489,11 @@ export function TriageManagement() {
 
       {/* Detail Modal */}
       <Dialog open={isDetailModalOpen} onOpenChange={setIsDetailModalOpen}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-6xl w-[95vw] max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Triage Assessment Details</DialogTitle>
             <DialogDescription>
-              Complete assessment information for {selectedResponse?.participantName}
+              Complete assessment information for {selectedResponse?.fillerName}
             </DialogDescription>
           </DialogHeader>
 
@@ -420,21 +507,101 @@ export function TriageManagement() {
                     {getRiskBadge(selectedResponse.riskLevel)}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-2">
-                  <p><strong>Name:</strong> {selectedResponse.participantName}</p>
-                  <p><strong>Contact:</strong> {selectedResponse.contactInfo}</p>
-                  <p><strong>Assessment Date:</strong> {new Date(selectedResponse.timestamp).toLocaleString()}</p>
-                  <p><strong>Total Score:</strong> {selectedResponse.totalScore}</p>
+                <CardContent className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <div>
+                      <strong className="text-sm text-gray-600">Filler Name:</strong>
+                      <p className="text-base">{selectedResponse.fillerName}</p>
+                    </div>
+                    <div>
+                      <strong className="text-sm text-gray-600">Email:</strong>
+                      <p className="text-base break-all">{selectedResponse.email}</p>
+                    </div>
+                    {selectedResponse.contactNo && (
+                      <div>
+                        <strong className="text-sm text-gray-600">Contact No:</strong>
+                        <p className="text-base">{selectedResponse.contactNo}</p>
+                      </div>
+                    )}
+                    <div>
+                      <strong className="text-sm text-gray-600">College/Hospital:</strong>
+                      <p className="text-base">{selectedResponse.collegeHospital}</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <strong className="text-sm text-gray-600">Triage Date:</strong>
+                      <p className="text-base">{selectedResponse.triageDate}</p>
+                    </div>
+                    <div>
+                      <strong className="text-sm text-gray-600">Assessment Submitted:</strong>
+                      <p className="text-base">{new Date(selectedResponse.timestamp).toLocaleString()}</p>
+                    </div>
+                    <div>
+                      <strong className="text-sm text-gray-600">Total Score:</strong>
+                      <p className="text-base font-semibold">{selectedResponse.totalScore}</p>
+                    </div>
+                    <div>
+                      <strong className="text-sm text-gray-600">Risk Level:</strong>
+                      <p className="text-base font-semibold text-red-600">{selectedResponse.riskLevel}</p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
 
               {/* Incident Description */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Incident Description</CardTitle>
+                  <CardTitle>Incident Response</CardTitle>
+                  <CardDescription>
+                    "I know that the incident on June 12 at BJMC has been really distressing to many people including myself. I am wondering how you are feeling generally since the incident?"
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="whitespace-pre-wrap">{selectedResponse.incidentDescription}</p>
+                  <p className="whitespace-pre-wrap bg-gray-50 p-4 rounded-lg">{selectedResponse.incidentDescription}</p>
+                </CardContent>
+              </Card>
+
+              {/* Qualitative Responses */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Additional Qualitative Responses</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div>
+                    <h4 className="font-medium mb-2 text-sm text-gray-700">
+                      Patience/Breaking Point Response:
+                    </h4>
+                    <p className="text-sm bg-gray-50 p-3 rounded whitespace-pre-wrap">
+                      {selectedResponse.patienceBreakingPoint}
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-medium mb-2 text-sm text-gray-700">
+                      Sense of Purpose Response:
+                    </h4>
+                    <p className="text-sm bg-gray-50 p-3 rounded whitespace-pre-wrap">
+                      {selectedResponse.senseOfPurpose}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-medium mb-2 text-sm text-gray-700">
+                      Community Benefits Selected:
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedResponse.communityBenefits.length > 0 ? (
+                        selectedResponse.communityBenefits.map((benefit, index) => (
+                          <Badge key={index} variant="secondary" className="text-xs">
+                            {benefit}
+                          </Badge>
+                        ))
+                      ) : (
+                        <span className="text-gray-500 italic text-sm">No benefits selected</span>
+                      )}
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
 
@@ -558,6 +725,56 @@ export function TriageManagement() {
                         />
                       </div>
                     </>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Follow-up Report */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    📋 Follow-up Report
+                    <Badge variant="outline" className="ml-2">
+                      Case #{selectedResponse.caseNumber || selectedResponse.id.slice(-4)}
+                    </Badge>
+                  </CardTitle>
+                  <CardDescription>
+                    Comprehensive triage report based on assessment responses and clinical rubrics
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {selectedResponse.followUpReport ? (
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <div className="whitespace-pre-wrap text-sm leading-relaxed">
+                        {selectedResponse.followUpReport}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
+                      <div className="space-y-4">
+                        <div className="text-gray-500 italic">
+                          No follow-up report generated yet
+                        </div>
+                        <Button
+                          onClick={() => generateFollowUpReport(selectedResponse)}
+                          variant="outline"
+                          className="flex items-center gap-2"
+                          disabled={isGeneratingReport}
+                        >
+                          {isGeneratingReport ? (
+                            <>
+                              <Loader2 className="w-4 h-4 animate-spin" />
+                              Generating Report...
+                            </>
+                          ) : (
+                            <>
+                              <Edit size={16} />
+                              Generate Follow-up Report
+                            </>
+                          )}
+                        </Button>
+                      </div>
+                    </div>
                   )}
                 </CardContent>
               </Card>

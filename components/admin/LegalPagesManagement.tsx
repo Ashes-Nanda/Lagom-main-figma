@@ -1,13 +1,25 @@
-import { useState } from 'react';
-import { Button } from '../ui/button';
-import { Input } from '../ui/input';
-import { Label } from '../ui/label';
-import { Textarea } from '../ui/textarea';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../ui/dialog';
+import { useState } from "react";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "../ui/dialog";
 
-import { Badge } from '../ui/badge';
-import { Edit, Save, FileText, Calendar, Eye } from 'lucide-react';
+import { Badge } from "../ui/badge";
+import { Edit, Save, FileText, Calendar, Eye } from "lucide-react";
 
 interface LegalPage {
   id: string;
@@ -22,9 +34,9 @@ interface LegalPage {
 export function LegalPagesManagement() {
   const [legalPages, setLegalPages] = useState<LegalPage[]>([
     {
-      id: '1',
-      title: 'Privacy Policy',
-      slug: 'privacy-policy',
+      id: "1",
+      title: "Privacy Policy",
+      slug: "privacy-policy",
       content: `# Privacy Policy
 
 ## Information We Collect
@@ -74,17 +86,17 @@ You have the right to:
 
 ## Contact Us
 
-If you have questions about this Privacy Policy, please contact us at privacy@being.lagom
+If you have questions about this Privacy Policy, please contact us at admin@beinglagom.com or lagommentalhealth@gmail.com
 
 *Last updated: January 2024*`,
-      lastUpdated: '2024-01-15T10:30:00Z',
+      lastUpdated: "2024-01-15T10:30:00Z",
       isPublished: true,
-      version: 2
+      version: 2,
     },
     {
-      id: '2',
-      title: 'Terms of Service',
-      slug: 'terms-of-service',
+      id: "2",
+      title: "Terms of Service",
+      slug: "terms-of-service",
       content: `# Terms of Service
 
 ## Acceptance of Terms
@@ -123,17 +135,17 @@ These terms and conditions are governed by and construed in accordance with appl
 
 ## Contact Information
 
-Questions about the Terms of Service should be sent to us at legal@being.lagom
+Questions about the Terms of Service should be sent to us at admin@beinglagom.com or lagommentalhealth@gmail.com
 
 *Last updated: January 2024*`,
-      lastUpdated: '2024-01-15T10:30:00Z',
+      lastUpdated: "2024-01-15T10:30:00Z",
       isPublished: true,
-      version: 1
+      version: 1,
     },
     {
-      id: '3',
-      title: 'Cookie Policy',
-      slug: 'cookie-policy',
+      id: "3",
+      title: "Cookie Policy",
+      slug: "cookie-policy",
       content: `# Cookie Policy
 
 ## What Are Cookies
@@ -182,13 +194,13 @@ We may update this Cookie Policy from time to time. Please check this page perio
 
 ## Contact Us
 
-If you have questions about our use of cookies, please contact us at privacy@being.lagom
+If you have questions about our use of cookies, please contact us at admin@beinglagom.com or lagommentalhealth@gmail.com
 
 *Last updated: January 2024*`,
-      lastUpdated: '2024-01-15T10:30:00Z',
+      lastUpdated: "2024-01-15T10:30:00Z",
       isPublished: true,
-      version: 1
-    }
+      version: 1,
+    },
   ]);
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -203,45 +215,55 @@ If you have questions about our use of cookies, please contact us at privacy@bei
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (editingPage) {
       const updatedPage: LegalPage = {
         ...formData,
         id: editingPage.id,
         lastUpdated: new Date().toISOString(),
-        version: editingPage.version + 1
+        version: editingPage.version + 1,
       } as LegalPage;
-      
-      setLegalPages(legalPages.map(p => 
-        p.id === editingPage.id ? updatedPage : p
-      ));
+
+      setLegalPages(
+        legalPages.map((p) => (p.id === editingPage.id ? updatedPage : p))
+      );
     }
-    
+
     setIsDialogOpen(false);
     setFormData({});
   };
 
   const togglePublishStatus = (id: string) => {
-    setLegalPages(legalPages.map(page =>
-      page.id === id ? { 
-        ...page, 
-        isPublished: !page.isPublished,
-        lastUpdated: new Date().toISOString()
-      } : page
-    ));
+    setLegalPages(
+      legalPages.map((page) =>
+        page.id === id
+          ? {
+              ...page,
+              isPublished: !page.isPublished,
+              lastUpdated: new Date().toISOString(),
+            }
+          : page
+      )
+    );
   };
 
   const previewPage = (page: LegalPage) => {
     // In a real implementation, this would open a preview modal or new tab
-    alert(`Preview functionality would show the rendered content of: ${page.title}`);
+    alert(
+      `Preview functionality would show the rendered content of: ${page.title}`
+    );
   };
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Legal Pages Management</h2>
-          <p className="text-gray-600">Manage privacy policy, terms of service, and other legal documents</p>
+          <h2 className="text-2xl font-bold text-gray-900">
+            Legal Pages Management
+          </h2>
+          <p className="text-gray-600">
+            Manage privacy policy, terms of service, and other legal documents
+          </p>
         </div>
       </div>
 
@@ -254,29 +276,34 @@ If you have questions about our use of cookies, please contact us at privacy@bei
                   <FileText className="h-5 w-5 text-gray-500" />
                   <CardTitle className="text-lg">{page.title}</CardTitle>
                 </div>
-                <Badge 
+                <Badge
                   variant={page.isPublished ? "default" : "secondary"}
-                  className={page.isPublished ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}
+                  className={
+                    page.isPublished
+                      ? "bg-green-100 text-green-800"
+                      : "bg-gray-100 text-gray-800"
+                  }
                 >
-                  {page.isPublished ? 'Published' : 'Draft'}
+                  {page.isPublished ? "Published" : "Draft"}
                 </Badge>
               </div>
               <CardDescription>/{page.slug}</CardDescription>
             </CardHeader>
-            
+
             <CardContent className="space-y-4">
               <div className="text-sm text-gray-600">
                 <div className="flex items-center gap-1 mb-1">
                   <Calendar className="h-3 w-3" />
-                  Last updated: {new Date(page.lastUpdated).toLocaleDateString()}
+                  Last updated:{" "}
+                  {new Date(page.lastUpdated).toLocaleDateString()}
                 </div>
                 <div>Version: {page.version}</div>
               </div>
-              
+
               <div className="text-xs text-gray-500">
                 Content length: {page.content.length} characters
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <Button
                   size="sm"
@@ -287,7 +314,7 @@ If you have questions about our use of cookies, please contact us at privacy@bei
                   <Eye className="h-3 w-3 mr-1" />
                   Preview
                 </Button>
-                
+
                 <Button
                   size="sm"
                   variant="outline"
@@ -295,14 +322,14 @@ If you have questions about our use of cookies, please contact us at privacy@bei
                 >
                   <Edit className="h-3 w-3" />
                 </Button>
-                
+
                 <Button
                   size="sm"
                   variant={page.isPublished ? "secondary" : "default"}
                   onClick={() => togglePublishStatus(page.id)}
                   className="text-xs"
                 >
-                  {page.isPublished ? 'Unpublish' : 'Publish'}
+                  {page.isPublished ? "Unpublish" : "Publish"}
                 </Button>
               </div>
             </CardContent>
@@ -319,25 +346,34 @@ If you have questions about our use of cookies, please contact us at privacy@bei
               Update the content and settings for this legal page
             </DialogDescription>
           </DialogHeader>
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="title">Page Title *</Label>
                 <Input
                   id="title"
-                  value={formData.title || ''}
-                  onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                  value={formData.title || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, title: e.target.value }))
+                  }
                   required
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="slug">URL Slug *</Label>
                 <Input
                   id="slug"
-                  value={formData.slug || ''}
-                  onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '-') }))}
+                  value={formData.slug || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      slug: e.target.value
+                        .toLowerCase()
+                        .replace(/[^a-z0-9-]/g, "-"),
+                    }))
+                  }
                   placeholder="privacy-policy"
                   required
                 />
@@ -351,15 +387,18 @@ If you have questions about our use of cookies, please contact us at privacy@bei
               <Label htmlFor="content">Page Content *</Label>
               <Textarea
                 id="content"
-                value={formData.content || ''}
-                onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
+                value={formData.content || ""}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, content: e.target.value }))
+                }
                 rows={20}
                 className="font-mono text-sm"
                 placeholder="Enter the page content using Markdown formatting..."
                 required
               />
               <p className="text-xs text-gray-500">
-                You can use Markdown formatting. The content will be rendered as HTML on the website.
+                You can use Markdown formatting. The content will be rendered as
+                HTML on the website.
               </p>
             </div>
 
@@ -368,22 +407,36 @@ If you have questions about our use of cookies, please contact us at privacy@bei
                 type="checkbox"
                 id="isPublished"
                 checked={formData.isPublished || false}
-                onChange={(e) => setFormData(prev => ({ ...prev, isPublished: e.target.checked }))}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    isPublished: e.target.checked,
+                  }))
+                }
                 className="rounded"
               />
-              <Label htmlFor="isPublished">Published (visible on website)</Label>
+              <Label htmlFor="isPublished">
+                Published (visible on website)
+              </Label>
             </div>
 
             <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-              <h4 className="font-medium text-yellow-800 mb-2">Important Legal Notice</h4>
+              <h4 className="font-medium text-yellow-800 mb-2">
+                Important Legal Notice
+              </h4>
               <p className="text-sm text-yellow-700">
-                Legal documents should be reviewed by qualified legal counsel before publication. 
-                Ensure all content complies with applicable laws and regulations in your jurisdiction.
+                Legal documents should be reviewed by qualified legal counsel
+                before publication. Ensure all content complies with applicable
+                laws and regulations in your jurisdiction.
               </p>
             </div>
 
             <div className="flex justify-end space-x-2 pt-4">
-              <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setIsDialogOpen(false)}
+              >
                 Cancel
               </Button>
               <Button type="submit">
@@ -399,7 +452,9 @@ If you have questions about our use of cookies, please contact us at privacy@bei
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">Quick Actions</CardTitle>
-          <CardDescription>Common tasks for legal page management</CardDescription>
+          <CardDescription>
+            Common tasks for legal page management
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

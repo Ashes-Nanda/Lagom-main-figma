@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { LoveShower } from "../components/games/LoveShower";
 import { SanitySimulator } from "../components/games/SanitySimulator";
 import { BreathingGarden } from "../components/games/BreathingGarden";
@@ -102,6 +103,15 @@ const gameCardsData: GameCardData[] = [
 
 export function GamesPage() {
   const [activeGame, setActiveGame] = useState<GameType>(null);
+  const [searchParams] = useSearchParams();
+
+  // Check for URL parameters to auto-open specific games
+  useEffect(() => {
+    const game = searchParams.get('game');
+    if (game === 'breathing-garden') {
+      setActiveGame('breathing-garden');
+    }
+  }, [searchParams]);
 
   const handleGameClick = (gameId: string) => {
     setActiveGame(gameId as GameType);

@@ -4,7 +4,7 @@ import { PageLayout, SectionContainer, ContentContainer } from "../components/la
 import { SearchBar } from "../components/ui/SearchBar";
 import { ComboboxDemo } from "../components/ui/filter-demo";
 import { Filter } from "../components/ui/filters";
-import { BrainwaveDivider } from "../components/ui/BrainwaveDivider";
+
 import { BeingLagomFooter } from "../components/ui/footer";
 
 export function ResourcesPage() {
@@ -62,8 +62,6 @@ export function ResourcesPage() {
               <ComboboxDemo />
             </div>
           </div>
-
-          <BrainwaveDivider />
           
           {/* Resources Content */}
           <SelfHelpResources 

@@ -116,8 +116,8 @@ function AnimatedHero() {
             {/* Description */}
             <p className="text-sm md:text-base leading-relaxed tracking-tight text-muted-foreground max-w-4xl text-center mt-6 mx-auto">
               We cannot undo the trauma. But we can choose to become part of the
-              healing. Not by erasing the pain but by bearing witness to
-              it,tending to its roots,and building systems where it doesn't have
+              healing. Not by erasing the pain but by bearing witness to it,
+              tending to its roots, and building systems where it doesn't have
               to repeat.
             </p>
           </div>

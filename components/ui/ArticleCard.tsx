@@ -106,7 +106,7 @@ export function ArticleCard({
           </div>
         </div>
         
-        <div className="flex items-center justify-between pt-2 mt-auto">
+        <div className="pt-2 mt-auto space-y-3">
           <div className="flex flex-wrap gap-1">
             {article.tags.slice(0, 3).map((tag, index) => (
               <Badge key={index} variant="outline" className="text-xs">
@@ -120,11 +120,12 @@ export function ArticleCard({
             )}
           </div>
           
-          <div className="flex items-center gap-2 ml-auto">
+          <div className="flex items-center gap-2 justify-end">
             <Button
               variant="outline"
               size="sm"
               asChild
+              className="flex-shrink-0"
             >
               <a 
                 href={article.googleDriveUrl} 
@@ -140,6 +141,7 @@ export function ArticleCard({
               variant="default"
               size="sm"
               asChild
+              className="flex-shrink-0"
             >
               <a 
                 href={article.googleDriveUrl.replace('/view', '/preview')} 

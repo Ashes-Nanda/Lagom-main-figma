@@ -36,7 +36,7 @@ export function ContactSection() {
                   </div>
                   <div className="flex items-center">
                     <span className="text-muted-foreground">Email:</span>
-                    <span className="ml-2 font-medium">info@beinglagom.com</span>
+                    <span className="ml-2 font-medium">admin@beinglagom.com | lagommentalhealth@gmail.com</span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-muted-foreground">Hours:</span>

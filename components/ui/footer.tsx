@@ -108,11 +108,11 @@ export function BeingLagomFooter() {
       logo={<img src="/lagom-logo.png" alt="Being.Lagom" className="h-10 w-auto brightness-0 opacity-90 hover:opacity-100 transition-opacity" />}
       brandName="Being.Lagom"
       socialLinks={[
-        { icon: <Facebook className="w-5 h-5" />, href: "https://facebook.com/being.lagom", label: "Facebook" },
-        { icon: <Twitter className="w-5 h-5" />, href: "https://twitter.com/being_lagom", label: "Twitter" },
-        { icon: <Instagram className="w-5 h-5" />, href: "https://instagram.com/being.lagom", label: "Instagram" },
-        { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com/company/being-lagom", label: "LinkedIn" },
-        { icon: <Youtube className="w-5 h-5" />, href: "https://youtube.com/being.lagom", label: "YouTube" },
+        { icon: <Facebook className="w-5 h-5" />, href: "https://www.facebook.com/beinglagomsg", label: "Facebook" },
+        { icon: <Twitter className="w-5 h-5" />, href: "https://x.com/beinglagom", label: "Twitter" },
+        { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/being.lagom", label: "Instagram" },
+        { icon: <Linkedin className="w-5 h-5" />, href: "https://www.linkedin.com/company/beinglagom/", label: "LinkedIn" },
+        { icon: <Youtube className="w-5 h-5" />, href: "https://www.youtube.com/channel/UC0IDVUuDxBfd_EFgCnMfoVA", label: "YouTube" },
       ]}
       mainLinks={[
         { href: "/directory", label: "Connect with Care" },
@@ -132,7 +132,7 @@ export function BeingLagomFooter() {
       copyright={{
         text: "© 2025 Being.Lagom.",
         license: "All rights reserved.",
-        contact: <><Mail className="w-4 h-4 text-black/80" /><span className="text-sm text-black/80">support@being.lagom</span></>,
+        contact: <><Mail className="w-4 h-4 text-black/80" /><span className="text-sm text-black/80">admin@beinglagom.com | lagommentalhealth@gmail.com</span></>,
       }}
     />
   );

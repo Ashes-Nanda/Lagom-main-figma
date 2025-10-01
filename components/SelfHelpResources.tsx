@@ -34,86 +34,11 @@ export function SelfHelpResources({
   activeFilters = [],
   onClearSearchAndFilters,
 }: SelfHelpResourcesProps) {
-  const articles: MediaResource[] = [
-    {
-      id: "article-1",
-      title: "Managing Burnout: A Guide for Healthcare Workers",
-      description:
-        "Practical strategies to recognize and address burnout symptoms before they become overwhelming. This comprehensive guide covers early warning signs, evidence-based coping mechanisms, and actionable steps to restore your mental well-being while maintaining your commitment to patient care.",
-      duration: "8 min read",
-      category: "Burnout",
-      type: "articles",
-      durationCategory: "short",
-      image:
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=200&fit=crop",
-    },
-    {
-      id: "article-2",
-      title: "Building Resilience in High-Stress Environments",
-      description:
-        "Evidence-based techniques for developing emotional resilience in healthcare settings. Learn how to bounce back from difficult situations, maintain perspective during crises, and build the psychological strength needed to thrive in demanding medical environments.",
-      duration: "12 min read",
-      category: "Resilience",
-      type: "articles",
-      durationCategory: "medium",
-      image:
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=200&fit=crop",
-    },
-    {
-      id: "article-3",
-      title: "Sleep Hygiene for Night Shift Workers",
-      description:
-        "Optimize your sleep schedule for better mental health and improved job performance. Discover practical tips for managing circadian rhythm disruption, creating an ideal sleep environment, and maintaining energy levels during irregular work schedules.",
-      duration: "6 min read",
-      category: "Sleep",
-      type: "articles",
-      durationCategory: "short",
-      image:
-        "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=400&h=200&fit=crop",
-    },
-  ];
+  const articles: MediaResource[] = [];
 
-  const podcasts: MediaResource[] = [
-    {
-      id: "podcast-1",
-      title: "The Mindful Medic",
-      description:
-        "Weekly discussions on mindfulness in healthcare featuring expert interviews, practical meditation techniques, and real stories from healthcare professionals who have transformed their practice through mindfulness. Each episode offers actionable insights you can implement immediately.",
-      duration: "45 min episodes",
-      category: "Mindfulness",
-      type: "podcasts",
-      durationCategory: "long",
-      image:
-        "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400&h=200&fit=crop",
-    },
-    {
-      id: "podcast-2",
-      title: "Healing the Healer",
-      description:
-        "Stories of recovery and resilience from healthcare workers who have overcome burnout, trauma, and mental health challenges. These inspiring narratives provide hope and practical wisdom for anyone struggling with the emotional demands of healthcare work.",
-      duration: "30 min episodes",
-      category: "Stories",
-      type: "podcasts",
-      durationCategory: "long",
-      image:
-        "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=200&fit=crop",
-    },
-  ];
+  const podcasts: MediaResource[] = [];
 
-  const videos: MediaResource[] = [
-    {
-      id: "video-1",
-      title: "Triage Training Video",
-      description:
-        "Comprehensive training video covering essential triage protocols and decision-making processes for healthcare professionals. Learn systematic approaches to patient assessment, priority classification, and effective resource allocation in emergency and clinical settings.",
-      duration: "23 min",
-      category: "Training",
-      type: "videos",
-      durationCategory: "long",
-      image:
-        "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=200&fit=crop",
-    },
-  ];
+  const videos: MediaResource[] = [];
 
   // Filter and search logic for external articles
   const filteredExternalArticles = useMemo(() => {

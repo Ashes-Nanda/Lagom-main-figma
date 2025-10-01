@@ -2,7 +2,11 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { ExternalLink } from "lucide-react";
 
-export function SupportPathSection() {
+interface SupportPathSectionProps {
+  showTriageAssessment?: boolean;
+}
+
+export function SupportPathSection({ showTriageAssessment = true }: SupportPathSectionProps) {
   const handleP2PClick = () => {
     window.open("https://forms.gle/2yHZx7rmyBhuP2tR6", "_blank");
   };
@@ -148,24 +152,26 @@ export function SupportPathSection() {
           </div>
 
           {/* Triage Assessment CTA */}
-          <div className="text-center">
-            <div className="bg-muted/50 rounded-lg p-8 max-w-2xl mx-auto">
-              <h3 className="typography-h4 text-primary mb-3">
-                Not sure which path is right for you?
-              </h3>
-              <p className="typography-body text-muted-foreground mb-6">
-                Take our triage assessment to get personalized recommendations
-                for your support journey.
-              </p>
-              <Button 
-                variant="outline" 
-                size="lg"
-                onClick={() => window.location.href = "/assessment"}
-              >
-                Start Triage Assessment
-              </Button>
+          {showTriageAssessment && (
+            <div className="text-center">
+              <div className="bg-muted/50 rounded-lg p-8 max-w-2xl mx-auto">
+                <h3 className="typography-h4 text-primary mb-3">
+                  Not sure which path is right for you?
+                </h3>
+                <p className="typography-body text-muted-foreground mb-6">
+                  Take our triage assessment to get personalized recommendations
+                  for your support journey.
+                </p>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  onClick={() => window.location.href = "/assessment"}
+                >
+                  Start Triage Assessment
+                </Button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
