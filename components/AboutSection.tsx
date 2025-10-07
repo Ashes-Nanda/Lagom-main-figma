@@ -1,4 +1,11 @@
-import { Users, Target, Heart, Play, ChevronDown, ExternalLink } from "lucide-react";
+import {
+  Users,
+  Target,
+  Heart,
+  Play,
+  ChevronDown,
+  ExternalLink,
+} from "lucide-react";
 import { Linkedin, Instagram, Facebook, Twitter } from "lucide-react";
 
 import { cn } from "../lib/utils";
@@ -38,24 +45,24 @@ function DonationButton() {
       name: "Buy Me a Coffee",
       url: "https://buymeacoffee.com/beinglagom",
       description: "Support us with a coffee",
-      icon: "☕"
+      icon: "☕",
     },
     {
       name: "PayPal",
       url: "https://www.paypal.com/ncp/payment/NA3GVN9BUTSYL",
       description: "Donate via PayPal",
-      icon: "💳"
+      icon: "💳",
     },
     {
       name: "Stripe",
       url: "https://buy.stripe.com/7sY4gy48I438cae37R",
       description: "Secure payment via Stripe",
-      icon: "🔒"
-    }
+      icon: "🔒",
+    },
   ];
 
   const handleDonationClick = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
+    window.open(url, "_blank", "noopener,noreferrer");
     setIsOpen(false);
   };
 
@@ -68,23 +75,28 @@ function DonationButton() {
         onClick={() => setIsOpen(!isOpen)}
       >
         Donate
-        <ChevronDown className={cn("w-4 h-4 transition-transform", isOpen && "rotate-180")} />
+        <ChevronDown
+          className={cn("w-4 h-4 transition-transform", isOpen && "rotate-180")}
+        />
       </Button>
-      
+
       {isOpen && (
         <>
           {/* Backdrop */}
-          <div 
-            className="fixed inset-0 z-40" 
+          <div
+            className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
           />
-          
+
           {/* Dropdown */}
           <div className="absolute top-full mt-2 left-0 right-0 bg-white rounded-lg shadow-lg border border-gray-200 z-50 min-w-[280px]">
             <div className="p-4">
-              <h3 className="text-lg font-semibold text-primary mb-3">Support Our Mission</h3>
+              <h3 className="text-lg font-semibold text-primary mb-3">
+                Support Our Mission
+              </h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Your donation helps us provide mental health support to healthcare workers.
+                Your donation helps us provide mental health support to
+                healthcare workers.
               </p>
               <div className="space-y-2">
                 {donationLinks.map((link) => (
@@ -612,12 +624,36 @@ function TeamCard({ member }: { member: TeamMember }) {
               />
             </div>
 
-            {/* Default state - compact info */}
+            {/* Default state - compact info with social links */}
             <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/80 to-transparent p-6 transition-all duration-300 group-hover:opacity-0">
               <h3 className="text-xl font-bold text-white">{member.name}</h3>
-              <p className="text-white/80 text-sm line-clamp-2">
+              <p className="text-white/80 text-sm line-clamp-2 mb-3">
                 {member.role}
               </p>
+              {/* Always visible social links */}
+              {member.socialLinks && member.socialLinks.length > 0 && (
+                <div className="flex space-x-3">
+                  {member.socialLinks.map((link) => (
+                    <a
+                      key={link.platform}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-primary transition-colors z-20 relative"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        window.open(link.url, "_blank", "noopener,noreferrer");
+                      }}
+                    >
+                      {link.platform === "facebook" && <Facebook size={18} />}
+                      {link.platform === "twitter" && <Twitter size={18} />}
+                      {link.platform === "linkedin" && <Linkedin size={18} />}
+                      {link.platform === "instagram" && <Instagram size={18} />}
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Hover state - expanded info */}
@@ -638,8 +674,12 @@ function TeamCard({ member }: { member: TeamMember }) {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-primary transition-colors"
-                    onClick={(e) => e.stopPropagation()}
+                    className="text-white hover:text-primary transition-colors z-20 relative"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      window.open(link.url, "_blank", "noopener,noreferrer");
+                    }}
                   >
                     {link.platform === "facebook" && <Facebook size={18} />}
                     {link.platform === "twitter" && <Twitter size={18} />}
@@ -676,10 +716,34 @@ function TeamCard({ member }: { member: TeamMember }) {
         />
       </div>
 
-      {/* Default state - compact info */}
+      {/* Default state - compact info with social links */}
       <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/80 to-transparent p-6 transition-all duration-300 group-hover:opacity-0">
         <h3 className="text-xl font-bold text-white">{member.name}</h3>
-        <p className="text-white/80 text-sm line-clamp-2">{member.role}</p>
+        <p className="text-white/80 text-sm line-clamp-2 mb-3">{member.role}</p>
+        {/* Always visible social links */}
+        {member.socialLinks && member.socialLinks.length > 0 && (
+          <div className="flex space-x-3">
+            {member.socialLinks.map((link) => (
+              <a
+                key={link.platform}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-primary transition-colors z-20 relative"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  window.open(link.url, "_blank", "noopener,noreferrer");
+                }}
+              >
+                {link.platform === "facebook" && <Facebook size={18} />}
+                {link.platform === "twitter" && <Twitter size={18} />}
+                {link.platform === "linkedin" && <Linkedin size={18} />}
+                {link.platform === "instagram" && <Instagram size={18} />}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Hover state - expanded info */}
@@ -698,8 +762,12 @@ function TeamCard({ member }: { member: TeamMember }) {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-primary transition-colors"
-              onClick={(e) => e.stopPropagation()}
+              className="text-white hover:text-primary transition-colors z-20 relative"
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                window.open(link.url, "_blank", "noopener,noreferrer");
+              }}
             >
               {link.platform === "facebook" && <Facebook size={18} />}
               {link.platform === "twitter" && <Twitter size={18} />}
@@ -788,7 +856,9 @@ function Team3({
 // Video Thumbnail Component
 function VideoThumbnail() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(null);
+  const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(
+    null
+  );
 
   const handlePlayClick = () => {
     setIsPlaying(true);
@@ -817,11 +887,11 @@ function VideoThumbnail() {
   }
 
   return (
-    <div 
+    <div
       className="relative w-full aspect-video rounded-lg shadow-lg cursor-pointer group overflow-hidden"
       onClick={handlePlayClick}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+        if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           handlePlayClick();
         }
@@ -831,25 +901,21 @@ function VideoThumbnail() {
       aria-label="Play About Being.Lagom video"
     >
       {/* Video thumbnail/poster */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-        {/* You can replace this with an actual thumbnail image if you have one */}
-        <div className="text-center space-y-4">
-          <div className="w-20 h-20 mx-auto bg-primary/80 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
-            <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-foreground">
-              Watch Our Story
-            </h3>
-            <p className="text-muted-foreground">
-              Click to play our compelling video experience
-            </p>
-          </div>
+      <img
+        src="/our-story.png"
+        alt="Our Story - Being.Lagom video thumbnail"
+        className="w-full h-full object-cover"
+      />
+
+      {/* Play button overlay */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-20 h-20 bg-primary/80 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110 shadow-lg">
+          <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
         </div>
       </div>
-      
+
       {/* Optional: Add a subtle overlay for better visual effect */}
-      <div className="absolute inset-0 bg-black/10 transition-all duration-300 group-hover:bg-black/20"></div>
+      <div className="absolute inset-0 bg-black/20 transition-all duration-300 group-hover:bg-black/30"></div>
     </div>
   );
 }

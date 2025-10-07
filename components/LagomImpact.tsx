@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { MapPin, Users, Calendar } from 'lucide-react';
+import { useState } from "react";
+import { MapPin } from "lucide-react";
 
 interface Project {
   id: string;
@@ -9,50 +9,46 @@ interface Project {
   description: string;
   participants?: number;
   duration?: string;
-  status: 'completed' | 'ongoing' | 'upcoming';
+  status: "completed" | "ongoing" | "upcoming";
 }
 
 const projects: Project[] = [
   {
-    id: 'ahmedabad',
-    title: 'Mental Health Initiative',
-    location: 'Ahmedabad',
-    image: '/placeholder-project-1.jpg',
-    description: 'Comprehensive mental health support program for healthcare workers in Ahmedabad, focusing on stress management and wellness.',
-    participants: 150,
-    duration: '6 months',
-    status: 'completed'
+    id: "ahmedabad",
+    title: "Flagship Study Site",
+    location: "Ahmedabad, India",
+    image: "/impact/ahd.jpg",
+    description:
+      "Building India's first trauma-to-data mental health infrastructure for healthcare workers through an integrated triage, therapy, and wearable-based research program at GCS Hospital.",
+    status: "ongoing",
   },
   {
-    id: 'bangalore-stjohns',
-    title: "St John's Wellness Program",
-    location: 'Bangalore',
-    image: '/placeholder-project-2.jpg',
-    description: 'Collaborative wellness initiative with St Johns Medical College, providing mental health resources and support systems.',
-    participants: 200,
-    duration: '8 months',
-    status: 'ongoing'
+    id: "bangalore-stjohns",
+    title: "Medical Education Pilot",
+    location: "Bangalore / St. John's, India",
+    image: "/impact/bangalore.jpg",
+    description:
+      "Redesigning medical training from the inside out with peer-healing circles that make mental health literacy a core competency for every future doctor.",
+    status: "ongoing",
   },
   {
-    id: 'nepal-happyminds',
-    title: 'HappyMinds Initiative',
-    location: 'Nepal',
-    image: '/placeholder-project-3.jpg',
-    description: 'Cross-border mental health awareness and support program, building resilient healthcare communities in Nepal.',
-    participants: 120,
-    duration: '12 months',
-    status: 'ongoing'
+    id: "nepal-happyminds",
+    title: "Cross-Border Adaptation",
+    location: "Nepal / HappyMinds Partnership",
+    image: "/impact/nepal.jpg",
+    description:
+      "Localizing Being.Lagom's trauma-informed peer model to support Nepali healthcare workers recovering from collective and migration-related trauma.",
+    status: "ongoing",
   },
   {
-    id: 'philippines',
-    title: 'Healthcare Resilience Program',
-    location: 'Philippines',
-    image: '/placeholder-project-4.jpg',
-    description: 'Building mental health resilience among healthcare workers through community-based support systems.',
-    participants: 180,
-    duration: '9 months',
-    status: 'completed'
-  }
+    id: "philippines",
+    title: "Therapist Match Network",
+    location: "Philippines",
+    image: "/impact/php.jpg",
+    description:
+      "Creating a bridge between Filipino healthcare professionals and culturally aligned global therapists to make mental health support truly accessible.",
+    status: "ongoing",
+  },
 ];
 
 export function LagomImpact() {
@@ -67,17 +63,18 @@ export function LagomImpact() {
             Lagom Impact
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Discover the meaningful projects we've undertaken to support healthcare workers 
-            and build resilient communities across different regions.
+            Discover the meaningful projects we've undertaken to support
+            healthcare workers and build resilient communities across different
+            regions.
           </p>
         </div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {projects.map((project) => (
-            <ProjectCard 
+            <ProjectCard
               key={project.id}
-              project={project} 
+              project={project}
               onClick={() => setSelectedProject(project)}
             />
           ))}
@@ -86,9 +83,9 @@ export function LagomImpact() {
 
       {/* Project Detail Modal */}
       {selectedProject && (
-        <ProjectModal 
-          project={selectedProject} 
-          onClose={() => setSelectedProject(null)} 
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
         />
       )}
     </section>
@@ -102,13 +99,13 @@ interface ProjectCardProps {
 
 function ProjectCard({ project, onClick }: ProjectCardProps) {
   const statusColors = {
-    completed: 'bg-green-100 text-green-800',
-    ongoing: 'bg-blue-100 text-blue-800',
-    upcoming: 'bg-yellow-100 text-yellow-800'
+    completed: "bg-green-100 text-green-800",
+    ongoing: "bg-blue-100 text-blue-800",
+    upcoming: "bg-yellow-100 text-yellow-800",
   };
 
   return (
-    <div 
+    <div
       className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group"
       onClick={onClick}
     >
@@ -124,7 +121,11 @@ function ProjectCard({ project, onClick }: ProjectCardProps) {
           }}
         />
         <div className="absolute top-4 right-4">
-          <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusColors[project.status]}`}>
+          <span
+            className={`px-3 py-1 rounded-full text-sm font-medium ${
+              statusColors[project.status]
+            }`}
+          >
             {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
           </span>
         </div>
@@ -136,29 +137,14 @@ function ProjectCard({ project, onClick }: ProjectCardProps) {
           <MapPin className="w-4 h-4 mr-1" />
           {project.location}
         </div>
-        
+
         <h3 className="text-xl font-semibold text-primary mb-3 group-hover:text-accent transition-colors">
           {project.title}
         </h3>
-        
+
         <p className="text-muted-foreground mb-4 line-clamp-3">
           {project.description}
         </p>
-
-        <div className="flex items-center justify-between text-sm text-muted-foreground">
-          {project.participants && (
-            <div className="flex items-center">
-              <Users className="w-4 h-4 mr-1" />
-              {project.participants} participants
-            </div>
-          )}
-          {project.duration && (
-            <div className="flex items-center">
-              <Calendar className="w-4 h-4 mr-1" />
-              {project.duration}
-            </div>
-          )}
-        </div>
 
         <div className="mt-4 text-accent font-medium group-hover:underline">
           Learn more →
@@ -194,41 +180,22 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
             ×
           </button>
         </div>
-        
+
         <div className="p-8">
           <div className="flex items-center text-sm text-muted-foreground mb-2">
             <MapPin className="w-4 h-4 mr-1" />
             {project.location}
           </div>
-          
-          <h2 className="text-2xl font-bold text-primary mb-4">{project.title}</h2>
-          
+
+          <h2 className="text-2xl font-bold text-primary mb-4">
+            {project.title}
+          </h2>
+
           <p className="text-muted-foreground mb-6">{project.description}</p>
-          
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            {project.participants && (
-              <div className="flex items-center">
-                <Users className="w-5 h-5 mr-2 text-accent" />
-                <div>
-                  <div className="font-medium">{project.participants}</div>
-                  <div className="text-sm text-muted-foreground">Participants</div>
-                </div>
-              </div>
-            )}
-            {project.duration && (
-              <div className="flex items-center">
-                <Calendar className="w-5 h-5 mr-2 text-accent" />
-                <div>
-                  <div className="font-medium">{project.duration}</div>
-                  <div className="text-sm text-muted-foreground">Duration</div>
-                </div>
-              </div>
-            )}
-          </div>
-          
+
           <div className="bg-gray-50 p-4 rounded-lg">
             <p className="text-sm text-muted-foreground">
-              More detailed information about this project will be added soon. 
+              More detailed information about this project will be added soon.
               Stay tuned for updates on our impact and outcomes.
             </p>
           </div>
