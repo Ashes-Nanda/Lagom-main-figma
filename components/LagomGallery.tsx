@@ -1,5 +1,6 @@
 
 const galleryImages = [
+  // Healing Circle Images
   "/events/healing-circle/IMG-20250918-WA0001.jpg",
   "/events/healing-circle/IMG-20250918-WA0002.jpg",
   "/events/healing-circle/IMG-20250918-WA0003.jpg",
@@ -20,6 +21,25 @@ const galleryImages = [
   "/events/healing-circle/WhatsApp Image 2025-09-17 at 23.37.10_f017dd66.jpg",
   "/events/healing-circle/WhatsApp Image 2025-09-17 at 23.37.10_faaf7788.jpg",
   "/events/healing-circle/WhatsApp Image 2025-09-17 at 23.37.11_fbcf5ba6.jpg",
+  // Dalai Lama Photos
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/_storage_emulated_0_Android_media_com.whatsapp_WhatsApp_Media_WhatsApp Images_IMG-20251115-WA0111.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0036.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0046.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0049.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0054.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0085.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0086.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0088.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0092.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0097.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0100.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0101.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0102.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0107.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0108.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0113.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0114.jpg",
+  "/DalaiLama_Photos/Lagom Dalai Lama Photos/IMG-20251115-WA0117.jpg",
 ];
 
 export function LagomGallery() {
